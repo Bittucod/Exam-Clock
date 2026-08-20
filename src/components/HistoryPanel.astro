@@ -1,0 +1,185 @@
+---
+// HistoryPanel.astro
+---
+
+<div class="history-card glass-panel">
+  <div class="history-header">
+    <div class="header-left">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon"><path d="M12 8v4l3 3"></path><circle cx="12" cy="12" r="10"></circle></svg>
+      <h3>Session History</h3>
+    </div>
+    <button type="button" id="history-clear-btn" class="clear-btn text-action-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+      Clear History
+    </button>
+  </div>
+
+  <div class="history-list-wrapper" id="history-list-container">
+    <!-- Rendered dynamically via JS -->
+    <div class="history-empty-state">
+      <p>No exams completed yet. Start your first session to build your log!</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .history-card {
+    padding: 1.25rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+    min-height: 250px;
+  }
+
+  .history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .header-left h3 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .header-left .icon {
+    color: var(--brand-accent);
+  }
+
+  .clear-btn {
+    color: var(--red-accent) !important;
+  }
+
+  /* List Scroll Wrapper */
+  .history-list-wrapper {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    max-height: 380px;
+    padding-right: 0.25rem;
+  }
+
+  .history-empty-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 120px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    line-height: 1.4;
+    padding: 0 1rem;
+  }
+
+  .history-empty-state p {
+    margin: 0;
+  }
+
+  /* History item card */
+  .history-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 0.75rem 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .history-item:hover {
+    border-color: var(--text-muted);
+  }
+
+  .history-item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .history-item-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .history-item-date {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  .history-item-middle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .history-item-metrics {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .history-item-q-badge {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    padding: 0.1rem 0.35rem;
+    border-radius: 0.25rem;
+    font-size: 0.7rem;
+  }
+
+  .history-status-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.35rem;
+  }
+
+  .status-completed {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--green-accent);
+  }
+
+  .status-stopped {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--red-accent);
+  }
+
+  /* Completion Bar background effect */
+  .history-item-progress-track {
+    width: 100%;
+    height: 3px;
+    background: var(--border-color);
+    border-radius: 2px;
+    margin-top: 0.15rem;
+    overflow: hidden;
+  }
+
+  .history-item-progress-fill {
+    height: 100%;
+    background: var(--brand-accent);
+  }
+
+  .history-item.stopped-mode .history-item-progress-fill {
+    background: var(--red-accent);
+  }
+</style>

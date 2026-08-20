@@ -1,0 +1,629 @@
+---
+// ClockStage.astro
+// Unified component containing Classic, Wall, Flip, Magnifier, and Film clock styles.
+
+const wallTicks = [];
+for (let idx = 1; idx <= 60; idx++) {
+  const rotation = idx * 6;
+  const isHour = idx % 5 === 0;
+  const hourNum = idx / 5;
+  wallTicks.push({ rotation, isHour, hourNum });
+}
+
+// Programmatic tick generation for the SVG clock face
+const classicTicks = [];
+for (let i = 0; i < 60; i++) {
+  const angle = (i * 6 * Math.PI) / 180;
+  const isFive = i % 5 === 0;
+  const isQuarter = i % 15 === 0;
+  const rStart = isQuarter ? 168 : (isFive ? 174 : 182);
+  const rEnd = 190;
+  const x1 = 200 + rStart * Math.sin(angle);
+  const y1 = 200 - rStart * Math.cos(angle);
+  const x2 = 200 + rEnd * Math.sin(angle);
+  const y2 = 200 - rEnd * Math.cos(angle);
+  classicTicks.push({ x1, y1, x2, y2, isFive, isQuarter });
+}
+
+// Generate outer minute numbers (5, 10, 15... 60)
+const minuteNumbers = [];
+for (let i = 1; i <= 12; i++) {
+  const angle = (i * 30 * Math.PI) / 180;
+  const r = 150; // radius
+  const x = 200 + r * Math.sin(angle);
+  const y = 200 - r * Math.cos(angle) + 4.5;
+  minuteNumbers.push({ x, y, val: i * 5 });
+}
+
+// Generate inner hour numbers (1, 2, 3... 12)
+const hourNumbers = [];
+for (let i = 1; i <= 12; i++) {
+  const angle = (i * 30 * Math.PI) / 180;
+  const r = 115; // radius
+  const x = 200 + r * Math.sin(angle);
+  const y = 200 - r * Math.cos(angle) + 5.5;
+  hourNumbers.push({ x, y, val: i });
+}
+
+// Generate 24-hour numbers (13, 14, 15... 24)
+const hour24Numbers = [];
+for (let i = 1; i <= 12; i++) {
+  const angle = (i * 30 * Math.PI) / 180;
+  const r = 85; // radius
+  const x = 200 + r * Math.sin(angle);
+  const y = 200 - r * Math.cos(angle) + 4.5;
+  const val = i + 12 === 24 ? 24 : i + 12;
+  hour24Numbers.push({ x, y, val });
+}
+---
+
+<div class="clock-stage-wrapper">
+
+  <!-- THEME 1: Classic Pro Analog Clock -->
+  <div class="clock-theme-container theme-classic active">
+    <div class="classic-clock-box">
+      <svg class="classic-analog-svg" viewBox="0 0 400 400" width="100%" height="100%">
+        <defs>
+          <filter id="classic-hand-shadow" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="0.5" dy="2" stdDeviation="2.5" flood-color="#000" flood-opacity="0.25" />
+          </filter>
+          <filter id="classic-dial-shadow" x="-10%" y="-10%" width="120%" height="120%">
+            <feDropShadow dx="0" dy="8" stdDeviation="15" flood-color="#000" flood-opacity="0.1" />
+          </filter>
+          <linearGradient id="classicHourHandGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="var(--hand-hour-color)" />
+            <stop offset="100%" stop-color="var(--hand-hour-dark-color)" />
+          </linearGradient>
+        </defs>
+
+        <!-- Outer Bezel Ring -->
+        <circle cx="200" cy="200" r="195" fill="var(--clock-bezel)" stroke="var(--clock-border)" stroke-width="3" filter="url(#classic-dial-shadow)" />
+        <!-- Clock Face -->
+        <circle cx="200" cy="200" r="190" fill="var(--clock-face)" />
+
+        <!-- Dynamic Highlight Sector (Pie wedge representing remaining time) -->
+        <path class="clock-highlight-sector" d="" fill="rgba(var(--brand-accent-rgb), 0.12)" stroke="var(--brand-accent)" stroke-width="1" />
+
+        <!-- Grid / Subdivisions -->
+        <circle cx="200" cy="200" r="168" fill="none" stroke="var(--clock-sub-ring)" stroke-dasharray="1 3" stroke-width="0.5" />
+        <circle cx="200" cy="200" r="132" fill="none" stroke="var(--clock-sub-ring)" stroke-width="0.5" />
+
+        <!-- Ticks -->
+        <g class="clock-ticks">
+          {classicTicks.map(t => (
+            <line
+              x1={t.x1}
+              y1={t.y1}
+              x2={t.x2}
+              y2={t.y2}
+              stroke={t.isQuarter ? 'var(--clock-tick-major)' : (t.isFive ? 'var(--clock-tick-medium)' : 'var(--clock-tick-minor)')}
+              stroke-width={t.isQuarter ? 2.5 : (t.isFive ? 1.8 : 1)}
+              stroke-linecap="round"
+            />
+          ))}
+        </g>
+
+        <!-- Outer Minutes Numbers -->
+        <g class="clock-numbers minutes-numbers">
+          {minuteNumbers.map(n => (
+            <text x={n.x} y={n.y} text-anchor="middle" font-weight="500">{n.val}</text>
+          ))}
+        </g>
+
+        <!-- Inner 12-Hour Numbers -->
+        <g class="clock-numbers hours-numbers">
+          {hourNumbers.map(n => (
+            <text x={n.x} y={n.y} text-anchor="middle" font-weight="700">{n.val}</text>
+          ))}
+        </g>
+
+        <!-- Optional Inner 24-Hour Numbers -->
+        <g id="clock-24h-numbers" class="clock-numbers hours-24h-numbers hidden">
+          {hour24Numbers.map(n => (
+            <text x={n.x} y={n.y} text-anchor="middle" font-weight="400">{n.val}</text>
+          ))}
+        </g>
+
+        <!-- Clock Hands -->
+        <!-- Hour Hand -->
+        <g id="clock-hour-hand" class="clock-classic-hour" filter="url(#classic-hand-shadow)">
+          <path d="M 194 200 L 196 65 L 204 65 L 206 200 Z" fill="url(#classicHourHandGrad)" />
+          <circle cx="200" cy="200" r="6" fill="var(--hand-hour-color)" />
+        </g>
+
+        <!-- Minute Hand -->
+        <g id="clock-minute-hand" class="clock-classic-minute" filter="url(#classic-hand-shadow)">
+          <path d="M 196.5 200 L 198 45 L 202 45 L 203.5 200 Z" fill="var(--hand-minute-color)" />
+          <circle cx="200" cy="200" r="4.5" fill="var(--hand-minute-color)" />
+        </g>
+
+        <!-- Second Hand -->
+        <g id="clock-second-hand" class="clock-classic-second" filter="url(#classic-hand-shadow)">
+          <line x1="200" y1="240" x2="200" y2="35" stroke="var(--hand-second-color)" stroke-width="1.2" stroke-linecap="round" />
+          <circle cx="200" cy="200" r="4" fill="var(--hand-second-color)" />
+        </g>
+
+        <!-- Center Red Pivot -->
+        <circle cx="200" cy="200" r="8" fill="var(--clock-pivot)" />
+        <circle cx="200" cy="200" r="2.5" fill="var(--clock-pivot-dot)" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- THEME 2: Minimalist Wall Clock -->
+  <div class="clock-theme-container theme-wall">
+    <div class="wall-clock-outer">
+      <div class="wall-clock-inner">
+        <div class="wall-clock-center">
+          <div class="wall-clock-hand hour-hand" id="wall-hour-hand"></div>
+        </div>	
+        <div class="wall-clock-center">
+          <div class="wall-clock-hand minute-hand" id="wall-minute-hand"></div>
+        </div>
+        <div class="wall-clock-center center-second">
+          <div class="wall-clock-hand second-hand" id="wall-second-hand"></div>
+        </div>
+        <div class="wall-clock-segments">
+          {wallTicks.map(t => (
+            <div class="wall-segment" style={`transform: rotate(${t.rotation}deg) translate(-50%, -100%)`}>
+              <div class={t.isHour ? 'wall-mark mark-hour' : 'wall-mark'} />
+              {t.isHour && <span class="wall-num" style={`transform: translateX(-50%) rotate(-${t.rotation}deg)`}>{t.hourNum}</span>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEME 3: 3D Retro Flip Cards -->
+  <div class="clock-theme-container theme-flip">
+    <div class="flip-clock-container">
+      <div class="flip-countdown">
+        <!-- Hours block -->
+        <div class="bloc-time hours">
+          <span class="count-title">Hours</span>
+          <div class="figure hours-1">
+            <span class="top">0</span>
+            <span class="top-back"><span>0</span></span>
+            <span class="bottom">0</span>
+            <span class="bottom-back"><span>0</span></span>
+          </div>
+          <div class="figure hours-2">
+            <span class="top">0</span>
+            <span class="top-back"><span>0</span></span>
+            <span class="bottom">0</span>
+            <span class="bottom-back"><span>0</span></span>
+          </div>
+        </div>
+        
+        <!-- Minutes block -->
+        <div class="bloc-time min">
+          <span class="count-title">Minutes</span>
+          <div class="figure min-1">
+            <span class="top">0</span>
+            <span class="top-back"><span>0</span></span>
+            <span class="bottom">0</span>
+            <span class="bottom-back"><span>0</span></span>
+          </div>
+          <div class="figure min-2">
+            <span class="top">0</span>
+            <span class="top-back"><span>0</span></span>
+            <span class="bottom">0</span>
+            <span class="bottom-back"><span>0</span></span>
+          </div>
+        </div>
+        
+        <!-- Seconds block -->
+        <div class="bloc-time sec">
+          <span class="count-title">Seconds</span>
+          <div class="figure sec-1">
+            <span class="top">0</span>
+            <span class="top-back"><span>0</span></span>
+            <span class="bottom">0</span>
+            <span class="bottom-back"><span>0</span></span>
+          </div>
+          <div class="figure sec-2">
+            <span class="top">0</span>
+            <span class="top-back"><span>0</span></span>
+            <span class="bottom">0</span>
+            <span class="bottom-back"><span>0</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEME 4: Magnifying Glass Canvas -->
+  <div class="clock-theme-container theme-magnifier">
+    <div class="magnifier-clock-container">
+      <canvas class="magnifier-clock-canvas" width="380" height="380"></canvas>
+    </div>
+  </div>
+
+  <!-- THEME 5: Retro Film Countdown -->
+  <div class="clock-theme-container theme-film">
+    <div class="film-clock-container">
+      <svg class="exam-film-clock" viewBox="0 0 400 400" width="100%" height="100%">
+        <defs>
+          <radialGradient id="filmGradient" cx="200" cy="200" r="160" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="var(--bg-secondary)"/>
+            <stop offset="0.6" stop-color="var(--bg-tertiary)"/>
+            <stop offset="1" stop-color="var(--border-color)"/>
+          </radialGradient>
+        </defs>
+        <!-- Background card -->
+        <rect width="380" height="380" x="10" y="10" rx="20" ry="20" fill="url(#filmGradient)" stroke="var(--border-color)" stroke-width="2" />
+        
+        <!-- SVG highlight sector (pie slice) -->
+        <path class="clock-highlight-sector" d="" fill="rgba(var(--brand-accent-rgb), 0.15)" stroke="var(--brand-accent)" stroke-width="1.5" />
+
+        <!-- Outer concentric circles -->
+        <circle cx="200" cy="200" r="160" fill="none" stroke="var(--text-muted)" stroke-width="1.5" opacity="0.25" />
+        <circle cx="200" cy="200" r="140" fill="none" stroke="var(--text-muted)" stroke-width="1.5" opacity="0.4" />
+        <circle cx="200" cy="200" r="110" fill="none" stroke="var(--text-muted)" stroke-width="1.5" opacity="0.65" />
+        
+        <!-- Crosshairs lines -->
+        <line x1="40" y1="200" x2="360" y2="200" stroke="var(--text-muted)" stroke-width="1.5" opacity="0.35" />
+        <line x1="200" y1="40" x2="200" y2="360" stroke="var(--text-muted)" stroke-width="1.5" opacity="0.35" />
+        
+        <!-- Rotating sweep arm -->
+        <line id="film-rotator" x1="200" y1="200" x2="200" y2="40" stroke="var(--text-primary)" stroke-width="2.5" class="film-arm" />
+        
+        <!-- Countdown digit display -->
+        <text id="film-counter" x="200" y="240" text-anchor="middle" fill="var(--brand-accent)" font-family="var(--font-sans)" font-size="130" font-weight="700">8</text>
+      </svg>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  .clock-stage-wrapper {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    user-select: none;
+  }
+
+  .clock-theme-container {
+    display: none;
+    width: 100%;
+    height: 100%;
+  }
+
+  .clock-theme-container.active {
+    display: block;
+  }
+
+  /* CLASSIC ANALOG CLOCK FACE SCOPED STYLES */
+  .classic-clock-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .classic-analog-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .clock-numbers {
+    font-family: var(--font-sans);
+    fill: var(--text-muted);
+  }
+
+  .minutes-numbers {
+    font-size: 10.5px;
+    fill: var(--text-muted);
+    opacity: 0.65;
+  }
+
+  .hours-numbers {
+    font-size: 18px;
+    fill: var(--text-primary);
+  }
+
+  .hours-24h-numbers {
+    font-size: 9px;
+    fill: var(--brand-accent);
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+  }
+
+
+
+  /* WALL CLOCK FACE SCOPED STYLES */
+  .wall-clock-outer {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
+    background: var(--bg-secondary);
+    border-radius: 50%;
+    border: 8px solid var(--text-primary);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .wall-clock-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 92%;
+    height: 92%;
+    background: var(--bg-primary);
+    border-radius: 50%;
+    border: 3px solid var(--text-primary);
+    position: relative;
+  }
+
+  .wall-clock-center {
+    position: absolute;
+    height: 14px;
+    width: 14px;
+    background: var(--text-primary);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .wall-clock-center.center-second {
+    height: 8px;
+    width: 8px;
+    background: var(--red-accent);
+    z-index: 11;
+  }
+
+  .wall-clock-hand {
+    transform-origin: bottom center;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 50%;
+    transition: transform 0.05s linear;
+  }
+
+  .wall-clock-hand.hour-hand {
+    height: 55px;
+    width: 6px;
+    background: var(--text-primary);
+  }
+
+  .wall-clock-hand.minute-hand {
+    height: 80px;
+    width: 4px;
+    background: var(--text-primary);
+  }
+
+  .wall-clock-hand.second-hand {
+    height: 85px;
+    width: 2px;
+    background: var(--red-accent);
+  }
+
+  .wall-clock-segments {
+    width: 95%;
+    height: 95%;
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .wall-segment {
+    position: absolute;
+    height: 50%;
+    width: 16px;
+    top: 0;
+    left: calc(50% - 8px);
+    transform-origin: bottom center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wall-mark {
+    height: 8px;
+    width: 2px;
+    background: var(--text-muted);
+    opacity: 0.6;
+  }
+
+  .wall-mark.mark-hour {
+    height: 14px;
+    width: 4px;
+    background: var(--text-primary);
+    opacity: 1;
+  }
+
+  .wall-num {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    position: absolute;
+    top: 16px;
+  }
+
+  /* FLIP CLOCK FACE SCOPED STYLES */
+  .flip-clock-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 0;
+  }
+
+  .flip-countdown {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+  }
+
+  .flip-countdown .bloc-time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .flip-countdown .count-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .flip-countdown .figure {
+    position: relative;
+    height: 80px;
+    width: 60px;
+    background-color: var(--bg-secondary);
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    margin-right: 4px;
+    float: left;
+  }
+
+  .flip-countdown .figure:last-child {
+    margin-right: 0;
+  }
+
+  .flip-countdown .figure > span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    font-family: var(--font-mono);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--brand-accent);
+    text-align: center;
+    line-height: 80px;
+  }
+
+  .flip-countdown .figure .top,
+  .flip-countdown .figure .top-back {
+    height: 50%;
+    overflow: hidden;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .flip-countdown .figure .top {
+    z-index: 3;
+    background-color: var(--bg-tertiary);
+    transform-origin: 50% 100%;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+  }
+
+  .flip-countdown .figure .bottom {
+    z-index: 1;
+  }
+
+  .flip-countdown .figure .bottom-back {
+    z-index: 2;
+    top: 0;
+    height: 50%;
+    overflow: hidden;
+    background-color: var(--bg-tertiary);
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+
+  .flip-countdown .figure .bottom-back span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  .flip-countdown .figure .top-back {
+    z-index: 4;
+    bottom: 0;
+    background-color: var(--bg-secondary);
+    transform-origin: 50% 0%;
+    transform: perspective(200px) rotateX(180deg);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+
+  .flip-countdown .figure .top-back span {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  /* Animations for Flip Cards */
+  @keyframes flipTop {
+    0% { transform: perspective(200px) rotateX(0deg); }
+    100% { transform: perspective(200px) rotateX(-180deg); }
+  }
+
+  @keyframes flipBackTop {
+    0% { transform: perspective(200px) rotateX(180deg); }
+    100% { transform: perspective(200px) rotateX(0deg); }
+  }
+
+  .figure.flip-animate .top {
+    animation: flipTop 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .figure.flip-animate .top-back {
+    animation: flipBackTop 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* MAGNIFIER CLOCK SCOPED STYLES */
+  .magnifier-clock-container {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .magnifier-clock-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* FILM COUNTDOWN CLOCK SCOPED STYLES */
+  .film-clock-container {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .exam-film-clock {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+
+
+  .hidden {
+    display: none !important;
+  }
+</style>

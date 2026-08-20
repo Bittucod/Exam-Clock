@@ -1,0 +1,544 @@
+---
+// TimerSetup.astro
+---
+
+<div class="setup-card glass-panel">
+  <div class="setup-header">
+    <h2>Configure New Session</h2>
+    <p class="subtitle">Set your duration or absolute exam window</p>
+  </div>
+
+  <!-- Tab Selectors -->
+  <div class="tabs-container">
+    <button type="button" class="tab-btn active" data-tab="tab-duration">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+      Duration
+    </button>
+    <button type="button" class="tab-btn" data-tab="tab-window">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+      Start & End Time
+    </button>
+  </div>
+
+  <div class="tab-content" id="tab-duration">
+    <div class="time-inputs-grid">
+      <div class="input-group">
+        <label for="setup-hours">Hours</label>
+        <div class="number-input-wrapper">
+          <input type="number" id="setup-hours" min="0" max="99" value="2" placeholder="00" />
+          <span class="unit">h</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="setup-minutes">Minutes</label>
+        <div class="number-input-wrapper">
+          <input type="number" id="setup-minutes" min="0" max="59" value="30" placeholder="00" />
+          <span class="unit">m</span>
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="setup-seconds">Seconds</label>
+        <div class="number-input-wrapper">
+          <input type="number" id="setup-seconds" min="0" max="59" value="0" placeholder="00" />
+          <span class="unit">s</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content hidden" id="tab-window">
+    <div class="time-window-grid">
+      <div class="input-group">
+        <label for="setup-start-time">Start Time</label>
+        <input type="time" id="setup-start-time" class="time-input" />
+      </div>
+      <div class="input-group">
+        <label for="setup-end-time">End Time</label>
+        <input type="time" id="setup-end-time" class="time-input" />
+      </div>
+    </div>
+    <p class="window-calc-text" id="window-duration-feedback">Calculated Duration: 2 Hours 30 Minutes</p>
+  </div>
+
+  <!-- Presets -->
+  <div class="section-divider"></div>
+  <div class="setup-section">
+    <label class="section-label">Quick Presets</label>
+    <div class="presets-grid" id="standard-presets-container">
+      <button type="button" class="preset-badge" data-seconds="900">15 min</button>
+      <button type="button" class="preset-badge" data-seconds="1800">30 min</button>
+      <button type="button" class="preset-badge" data-seconds="2700">45 min</button>
+      <button type="button" class="preset-badge" data-seconds="3600">1 hour</button>
+      <button type="button" class="preset-badge" data-seconds="5400">1.5 hours</button>
+      <button type="button" class="preset-badge active" data-seconds="9000">2 hours</button>
+      <button type="button" class="preset-badge" data-seconds="10800">3 hours</button>
+    </div>
+  </div>
+
+  <!-- Custom Presets Management -->
+  <div class="setup-section custom-presets-section">
+    <div class="presets-header">
+      <label class="section-label">Custom Presets</label>
+      <button type="button" id="btn-save-custom-preset" class="text-action-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" class="icon"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+        Save Current
+      </button>
+    </div>
+    <div class="presets-grid" id="custom-presets-container">
+      <!-- Generated via JS -->
+      <span class="empty-text">No custom presets saved.</span>
+    </div>
+  </div>
+
+  <!-- Optional Settings Accordion -->
+  <div class="section-divider"></div>
+  <div class="setup-options-stack">
+    <!-- Questions Progress -->
+    <div class="option-row">
+      <div class="option-info">
+        <label for="setup-enable-questions" class="option-title">Enable Question Progress Tracker</label>
+        <span class="option-desc">Calculates target question counts and pacing targets.</span>
+      </div>
+      <label class="switch-toggle">
+        <input type="checkbox" id="setup-enable-questions" />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <!-- Question details (collapsible) -->
+    <div class="collapsible-content hidden" id="setup-questions-collapsible">
+      <div class="input-group inline-group">
+        <label for="setup-total-questions">Total Questions</label>
+        <input type="number" id="setup-total-questions" min="1" max="500" value="100" />
+      </div>
+    </div>
+
+    <!-- Strict Mode Toggle -->
+    <div class="option-row">
+      <div class="option-info">
+        <span class="option-title">Strict Exam Mode</span>
+        <span class="option-desc">Disables pausing once the exam starts. Useful for realistic mocks.</span>
+      </div>
+      <label class="switch-toggle">
+        <input type="checkbox" id="setup-strict-mode" />
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Big Action Button -->
+  <button type="button" class="btn-start-exam" id="btn-launch-exam">
+    Launch Exam Clock
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" class="icon"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+  </button>
+</div>
+
+<style>
+  .setup-card {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .setup-header h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .setup-header .subtitle {
+    margin: 0.25rem 0 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  /* Tabs */
+  .tabs-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--bg-secondary);
+    border: 1px stroke var(--border-color);
+    padding: 0.25rem;
+    border-radius: 0.75rem;
+  }
+
+  .tab-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .tab-btn.active {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .tab-btn:hover:not(.active) {
+    color: var(--text-primary);
+  }
+
+  .tab-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .tab-content.hidden {
+    display: none;
+  }
+
+  /* Inputs */
+  .time-inputs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .time-window-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .input-group label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .number-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .number-input-wrapper input,
+  .time-input,
+  #setup-total-questions {
+    width: 100%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 0.65rem 0.75rem;
+    font-size: 1.05rem;
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .number-input-wrapper input {
+    padding-right: 1.75rem;
+  }
+
+  .number-input-wrapper input:focus,
+  .time-input:focus,
+  #setup-total-questions:focus {
+    border-color: var(--brand-accent);
+  }
+
+  .number-input-wrapper .unit {
+    position: absolute;
+    right: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    pointer-events: none;
+  }
+
+  .window-calc-text {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--brand-accent);
+    font-weight: 500;
+    text-align: center;
+  }
+
+  /* Dividers */
+  .section-divider {
+    height: 1px;
+    background: var(--border-color);
+  }
+
+  /* Presets */
+  .setup-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .section-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .presets-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .presets-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .preset-badge {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .preset-badge:hover {
+    border-color: var(--text-muted);
+    color: var(--text-primary);
+  }
+
+  .preset-badge.active {
+    background: rgba(var(--brand-accent-rgb), 0.15);
+    border-color: var(--brand-accent);
+    color: var(--brand-accent);
+    font-weight: 500;
+  }
+
+  .text-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: 0.8rem;
+    color: var(--brand-accent);
+    cursor: pointer;
+    font-weight: 600;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    transition: opacity 0.2s ease;
+  }
+
+  .text-action-btn:hover {
+    opacity: 0.8;
+  }
+
+  .custom-presets-section .empty-text {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* Custom Preset Tag with Delete Icon */
+  .custom-preset-wrapper {
+    display: inline-flex;
+    align-items: center;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .custom-preset-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.5rem 0.4rem 0.75rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .custom-preset-btn:hover {
+    color: var(--text-primary);
+  }
+
+  .custom-preset-delete {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.4rem 0.6rem 0.4rem 0.4rem;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s ease;
+  }
+
+  .custom-preset-delete:hover {
+    color: var(--red-accent);
+  }
+
+  /* Options Stack */
+  .setup-options-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .option-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .option-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .option-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .option-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .collapsible-content {
+    background: var(--bg-secondary);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px dashed var(--border-color);
+    margin-top: -0.5rem;
+  }
+
+  .collapsible-content.hidden {
+    display: none;
+  }
+
+  .inline-group {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .inline-group label {
+    margin: 0;
+  }
+
+  .inline-group input {
+    max-width: 100px;
+    text-align: center;
+  }
+
+  /* Toggle Switch */
+  .switch-toggle {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  .switch-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--border-color);
+    transition: 0.3s;
+    border-radius: 24px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+  }
+
+  .switch-toggle input:checked + .slider {
+    background-color: var(--brand-accent);
+  }
+
+  .switch-toggle input:checked + .slider:before {
+    transform: translateX(20px);
+  }
+
+  /* Start Button */
+  .btn-start-exam {
+    margin-top: auto;
+    background: var(--brand-accent);
+    color: #ffffff;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.85rem 1.5rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    box-shadow: 0 4px 15px rgba(var(--brand-accent-rgb), 0.35);
+    transition: all 0.2s ease;
+  }
+
+  .btn-start-exam:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(var(--brand-accent-rgb), 0.5);
+  }
+
+  .btn-start-exam:active {
+    transform: translateY(0);
+  }
+
+  .btn-start-exam .icon {
+    transition: transform 0.2s ease;
+  }
+
+  .btn-start-exam:hover .icon {
+    transform: translateX(3px);
+  }
+</style>

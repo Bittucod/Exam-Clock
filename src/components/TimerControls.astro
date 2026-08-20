@@ -1,0 +1,183 @@
+---
+// TimerControls.astro
+---
+
+<div class="controls-panel">
+  <!-- Primary Controls Row -->
+  <div class="main-controls">
+    <button type="button" id="ctrl-play-pause" class="btn-control btn-play-pause" aria-label="Pause/Resume Timer">
+      <span class="icon-wrapper">
+        <!-- Pause Icon -->
+        <svg id="icon-pause" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg>
+        <!-- Play/Resume Icon -->
+        <svg id="icon-play" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      </span>
+      <span id="ctrl-play-pause-text" class="btn-label">Pause</span>
+      <kbd class="shortcut-badge">Space</kbd>
+    </button>
+
+    <button type="button" id="ctrl-reset" class="btn-control btn-reset" aria-label="Reset Timer">
+      <span class="icon-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+      </span>
+      <span class="btn-label">Reset</span>
+      <kbd class="shortcut-badge">R</kbd>
+    </button>
+  </div>
+
+  <!-- Secondary Tools Row -->
+  <div class="secondary-controls">
+    <button type="button" id="ctrl-fullscreen" class="btn-tool" aria-label="Toggle Fullscreen">
+      <svg id="icon-fs-enter" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+      <svg id="icon-fs-exit" class="hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 14h6v6m10-6h-6v6M4 10h6V4m10 6h-6V4"></path></svg>
+      <span class="tool-label">Fullscreen</span>
+      <kbd class="shortcut-badge">F</kbd>
+    </button>
+
+    <button type="button" id="ctrl-sound" class="btn-tool" aria-label="Toggle Sound">
+      <svg id="icon-volume-on" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+      <svg id="icon-volume-mute" class="hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+      <span id="ctrl-sound-text" class="tool-label">Sound On</span>
+      <kbd class="shortcut-badge">M</kbd>
+    </button>
+  </div>
+</div>
+
+<style>
+  .controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .main-controls {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .btn-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.85rem 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+  }
+
+  .btn-play-pause {
+    background: var(--brand-accent);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(var(--brand-accent-rgb), 0.25);
+  }
+
+  .btn-play-pause:hover:not(:disabled) {
+    background: var(--brand-accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(var(--brand-accent-rgb), 0.35);
+  }
+
+  .btn-play-pause:disabled {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .btn-reset {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+  }
+
+  .btn-reset:hover:not(:disabled) {
+    background: var(--bg-tertiary);
+    border-color: var(--text-muted);
+    transform: translateY(-1px);
+  }
+
+  .btn-control:active:not(:disabled),
+  .btn-tool:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  /* Secondary controls row */
+  .secondary-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .btn-tool {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    border-radius: 0.65rem;
+    padding: 0.65rem 0.75rem;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-tool:hover {
+    color: var(--text-primary);
+    border-color: var(--text-muted);
+  }
+
+  /* Badges */
+  .shortcut-badge {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.65rem;
+    padding: 0.1rem 0.35rem;
+    border-radius: 0.25rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    font-weight: normal;
+    pointer-events: none;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-reset .shortcut-badge,
+  .btn-tool .shortcut-badge {
+    background: var(--bg-tertiary);
+    border-color: var(--border-color);
+    color: var(--text-muted);
+  }
+
+  .btn-control:disabled .shortcut-badge {
+    opacity: 0.3;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    .shortcut-badge {
+      display: none; /* Hide keyboard shortcut hints on mobile */
+    }
+  }
+</style>
