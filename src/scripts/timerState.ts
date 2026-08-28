@@ -27,6 +27,7 @@ export interface AppSettings {
   strictMode: boolean;
   soundOn: boolean;
   volume: number;
+  alarmSound: 'classic' | 'digital' | 'school-bell' | 'emergency' | 'gentle-gong' | 'triple-fanfare';
   questionProgress: boolean;
   warnings: number[]; // remaining minutes when warning should trigger
   clockTheme: 'classic' | 'wall' | 'flip' | 'magnifier' | 'film';
@@ -58,6 +59,7 @@ const DEFAULT_SETTINGS: AppSettings = {
   strictMode: false,
   soundOn: true,
   volume: 50,
+  alarmSound: 'classic',
   questionProgress: false,
   warnings: [60, 30, 15, 10, 5, 1],
   clockTheme: 'classic'

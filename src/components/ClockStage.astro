@@ -2,12 +2,27 @@
 // ClockStage.astro
 // Unified component containing Classic, Wall, Flip, Magnifier, and Film clock styles.
 
-const wallTicks = [];
-for (let idx = 1; idx <= 60; idx++) {
-  const rotation = idx * 6;
-  const isHour = idx % 5 === 0;
-  const hourNum = idx / 5;
-  wallTicks.push({ rotation, isHour, hourNum });
+// Wall clock mathematical marks and numerals (Trigonometrically exact circular layout)
+const wallClockTicks = [];
+for (let i = 0; i < 60; i++) {
+  const angle = (i * 6 * Math.PI) / 180;
+  const isHour = i % 5 === 0;
+  const rStart = isHour ? 150 : 158;
+  const rEnd = 168;
+  const x1 = 200 + rStart * Math.sin(angle);
+  const y1 = 200 - rStart * Math.cos(angle);
+  const x2 = 200 + rEnd * Math.sin(angle);
+  const y2 = 200 - rEnd * Math.cos(angle);
+  wallClockTicks.push({ x1, y1, x2, y2, isHour });
+}
+
+const wallClockNumbers = [];
+for (let i = 1; i <= 12; i++) {
+  const angle = (i * 30 * Math.PI) / 180;
+  const r = 124; // perfectly equidistant from outer ring on all 360 degrees
+  const x = 200 + r * Math.sin(angle);
+  const y = 200 - r * Math.cos(angle);
+  wallClockNumbers.push({ x, y, val: i });
 }
 
 // Programmatic tick generation for the SVG clock face
@@ -127,20 +142,20 @@ for (let i = 1; i <= 12; i++) {
         <!-- Clock Hands -->
         <!-- Hour Hand -->
         <g id="clock-hour-hand" class="clock-classic-hour" filter="url(#classic-hand-shadow)">
-          <path d="M 194 200 L 196 65 L 204 65 L 206 200 Z" fill="url(#classicHourHandGrad)" />
-          <circle cx="200" cy="200" r="6" fill="var(--hand-hour-color)" />
+          <path d="M 196 220 L 195 200 L 196 90 L 200 80 L 204 90 L 205 200 L 204 220 Z" fill="url(#classicHourHandGrad)" />
+          <circle cx="200" cy="200" r="7" fill="var(--hand-hour-color)" />
         </g>
 
         <!-- Minute Hand -->
         <g id="clock-minute-hand" class="clock-classic-minute" filter="url(#classic-hand-shadow)">
-          <path d="M 196.5 200 L 198 45 L 202 45 L 203.5 200 Z" fill="var(--hand-minute-color)" />
-          <circle cx="200" cy="200" r="4.5" fill="var(--hand-minute-color)" />
+          <path d="M 197.5 228 L 197 200 L 197.5 55 L 200 45 L 202.5 55 L 203 200 L 202.5 228 Z" fill="var(--hand-minute-color)" />
+          <circle cx="200" cy="200" r="5.5" fill="var(--hand-minute-color)" />
         </g>
 
         <!-- Second Hand -->
         <g id="clock-second-hand" class="clock-classic-second" filter="url(#classic-hand-shadow)">
-          <line x1="200" y1="240" x2="200" y2="35" stroke="var(--hand-second-color)" stroke-width="1.2" stroke-linecap="round" />
-          <circle cx="200" cy="200" r="4" fill="var(--hand-second-color)" />
+          <line x1="200" y1="240" x2="200" y2="35" stroke="var(--hand-second-color)" stroke-width="1.5" stroke-linecap="round" />
+          <circle cx="200" cy="200" r="4.5" fill="var(--hand-second-color)" />
         </g>
 
         <!-- Center Red Pivot -->
@@ -152,26 +167,70 @@ for (let i = 1; i <= 12; i++) {
 
   <!-- THEME 2: Minimalist Wall Clock -->
   <div class="clock-theme-container theme-wall">
-    <div class="wall-clock-outer">
-      <div class="wall-clock-inner">
-        <div class="wall-clock-center">
-          <div class="wall-clock-hand hour-hand" id="wall-hour-hand"></div>
-        </div>	
-        <div class="wall-clock-center">
-          <div class="wall-clock-hand minute-hand" id="wall-minute-hand"></div>
-        </div>
-        <div class="wall-clock-center center-second">
-          <div class="wall-clock-hand second-hand" id="wall-second-hand"></div>
-        </div>
-        <div class="wall-clock-segments">
-          {wallTicks.map(t => (
-            <div class="wall-segment" style={`transform: rotate(${t.rotation}deg) translate(-50%, -100%)`}>
-              <div class={t.isHour ? 'wall-mark mark-hour' : 'wall-mark'} />
-              {t.isHour && <span class="wall-num" style={`transform: translateX(-50%) rotate(-${t.rotation}deg)`}>{t.hourNum}</span>}
-            </div>
+    <div class="wall-clock-box">
+      <svg class="wall-analog-svg" viewBox="0 0 400 400" width="100%" height="100%">
+        <!-- Outer Wall Ring -->
+        <circle cx="200" cy="200" r="190" fill="var(--bg-secondary)" stroke="var(--text-primary)" stroke-width="10" />
+        <!-- Inner Bezel Ring -->
+        <circle cx="200" cy="200" r="176" fill="var(--bg-primary)" stroke="var(--text-primary)" stroke-width="3.5" />
+
+        <!-- 60 Equidistant Ticks -->
+        <g class="wall-ticks">
+          {wallClockTicks.map(t => (
+            <line
+              x1={t.x1}
+              y1={t.y1}
+              x2={t.x2}
+              y2={t.y2}
+              stroke={t.isHour ? 'var(--text-primary)' : 'var(--text-muted)'}
+              stroke-width={t.isHour ? 3.5 : 1.5}
+              stroke-linecap="round"
+              opacity={t.isHour ? 1 : 0.6}
+            />
           ))}
-        </div>
-      </div>
+        </g>
+
+        <!-- 12 Equidistant Hour Numerals -->
+        <g class="wall-numerals">
+          {wallClockNumbers.map(n => (
+            <text
+              x={n.x}
+              y={n.y}
+              text-anchor="middle"
+              dominant-baseline="central"
+              font-family="var(--font-sans)"
+              font-size="22"
+              font-weight="800"
+              fill="var(--text-primary)"
+            >
+              {n.val}
+            </text>
+          ))}
+        </g>
+
+        <!-- Clock Hands -->
+        <!-- Hour Hand -->
+        <g id="wall-hour-hand" class="wall-clock-hand hour-hand">
+          <line x1="200" y1="220" x2="200" y2="105" stroke="var(--text-primary)" stroke-width="6.5" stroke-linecap="round" />
+          <circle cx="200" cy="200" r="6" fill="var(--text-primary)" />
+        </g>
+
+        <!-- Minute Hand -->
+        <g id="wall-minute-hand" class="wall-clock-hand minute-hand">
+          <line x1="200" y1="226" x2="200" y2="60" stroke="var(--text-primary)" stroke-width="4.5" stroke-linecap="round" />
+          <circle cx="200" cy="200" r="5" fill="var(--text-primary)" />
+        </g>
+
+        <!-- Second Hand -->
+        <g id="wall-second-hand" class="wall-clock-hand second-hand">
+          <line x1="200" y1="236" x2="200" y2="40" stroke="var(--red-accent)" stroke-width="2" stroke-linecap="round" />
+          <circle cx="200" cy="200" r="4.5" fill="var(--red-accent)" />
+        </g>
+
+        <!-- Center Pivot Cap -->
+        <circle cx="200" cy="200" r="8" fill="var(--text-primary)" />
+        <circle cx="200" cy="200" r="3" fill="var(--red-accent)" />
+      </svg>
     </div>
   </div>
 
@@ -182,51 +241,93 @@ for (let i = 1; i <= 12; i++) {
         <!-- Hours block -->
         <div class="bloc-time hours">
           <span class="count-title">Hours</span>
-          <div class="figure hours-1">
-            <span class="top">0</span>
-            <span class="top-back"><span>0</span></span>
-            <span class="bottom">0</span>
-            <span class="bottom-back"><span>0</span></span>
-          </div>
-          <div class="figure hours-2">
-            <span class="top">0</span>
-            <span class="top-back"><span>0</span></span>
-            <span class="bottom">0</span>
-            <span class="bottom-back"><span>0</span></span>
+          <div class="figures-row">
+            <div class="figure hours-1">
+              <span class="top">0</span>
+              <span class="top-back">
+                <span>0</span>
+              </span>
+              <span class="bottom">0</span>
+              <span class="bottom-back">
+                <span>0</span>
+              </span>
+            </div>
+            <div class="figure hours-2">
+              <span class="top">0</span>
+              <span class="top-back">
+                <span>0</span>
+              </span>
+              <span class="bottom">0</span>
+              <span class="bottom-back">
+                <span>0</span>
+              </span>
+            </div>
           </div>
         </div>
         
+        <!-- Colon separator -->
+        <div class="flip-colon">
+          <span></span>
+          <span></span>
+        </div>
+
         <!-- Minutes block -->
         <div class="bloc-time min">
           <span class="count-title">Minutes</span>
-          <div class="figure min-1">
-            <span class="top">0</span>
-            <span class="top-back"><span>0</span></span>
-            <span class="bottom">0</span>
-            <span class="bottom-back"><span>0</span></span>
-          </div>
-          <div class="figure min-2">
-            <span class="top">0</span>
-            <span class="top-back"><span>0</span></span>
-            <span class="bottom">0</span>
-            <span class="bottom-back"><span>0</span></span>
+          <div class="figures-row">
+            <div class="figure min-1">
+              <span class="top">0</span>
+              <span class="top-back">
+                <span>0</span>
+              </span>
+              <span class="bottom">0</span>
+              <span class="bottom-back">
+                <span>0</span>
+              </span>
+            </div>
+            <div class="figure min-2">
+              <span class="top">0</span>
+              <span class="top-back">
+                <span>0</span>
+              </span>
+              <span class="bottom">0</span>
+              <span class="bottom-back">
+                <span>0</span>
+              </span>
+            </div>
           </div>
         </div>
         
+        <!-- Colon separator -->
+        <div class="flip-colon">
+          <span></span>
+          <span></span>
+        </div>
+
         <!-- Seconds block -->
         <div class="bloc-time sec">
           <span class="count-title">Seconds</span>
-          <div class="figure sec-1">
-            <span class="top">0</span>
-            <span class="top-back"><span>0</span></span>
-            <span class="bottom">0</span>
-            <span class="bottom-back"><span>0</span></span>
-          </div>
-          <div class="figure sec-2">
-            <span class="top">0</span>
-            <span class="top-back"><span>0</span></span>
-            <span class="bottom">0</span>
-            <span class="bottom-back"><span>0</span></span>
+          <div class="figures-row">
+            <div class="figure sec-1">
+              <span class="top">0</span>
+              <span class="top-back">
+                <span>0</span>
+              </span>
+              <span class="bottom">0</span>
+              <span class="bottom-back">
+                <span>0</span>
+              </span>
+            </div>
+            <div class="figure sec-2">
+              <span class="top">0</span>
+              <span class="top-back">
+                <span>0</span>
+              </span>
+              <span class="bottom">0</span>
+              <span class="bottom-back">
+                <span>0</span>
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -339,163 +440,103 @@ for (let i = 1; i <= 12; i++) {
 
 
   /* WALL CLOCK FACE SCOPED STYLES */
-  .wall-clock-outer {
+  .wall-clock-box {
     width: 100%;
     max-width: 320px;
     margin: 0 auto;
     aspect-ratio: 1 / 1;
-    background: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
     border-radius: 50%;
-    border: 8px solid var(--text-primary);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
   }
 
-  .wall-clock-inner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 92%;
-    height: 92%;
-    background: var(--bg-primary);
-    border-radius: 50%;
-    border: 3px solid var(--text-primary);
-    position: relative;
+  .wall-analog-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
   }
 
-  .wall-clock-center {
-    position: absolute;
-    height: 14px;
-    width: 14px;
-    background: var(--text-primary);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    z-index: 10;
-  }
-
-  .wall-clock-center.center-second {
-    height: 8px;
-    width: 8px;
-    background: var(--red-accent);
-    z-index: 11;
-  }
-
-  .wall-clock-hand {
-    transform-origin: bottom center;
-    border-radius: 4px;
-    position: absolute;
-    bottom: 50%;
-    transition: transform 0.05s linear;
-  }
-
-  .wall-clock-hand.hour-hand {
-    height: 55px;
-    width: 6px;
-    background: var(--text-primary);
-  }
-
-  .wall-clock-hand.minute-hand {
-    height: 80px;
-    width: 4px;
-    background: var(--text-primary);
-  }
-
-  .wall-clock-hand.second-hand {
-    height: 85px;
-    width: 2px;
-    background: var(--red-accent);
-  }
-
-  .wall-clock-segments {
-    width: 95%;
-    height: 95%;
-    border-radius: 50%;
-    position: relative;
-  }
-
-  .wall-segment {
-    position: absolute;
-    height: 50%;
-    width: 16px;
-    top: 0;
-    left: calc(50% - 8px);
-    transform-origin: bottom center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .wall-mark {
-    height: 8px;
-    width: 2px;
-    background: var(--text-muted);
-    opacity: 0.6;
-  }
-
-  .wall-mark.mark-hour {
-    height: 14px;
-    width: 4px;
-    background: var(--text-primary);
-    opacity: 1;
-  }
-
-  .wall-num {
-    font-family: var(--font-sans);
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text-primary);
-    position: absolute;
-    top: 16px;
-  }
-
-  /* FLIP CLOCK FACE SCOPED STYLES */
+  /* 3D RETRO FLIP CARDS SCOPED STYLES */
   .flip-clock-container {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 1.5rem 0;
+    user-select: none;
   }
 
   .flip-countdown {
     display: flex;
-    gap: 1.25rem;
-    align-items: center;
+    gap: 0.5rem;
+    align-items: flex-start;
+    justify-content: center;
   }
 
   .flip-countdown .bloc-time {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
+    text-align: center;
+  }
+
+  .flip-countdown .figures-row {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
   }
 
   .flip-countdown .count-title {
-    font-size: 0.7rem;
-    font-weight: 600;
+    font-size: 0.72rem;
+    font-weight: 700;
     color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
+  }
+
+  /* Colon separator between time units */
+  .flip-colon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding-top: 1.6rem;
+    height: 96px;
+  }
+
+  .flip-colon span {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--brand-accent);
+    animation: colonPulse 1s ease-in-out infinite alternate;
+  }
+
+  .flip-colon span:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+
+  @keyframes colonPulse {
+    0% { opacity: 1; }
+    100% { opacity: 0.3; }
   }
 
   .flip-countdown .figure {
     position: relative;
-    height: 80px;
-    width: 60px;
+    height: 96px;
+    width: 64px;
     background-color: var(--bg-secondary);
-    border-radius: 6px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    margin-right: 4px;
-    float: left;
-  }
-
-  .flip-countdown .figure:last-child {
-    margin-right: 0;
+    border-radius: 8px;
+    box-shadow:
+      0 4px 12px 0 rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
   }
 
   .flip-countdown .figure > span {
@@ -504,42 +545,65 @@ for (let i = 1; i <= 12; i++) {
     right: 0;
     margin: auto;
     font-family: var(--font-mono);
-    font-size: 3rem;
+    font-size: 3.6rem;
     font-weight: 700;
     color: var(--brand-accent);
     text-align: center;
-    line-height: 80px;
+    line-height: 96px;
   }
 
-  .flip-countdown .figure .top,
-  .flip-countdown .figure .top-back {
-    height: 50%;
-    overflow: hidden;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
+  /* Center horizontal cut line */
+  .flip-countdown .figure .top::after,
+  .flip-countdown .figure .bottom-back::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
   }
 
+  /* Top Card (Front, flips down) */
   .flip-countdown .figure .top {
     z-index: 3;
     background-color: var(--bg-tertiary);
     transform-origin: 50% 100%;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    border-bottom: 1px solid rgba(0,0,0,0.15);
+    -webkit-transform-origin: 50% 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    transform: perspective(300px);
+    -webkit-transform: perspective(300px);
   }
 
+  /* Bottom Card (Static Background) */
   .flip-countdown .figure .bottom {
     z-index: 1;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 
+  .flip-countdown .figure .bottom::before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  /* Bottom Back (Top half behind top, revealed as top flips) */
   .flip-countdown .figure .bottom-back {
     z-index: 2;
     top: 0;
     height: 50%;
     overflow: hidden;
     background-color: var(--bg-tertiary);
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
 
   .flip-countdown .figure .bottom-back span {
@@ -550,14 +614,26 @@ for (let i = 1; i <= 12; i++) {
     margin: auto;
   }
 
+  /* Common clipping for top and top-back */
+  .flip-countdown .figure .top,
+  .flip-countdown .figure .top-back {
+    height: 50%;
+    overflow: hidden;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* Top Back (Bottom half that starts folded up at 180deg and flips down to 0deg) */
   .flip-countdown .figure .top-back {
     z-index: 4;
     bottom: 0;
     background-color: var(--bg-secondary);
-    transform-origin: 50% 0%;
-    transform: perspective(200px) rotateX(180deg);
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+    transform: perspective(300px) rotateX(180deg);
+    -webkit-transform: perspective(300px) rotateX(180deg);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 
   .flip-countdown .figure .top-back span {
@@ -568,23 +644,61 @@ for (let i = 1; i <= 12; i++) {
     margin: auto;
   }
 
-  /* Animations for Flip Cards */
-  @keyframes flipTop {
-    0% { transform: perspective(200px) rotateX(0deg); }
-    100% { transform: perspective(200px) rotateX(-180deg); }
+  /* Responsive 3D Flip Cards for Mobile & Tablet */
+  @media (max-width: 540px) {
+    .flip-countdown {
+      gap: 0.25rem;
+    }
+
+    .flip-countdown .figures-row {
+      gap: 3px;
+    }
+
+    .flip-countdown .figure {
+      height: 64px;
+      width: 44px;
+      border-radius: 6px;
+    }
+
+    .flip-countdown .figure > span {
+      font-size: 2.3rem;
+      line-height: 64px;
+    }
+
+    .flip-colon {
+      height: 64px;
+      padding-top: 1.2rem;
+      gap: 10px;
+    }
+
+    .flip-colon span {
+      width: 6px;
+      height: 6px;
+    }
   }
 
-  @keyframes flipBackTop {
-    0% { transform: perspective(200px) rotateX(180deg); }
-    100% { transform: perspective(200px) rotateX(0deg); }
-  }
+  @media (max-width: 380px) {
+    .flip-countdown .figure {
+      height: 52px;
+      width: 36px;
+      border-radius: 5px;
+    }
 
-  .figure.flip-animate .top {
-    animation: flipTop 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  }
+    .flip-countdown .figure > span {
+      font-size: 1.85rem;
+      line-height: 52px;
+    }
 
-  .figure.flip-animate .top-back {
-    animation: flipBackTop 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    .flip-colon {
+      height: 52px;
+      padding-top: 1rem;
+      gap: 8px;
+    }
+
+    .flip-colon span {
+      width: 5px;
+      height: 5px;
+    }
   }
 
   /* MAGNIFIER CLOCK SCOPED STYLES */

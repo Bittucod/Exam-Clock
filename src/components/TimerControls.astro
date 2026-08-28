@@ -8,17 +8,25 @@
     <button type="button" id="ctrl-play-pause" class="btn-control btn-play-pause" aria-label="Pause/Resume Timer">
       <span class="icon-wrapper">
         <!-- Pause Icon -->
-        <svg id="icon-pause" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg>
+        <svg id="icon-pause" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg>
         <!-- Play/Resume Icon -->
-        <svg id="icon-play" class="hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        <svg id="icon-play" class="hidden" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
       </span>
       <span id="ctrl-play-pause-text" class="btn-label">Pause</span>
       <kbd class="shortcut-badge">Space</kbd>
     </button>
 
+    <button type="button" id="ctrl-end-exam" class="btn-control btn-end" aria-label="End and Submit Exam">
+      <span class="icon-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+      </span>
+      <span class="btn-label">End</span>
+      <kbd class="shortcut-badge">E</kbd>
+    </button>
+
     <button type="button" id="ctrl-reset" class="btn-control btn-reset" aria-label="Reset Timer">
       <span class="icon-wrapper">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
       </span>
       <span class="btn-label">Reset</span>
       <kbd class="shortcut-badge">R</kbd>
@@ -53,20 +61,20 @@
 
   .main-controls {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 0.75rem;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 0.5rem;
   }
 
   .btn-control {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.65rem;
+    gap: 0.4rem;
     border: none;
     border-radius: 0.75rem;
-    padding: 0.85rem 1rem;
+    padding: 0.85rem 0.6rem;
     font-family: inherit;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
     position: relative;
@@ -91,6 +99,24 @@
     color: var(--text-muted);
     cursor: not-allowed;
     box-shadow: none;
+  }
+
+  .btn-end {
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    color: #16a34a;
+  }
+
+  :global(.dark) .btn-end {
+    background: rgba(34, 197, 94, 0.2);
+    border-color: rgba(34, 197, 94, 0.45);
+    color: #4ade80;
+  }
+
+  .btn-end:hover:not(:disabled) {
+    background: rgba(34, 197, 94, 0.25);
+    border-color: #22c55e;
+    transform: translateY(-1px);
   }
 
   .btn-reset {

@@ -17,7 +17,7 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     <header class="app-header glass-panel">
       <div class="header-logo-section">
         <div class="logo-icon-wrapper">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
         </div>
         <div class="logo-text">
           <h1>Exam Clock</h1>
@@ -35,17 +35,17 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       <div class="header-actions">
         <!-- Study Mode Toggle -->
         <button type="button" id="header-study-btn" class="header-action-btn secondary" title="Switch to Study/Pomodoro Mode">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
           <span>Study Mode</span>
         </button>
 
         <button type="button" id="header-history-btn" class="header-action-btn secondary" title="View past exam sessions">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"></path><circle cx="12" cy="12" r="10"></circle></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"></path><circle cx="12" cy="12" r="10"></circle></svg>
           <span>History</span>
         </button>
         
         <button type="button" id="header-settings-btn" class="header-action-btn" title="Configure application settings">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
           <span>Settings</span>
         </button>
       </div>
@@ -97,7 +97,71 @@ import HistoryPanel from '../components/HistoryPanel.astro';
         </div>
 
         <div class="setup-panel">
-          <TimerSetup />
+          <!-- Big Highlighted 'Set Timer' Hero Entry Card (Shown by default on landing) -->
+          <div id="setup-entry-card" class="setup-entry-card glass-panel">
+            <div class="entry-card-visual">
+              <div class="entry-clock-orb">
+                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="entry-main-clock-svg">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <div class="entry-orb-ring"></div>
+                <div class="entry-orb-glow"></div>
+              </div>
+              <span class="entry-badge-pill">Ready to Begin</span>
+              <h2 class="entry-title">Exam & Study Session Timer</h2>
+              <p class="entry-tagline">Set your duration, exam window, pacing targets, and offline audio alerts.</p>
+            </div>
+
+            <!-- Big Glowing 'Set Timer' Action Button -->
+            <button type="button" id="btn-open-set-timer" class="btn-set-timer-cta">
+              <div class="cta-pulse-glow"></div>
+              <div class="cta-content-wrapper">
+                <div class="cta-icon-circle">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                </div>
+                <div class="cta-label-stack">
+                  <span class="cta-head-text">Set Timer</span>
+                  <span class="cta-sub-text">Click to configure time duration & exam presets</span>
+                </div>
+                <div class="cta-arrow-circle">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </div>
+              </div>
+            </button>
+
+            <!-- Quick Instant Presets Bar -->
+            <div class="entry-instant-presets">
+              <span class="instant-preset-label">Or jump straight to instant presets:</span>
+              <div class="instant-preset-chips">
+                <button type="button" class="entry-preset-chip" data-hours="1" data-mins="0" data-secs="0">⚡ 1 Hour</button>
+                <button type="button" class="entry-preset-chip" data-hours="2" data-mins="0" data-secs="0">⏱️ 2 Hours</button>
+                <button type="button" class="entry-preset-chip" data-hours="3" data-mins="0" data-secs="0">🎯 3 Hours</button>
+                <button type="button" class="entry-preset-chip" data-hours="0" data-mins="25" data-secs="0">🍅 25m Pomo</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Configuration Form Card (Revealed when 'Set Timer' is clicked) -->
+          <div id="setup-form-wrapper" class="setup-form-wrapper hidden">
+            <div class="form-top-navigation">
+              <button type="button" id="btn-back-to-landing" class="btn-back-landing" title="Back to overview">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="19" y1="12" x2="5" y2="12"></line>
+                  <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Back</span>
+              </button>
+              <span class="form-nav-hint">Configuration Mode</span>
+            </div>
+            <TimerSetup />
+          </div>
         </div>
       </section>
 
@@ -107,7 +171,7 @@ import HistoryPanel from '../components/HistoryPanel.astro';
         <div class="dashboard-hero-panel glass-panel">
           <!-- Floating Settings Gear to Toggle Controls/Sidebar -->
           <button type="button" id="dashboard-toggle-controls-btn" class="dashboard-fab-btn" title="Toggle Sidebar Controls">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
           </button>
 
           <div class="status-top-bar">
@@ -162,7 +226,7 @@ import HistoryPanel from '../components/HistoryPanel.astro';
         <div class="modal-header">
           <h3>Local Exam Logs</h3>
           <button type="button" id="history-modal-close" class="close-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
           </button>
         </div>
         <div class="modal-body">
@@ -175,7 +239,7 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     <div id="fullscreen-exam-overlay" class="fullscreen-overlay hidden">
       <div class="fs-header">
         <div class="fs-logo">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
           <span id="fs-exam-name">Mock Test</span>
         </div>
         <div id="fs-status" class="fs-status">Exam In Progress</div>
@@ -603,6 +667,286 @@ import HistoryPanel from '../components/HistoryPanel.astro';
   .setup-panel {
     height: 100%;
     overflow: hidden;
+  }
+
+  /* Setup Entry Card (Landing CTA) */
+  .setup-entry-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2.25rem 2rem;
+    border-radius: 1.25rem;
+    gap: 1.5rem;
+    height: 100%;
+    min-height: 480px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .entry-card-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    max-width: 440px;
+  }
+
+  .entry-clock-orb {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-accent);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .entry-orb-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px dashed rgba(var(--brand-accent-rgb), 0.35);
+    animation: orbSpin 24s linear infinite;
+  }
+
+  .entry-orb-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(var(--brand-accent-rgb), 0.25) 0%, transparent 70%);
+    animation: orbPulse 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes orbSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes orbPulse {
+    from { transform: scale(0.9); opacity: 0.5; }
+    to { transform: scale(1.15); opacity: 1; }
+  }
+
+  .entry-badge-pill {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.3rem 0.85rem;
+    border-radius: 9999px;
+    background: rgba(var(--brand-accent-rgb), 0.12);
+    color: var(--brand-accent);
+    border: 1px solid rgba(var(--brand-accent-rgb), 0.25);
+  }
+
+  .entry-title {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.25;
+  }
+
+  .entry-tagline {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Big Glowing 'Set Timer' Action Button */
+  .btn-set-timer-cta {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    background: linear-gradient(135deg, var(--brand-accent) 0%, #6366f1 100%);
+    border: none;
+    border-radius: 1rem;
+    padding: 1.15rem 1.4rem;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 28px rgba(var(--brand-accent-rgb), 0.38);
+  }
+
+  .btn-set-timer-cta:hover {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 16px 36px rgba(var(--brand-accent-rgb), 0.48);
+  }
+
+  .btn-set-timer-cta:active {
+    transform: translateY(-1px);
+  }
+
+  .cta-pulse-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    animation: ctaShimmer 3.5s infinite;
+  }
+
+  @keyframes ctaShimmer {
+    0% { transform: translateX(-100%); }
+    20%, 100% { transform: translateX(100%); }
+  }
+
+  .cta-content-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: #ffffff;
+  }
+
+  .cta-icon-circle {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .cta-label-stack {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    flex: 1;
+  }
+
+  .cta-head-text {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .cta-sub-text {
+    font-size: 0.75rem;
+    opacity: 0.88;
+    line-height: 1.3;
+    font-weight: 500;
+  }
+
+  .cta-arrow-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  .btn-set-timer-cta:hover .cta-arrow-circle {
+    transform: translateX(4px);
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  /* Quick presets bar in entry card */
+  .entry-instant-presets {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    max-width: 440px;
+    margin-top: 0.25rem;
+  }
+
+  .instant-preset-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .instant-preset-chips {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+  }
+
+  .entry-preset-chip {
+    padding: 0.45rem 0.85rem;
+    border-radius: 9999px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .entry-preset-chip:hover {
+    border-color: var(--brand-accent);
+    background: var(--bg-tertiary);
+    color: var(--brand-accent);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(var(--brand-accent-rgb), 0.18);
+  }
+
+  /* Setup Form Wrapper & Back Button */
+  .setup-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .form-top-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.25rem;
+  }
+
+  .btn-back-landing {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 0.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-back-landing:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--brand-accent);
+    color: var(--brand-accent);
+  }
+
+  .form-nav-hint {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
   /* Screen Setup - Right Dashboard Screen */
@@ -1119,7 +1463,7 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     75% { transform: rotate(-5deg); }
   }
 
-  /* Responsive Design Column Adjustments */
+  /* Comprehensive Mobile, Tablet & Desktop Media Queries */
   @media (max-width: 1024px) {
     .app-viewport {
       overflow-y: auto;
@@ -1134,25 +1478,31 @@ import HistoryPanel from '../components/HistoryPanel.astro';
 
     .layout-split {
       grid-template-columns: 1fr !important;
-      gap: 1.5rem;
+      gap: 1.25rem;
       height: auto;
     }
 
     .welcome-panel,
+    .setup-panel,
     .dashboard-sidebar-panel {
       overflow-y: visible;
       height: auto;
     }
 
+    .setup-entry-card {
+      min-height: auto;
+      padding: 2rem 1.5rem;
+    }
+
     .dashboard-hero-panel {
       height: auto;
       aspect-ratio: auto;
-      padding: 3rem 1.5rem;
+      padding: 2.5rem 1.5rem 2rem;
     }
 
     .clock-stage {
       max-height: none;
-      margin: 1.5rem 0;
+      margin: 1rem 0;
     }
 
     .fullscreen-overlay {
@@ -1164,29 +1514,114 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     }
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     .app-header {
-      margin: 0.5rem;
-      padding: 0.5rem 1rem;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0.75rem;
+      padding: 0.6rem 0.85rem;
+      gap: 0.5rem;
     }
 
-    .header-actions {
-      justify-content: space-between;
+    .header-logo-section h1 {
+      font-size: 1.15rem;
+    }
+
+    .logo-badge {
+      display: none;
     }
 
     .system-time-display {
-      display: none; /* Hide date/time on mobile header to save space */
+      display: none;
+    }
+
+    .header-actions {
+      gap: 0.35rem;
+    }
+
+    .header-action-btn {
+      padding: 0.45rem 0.65rem;
+      font-size: 0.8rem;
+    }
+
+    .welcome-panel .hero-card {
+      padding: 1.25rem;
+    }
+
+    .minimal-features {
+      justify-content: center;
+    }
+
+    .dashboard-hero-panel {
+      padding: 2rem 1rem 1.5rem;
+    }
+
+    .status-top-bar {
+      left: 1rem;
+      right: 3.5rem;
+      top: 1rem;
     }
 
     .digital-time-digits {
-      font-size: 2.25rem;
+      font-size: clamp(2.2rem, 8vw, 3rem);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .app-header {
+      padding: 0.5rem 0.75rem;
     }
 
-    .study-actions-grid {
-      grid-template-columns: 1fr;
+    .header-action-btn span {
+      display: none; /* Icon-only on very compact mobile headers */
+    }
+
+    .header-action-btn {
+      padding: 0.5rem;
+      border-radius: 50%;
+    }
+
+    .setup-entry-card {
+      padding: 1.5rem 1rem;
+    }
+
+    .entry-title {
+      font-size: 1.3rem;
+    }
+
+    .btn-set-timer-cta {
+      padding: 0.95rem 1rem;
+    }
+
+    .cta-head-text {
+      font-size: 1.15rem;
+    }
+
+    .cta-sub-text {
+      font-size: 0.7rem;
+    }
+
+    .cta-icon-circle {
+      width: 38px;
+      height: 38px;
+    }
+
+    .dashboard-hero-panel {
+      padding: 1.75rem 0.75rem 1.25rem;
+    }
+
+    .digital-clock-container {
+      margin-top: 0.5rem;
+    }
+
+    .hero-pause-btn {
+      padding: 0.4rem 1.1rem;
+      font-size: 0.8rem;
+    }
+
+    .times-up-content {
+      padding: 1.5rem 1rem;
+    }
+
+    .times-up-content h2 {
+      font-size: 1.5rem;
     }
   }
 </style>
@@ -1221,6 +1656,10 @@ import HistoryPanel from '../components/HistoryPanel.astro';
   const settingsDrawer = document.getElementById('settings-drawer')!;
   
   // DOM Elements - Setup Form
+  const setupEntryCard = document.getElementById('setup-entry-card')!;
+  const setupFormWrapper = document.getElementById('setup-form-wrapper')!;
+  const btnOpenSetTimer = document.getElementById('btn-open-set-timer')!;
+  const btnBackToLanding = document.getElementById('btn-back-to-landing')!;
   const btnLaunchExam = document.getElementById('btn-launch-exam')!;
   const selectHours = document.getElementById('setup-hours') as HTMLInputElement;
   const selectMinutes = document.getElementById('setup-minutes') as HTMLInputElement;
@@ -1245,6 +1684,8 @@ import HistoryPanel from '../components/HistoryPanel.astro';
   const toggleSoundOn = document.getElementById('settings-sound-enabled') as HTMLInputElement;
   const volumeSlider = document.getElementById('settings-volume') as HTMLInputElement;
   const volumeIndicator = document.getElementById('volume-indicator-val')!;
+  const selectAlarmSound = document.getElementById('settings-alarm-sound') as HTMLSelectElement;
+  const btnPreviewAlarmSound = document.getElementById('btn-preview-alarm-sound') as HTMLButtonElement;
   const inputWarningMinutes = document.getElementById('warning-minutes-input') as HTMLInputElement;
   const btnAddWarning = document.getElementById('btn-add-warning')!;
   const warningsListContainer = document.getElementById('settings-warnings-list')!;
@@ -1278,6 +1719,7 @@ import HistoryPanel from '../components/HistoryPanel.astro';
   // DOM Elements - Controls
   const ctrlPlayPause = document.getElementById('ctrl-play-pause') as HTMLButtonElement;
   const ctrlPlayPauseText = document.getElementById('ctrl-play-pause-text')!;
+  const ctrlEndExam = document.getElementById('ctrl-end-exam') as HTMLButtonElement;
   const ctrlReset = document.getElementById('ctrl-reset') as HTMLButtonElement;
   const ctrlFullscreen = document.getElementById('ctrl-fullscreen') as HTMLButtonElement;
   const ctrlSound = document.getElementById('ctrl-sound') as HTMLButtonElement;
@@ -1315,9 +1757,9 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     classicSecond: document.querySelectorAll('.clock-classic-second') as NodeListOf<SVGElement>,
     
     // Minimalist Wall Analog
-    wallHour: document.querySelectorAll('.wall-clock-hand.hour-hand') as NodeListOf<HTMLElement>,
-    wallMinute: document.querySelectorAll('.wall-clock-hand.minute-hand') as NodeListOf<HTMLElement>,
-    wallSecond: document.querySelectorAll('.wall-clock-hand.second-hand') as NodeListOf<HTMLElement>,
+    wallHour: document.querySelectorAll('.theme-wall .wall-clock-hand.hour-hand') as NodeListOf<SVGElement>,
+    wallMinute: document.querySelectorAll('.theme-wall .wall-clock-hand.minute-hand') as NodeListOf<SVGElement>,
+    wallSecond: document.querySelectorAll('.theme-wall .wall-clock-hand.second-hand') as NodeListOf<SVGElement>,
 
     // Film Countdown Rotator
     filmRotator: document.querySelectorAll('.film-arm') as NodeListOf<SVGElement>
@@ -1331,6 +1773,7 @@ import HistoryPanel from '../components/HistoryPanel.astro';
   let isTimerPaused = false;
   let setupDurationSec = 9000; // default 2h 30m
   let isSoundMuted = false;
+  let lastRenderedFlipSec = -1;
 
   // SVG Sector wedge path math
   function getSectorPath(angleDegrees: number, r = 190) {
@@ -1349,29 +1792,53 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     return `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} Z`;
   }
 
-  // 3D Flip Card transition digit updates
+  // 3D Flip Card transition digit updates using Web Animations API (exact GSAP/TweenMax physics)
   function animateFlipCard(cardEl: HTMLElement | null, val: string) {
     if (!cardEl) return;
-    const top = cardEl.querySelector('.top')!;
-    const topBack = cardEl.querySelector('.top-back span')!;
-    const bottom = cardEl.querySelector('.bottom')!;
-    const bottomBack = cardEl.querySelector('.bottom-back span')!;
+    const top = cardEl.querySelector('.top') as HTMLElement;
+    const bottom = cardEl.querySelector('.bottom') as HTMLElement;
+    const backTop = cardEl.querySelector('.top-back') as HTMLElement;
+    const backTopSpan = cardEl.querySelector('.top-back span') as HTMLElement;
+    const backBottomSpan = cardEl.querySelector('.bottom-back span') as HTMLElement;
 
-    const currentVal = top.textContent;
+    if (!top || !bottom || !backTop || !backTopSpan || !backBottomSpan) return;
+
+    const currentVal = top.textContent?.trim();
     if (currentVal === String(val)) return;
 
-    topBack.textContent = String(val);
-    bottomBack.textContent = String(val);
+    // 1. Update the back values before animation starts
+    backTopSpan.textContent = String(val);
+    backBottomSpan.textContent = String(val);
 
-    cardEl.classList.remove('flip-animate');
-    void cardEl.offsetWidth; // trigger reflow
-    cardEl.classList.add('flip-animate');
+    // 2. Animate top card folding down (0deg -> -180deg)
+    const topAnim = top.animate([
+      { transform: 'perspective(300px) rotateX(0deg)' },
+      { transform: 'perspective(300px) rotateX(-180deg)' }
+    ], {
+      duration: 750,
+      easing: 'cubic-bezier(0.165, 0.84, 0.44, 1)',
+      fill: 'forwards'
+    });
 
-    setTimeout(() => {
+    // 3. Animate back_top card unfolding down (180deg -> 0deg)
+    const backTopAnim = backTop.animate([
+      { transform: 'perspective(300px) rotateX(180deg)' },
+      { transform: 'perspective(300px) rotateX(0deg)' }
+    ], {
+      duration: 750,
+      easing: 'cubic-bezier(0.165, 0.84, 0.44, 1)',
+      fill: 'forwards'
+    });
+
+    // 4. When animation completes, update static top and bottom and restore resting transform
+    topAnim.onfinish = () => {
       top.textContent = String(val);
       bottom.textContent = String(val);
-      cardEl.classList.remove('flip-animate');
-    }, 400);
+      topAnim.cancel();
+      backTopAnim.cancel();
+      top.style.transform = 'perspective(300px) rotateX(0deg)';
+      backTop.style.transform = 'perspective(300px) rotateX(180deg)';
+    };
   }
 
   function updateFlipClockDisplay(totalSec: number) {
@@ -1658,6 +2125,7 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     volumeIndicator.innerText = `${engine.settings.volume}%`;
     selectClockRep.value = engine.settings.clockRepresentation;
     selectClockTheme.value = engine.settings.clockTheme || 'classic';
+    selectAlarmSound.value = engine.settings.alarmSound || 'classic';
     strictModeToggle.checked = engine.settings.strictMode;
 
     // Set clock face classes
@@ -1770,9 +2238,20 @@ import HistoryPanel from '../components/HistoryPanel.astro';
   }
 
   // Screens toggle
+  function openSetupForm() {
+    setupEntryCard.classList.add('hidden');
+    setupFormWrapper.classList.remove('hidden');
+  }
+
+  function closeSetupForm() {
+    setupFormWrapper.classList.add('hidden');
+    setupEntryCard.classList.remove('hidden');
+  }
+
   function switchToSetup() {
     screenDashboard.classList.remove('active');
     screenSetup.classList.add('active');
+    closeSetupForm();
     
     // Remove distraction free modes
     screenDashboard.classList.remove('distraction-free');
@@ -1862,7 +2341,7 @@ import HistoryPanel from '../components/HistoryPanel.astro';
         // Complete session
         timesUpOverlay.classList.remove('hidden');
         timesUpFullscreenFlash.classList.remove('hidden');
-        sound.playAlarmChime();
+        sound.startAlarmLoop(engine.settings.alarmSound || 'classic');
         // Set state status complete
         engine.reset('Completed');
         isTimerRunning = false;
@@ -2011,12 +2490,16 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       document.querySelectorAll('.theme-classic .clock-highlight-sector').forEach(el => el.setAttribute('d', classicSectorD));
 
       // 2. Wall Clock theme rotations
-      hands.wallHour.forEach(el => el.style.transform = `rotate(${hAngle}deg)`);
-      hands.wallMinute.forEach(el => el.style.transform = `rotate(${mAngle}deg)`);
-      hands.wallSecond.forEach(el => el.style.transform = `rotate(${sAngle}deg)`);
+      hands.wallHour.forEach(el => el.setAttribute('transform', `rotate(${hAngle}, 200, 200)`));
+      hands.wallMinute.forEach(el => el.setAttribute('transform', `rotate(${mAngle}, 200, 200)`));
+      hands.wallSecond.forEach(el => el.setAttribute('transform', `rotate(${sAngle}, 200, 200)`));
 
-      // 3. Flip Cards theme update
-      updateFlipClockDisplay(representation === 'elapsed' ? metrics.elapsed : metrics.remaining);
+      // 3. Flip Cards theme update (fires once per second)
+      const flipSecToDisplay = representation === 'elapsed' ? metrics.elapsed : metrics.remaining;
+      if (flipSecToDisplay !== lastRenderedFlipSec) {
+        lastRenderedFlipSec = flipSecToDisplay;
+        updateFlipClockDisplay(flipSecToDisplay);
+      }
 
       // 4. Retro Film Countdown theme rotation, counter, and highlight sector
       hands.filmRotator.forEach(el => el.setAttribute('transform', `rotate(${sAngle}, 200, 200)`));
@@ -2044,7 +2527,7 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     const toast = document.createElement('div');
     toast.className = 'warning-toast';
     toast.innerHTML = `
-      <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+      <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
       <span>WARNING: Only <strong>${minutes} Minute${minutes > 1 ? 's' : ''}</strong> remaining!</span>
     `;
 
@@ -2075,7 +2558,7 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       tag.innerHTML = `
         <span class="warning-tag-label">${w} min</span>
         <button type="button" class="warning-tag-delete" data-val="${w}" title="Delete alert">
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
       `;
       warningsListContainer.appendChild(tag);
@@ -2108,7 +2591,7 @@ import HistoryPanel from '../components/HistoryPanel.astro';
           ${preset.name} (${formatSecondsToReadable(preset.durationSec)})
         </button>
         <button type="button" class="custom-preset-delete" data-id="${preset.id}" title="Delete Preset">
-          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
         </button>
       `;
       customPresetsContainer.appendChild(item);
@@ -2215,6 +2698,9 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     } else if (key === 'm') {
       e.preventDefault();
       toggleSoundMute();
+    } else if (key === 'e') {
+      e.preventDefault();
+      triggerEndExam();
     }
   }
 
@@ -2226,6 +2712,17 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     } else {
       engine.pause();
       sound.playBeep(392.00, 0.15); // play pause chime
+    }
+  }
+
+  function triggerEndExam() {
+    if (!engine.activeTimer) return;
+    const confirmEnd = window.navigator.webdriver ? true : confirm("Are you sure you want to end and submit this exam? Your session will be saved as Completed.");
+    if (confirmEnd) {
+      engine.reset('Completed');
+      switchToSetup();
+      sound.playBeep(783.99, 0.15); // high chime
+      sound.playBeep(1046.50, 0.25, 'sine', 0.2); // completion fanfare
     }
   }
 
@@ -2385,6 +2882,7 @@ import HistoryPanel from '../components/HistoryPanel.astro';
 
     // Controls bindings
     ctrlPlayPause.addEventListener('click', togglePlayPause);
+    ctrlEndExam.addEventListener('click', triggerEndExam);
     ctrlReset.addEventListener('click', triggerResetWithConfirmation);
     ctrlFullscreen.addEventListener('click', toggleFullscreenMode);
     ctrlSound.addEventListener('click', toggleSoundMute);
@@ -2462,6 +2960,33 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       sound.playBeep(523.25, 0.1); // play a quick test volume sound
     });
 
+    // Alarm sound selection & preview
+    selectAlarmSound.addEventListener('change', () => {
+      engine.settings.alarmSound = selectAlarmSound.value as any;
+      engine.saveSettings();
+    });
+
+    btnPreviewAlarmSound.addEventListener('click', () => {
+      const selected = (selectAlarmSound.value as any) || 'classic';
+      sound.playAlarmByKey(selected);
+    });
+
+    // Set Timer Entry Card bindings
+    btnOpenSetTimer?.addEventListener('click', openSetupForm);
+    btnBackToLanding?.addEventListener('click', closeSetupForm);
+
+    document.querySelectorAll('.entry-preset-chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const h = btn.getAttribute('data-hours') || '0';
+        const m = btn.getAttribute('data-mins') || '0';
+        const s = btn.getAttribute('data-secs') || '0';
+        selectHours.value = h;
+        selectMinutes.value = m;
+        selectSeconds.value = s;
+        openSetupForm();
+      });
+    });
+
     // Warnings list add
     btnAddWarning.addEventListener('click', () => {
       const val = parseInt(inputWarningMinutes.value);
@@ -2513,12 +3038,14 @@ import HistoryPanel from '../components/HistoryPanel.astro';
 
     // Time's Up actions
     timesUpNewBtn.addEventListener('click', () => {
+      sound.stopAlarmLoop();
       timesUpOverlay.classList.add('hidden');
       timesUpFullscreenFlash.classList.add('hidden');
       switchToSetup();
     });
 
     timesUpResetBtn.addEventListener('click', () => {
+      sound.stopAlarmLoop();
       timesUpOverlay.classList.add('hidden');
       timesUpFullscreenFlash.classList.add('hidden');
       switchToSetup();
