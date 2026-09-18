@@ -110,7 +110,7 @@ if (breadcrumbs && breadcrumbs.length > 0) {
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
     <!-- Theme & Mobile App Setup -->
-    <meta name="theme-color" content="#0a0a0c" />
+    <meta name="theme-color" content="#f8fafc" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -148,11 +148,12 @@ if (breadcrumbs && breadcrumbs.length > 0) {
     <!-- Fonts: Outfit (headings/UI) & JetBrains Mono (monospaced timer) -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    <!-- Fast Theme Initialize Script (Prevents white flashes) -->
+    <!-- Fast Theme Initialize Script (Default: Light / White Theme) -->
     <script is:inline>
       (function () {
         const theme = localStorage.getItem('exam-clock-theme');
-        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        // Default is light (white theme). Only enable dark mode if explicitly set by user.
+        if (theme === 'dark') {
           document.documentElement.classList.add('dark');
           document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0a0a0c');
         } else {
@@ -179,12 +180,33 @@ if (breadcrumbs && breadcrumbs.length > 0) {
 </html>
 
 <style is:global>
-  /* Curated Unified Color Tokens */
+  /* Curated Unified Color Tokens - Default Light (White) Theme */
   :root {
     --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
-    /* Dark Theme (Default) */
+    /* Light Theme (Default) */
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f1f5f9;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --border-hover: rgba(0, 0, 0, 0.15);
+    
+    --text-primary: #0f172a;
+    --text-muted: #64748b;
+    
+    --brand-accent: #4f46e5;
+    --brand-accent-hover: #4338ca;
+    --brand-accent-glow: rgba(79, 70, 229, 0.2);
+    --brand-accent-rgb: 79, 70, 229;
+    
+    --green-accent: #059669;
+    --orange-accent: #d97706;
+    --red-accent: #dc2626;
+  }
+
+  /* Dark Theme when .dark class is added */
+  html.dark, .dark {
     --bg-primary: #0a0a0c;
     --bg-secondary: #121216;
     --bg-tertiary: #191921;
@@ -204,7 +226,7 @@ if (breadcrumbs && breadcrumbs.length > 0) {
     --red-accent: #ef4444;
   }
 
-  /* Light Theme overrides */
+  /* Explicit Light Theme selector */
   html:not(.dark) {
     --bg-primary: #f8fafc;
     --bg-secondary: #ffffff;

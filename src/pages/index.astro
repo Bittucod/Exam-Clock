@@ -537,9 +537,45 @@ import SiteFooter from '../components/SiteFooter.astro';
 
 <!-- Design system Tokens and custom global rules -->
 <style is:global>
-  /* Curated HSL Palette Tokens */
+  /* Curated HSL Palette Tokens - Default Light (White) Theme */
   :root {
-    /* Dark Theme Default variables */
+    --bg-primary: #f1f5f9;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f8fafc;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --border-hover: rgba(0, 0, 0, 0.14);
+    
+    --text-primary: #0f172a;
+    --text-muted: #64748b;
+    
+    --brand-accent: #4f46e5;
+    --brand-accent-hover: #4338ca;
+    --brand-accent-glow: rgba(79, 70, 229, 0.2);
+    --brand-accent-rgb: 79, 70, 229;
+    
+    --clock-face: #ffffff;
+    --clock-bezel: #f8fafc;
+    --clock-border: #cbd5e1;
+    --clock-sub-ring: rgba(0, 0, 0, 0.03);
+    --clock-tick-major: #0f172a;
+    --clock-tick-medium: #475569;
+    --clock-tick-minor: #cbd5e1;
+    
+    --hand-hour-color: #0f172a;
+    --hand-hour-dark-color: #334155;
+    --hand-minute-color: #475569;
+    --hand-second-color: #dc2626;
+    --clock-pivot: #dc2626;
+    --clock-pivot-dot: #fca5a5;
+
+    --green-accent: #10b981;
+    --orange-accent: #d97706;
+    --red-accent: #dc2626;
+    --red-accent-glow: rgba(220, 38, 38, 0.2);
+  }
+
+  /* Dark Theme when .dark class is added */
+  html.dark, .dark {
     --bg-primary: #0a0a0c;
     --bg-secondary: #121216;
     --bg-tertiary: #191921;
@@ -575,7 +611,7 @@ import SiteFooter from '../components/SiteFooter.astro';
     --red-accent-glow: rgba(239, 68, 68, 0.25);
   }
 
-  /* Light Theme overrides */
+  /* Explicit Light Theme selector */
   html:not(.dark) {
     --bg-primary: #f1f5f9;
     --bg-secondary: #ffffff;
