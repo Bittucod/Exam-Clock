@@ -1,0 +1,274 @@
+---
+// SiteFooter.astro
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer glass-panel">
+  <div class="footer-inner">
+    
+    <!-- Top Grid: 4 Rich Information Columns -->
+    <div class="footer-grid">
+      
+      <!-- Brand & Trust Summary -->
+      <div class="footer-col brand-col">
+        <a href="/" class="footer-brand-title">
+          <div class="footer-brand-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <span>Exam Timer Online</span>
+        </a>
+        <p class="footer-desc">
+          The ultimate visual analog examination clock and question pacing simulator. Built for competitive exams (JEE, NEET, SAT, GRE, UPSC), homework sessions, and speed drilling.
+        </p>
+        <div class="footer-trust-pills">
+          <span class="trust-pill"><span class="pill-dot"></span> 100% Offline Ready</span>
+          <span class="trust-pill"><span class="pill-dot"></span> Zero Tracking Cookies</span>
+          <span class="trust-pill"><span class="pill-dot"></span> No Account Required</span>
+        </div>
+      </div>
+
+      <!-- Column 2: Core Tools & Features -->
+      <div class="footer-col">
+        <h4 class="col-heading">Features & Tools</h4>
+        <ul class="col-links">
+          <li><a href="/">Launch Exam Timer</a></li>
+          <li><a href="/features#analog-clock">5 Visual Analog Clock Themes</a></li>
+          <li><a href="/features#pacing-tracker">Question Pacing Assistant</a></li>
+          <li><a href="/features#strict-mode">Strict Exam Hall Mode</a></li>
+          <li><a href="/features#sound-alerts">6 Audio Alert & Alarm Chimes</a></li>
+          <li><a href="/how-it-works">How It Works (Step-by-Step)</a></li>
+          <li><a href="/features#offline-pwa">Installable Offline PWA App</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Subject & Practice Timers (Keywords) -->
+      <div class="footer-col">
+        <h4 class="col-heading">Subject Timers & Guides</h4>
+        <ul class="col-links">
+          <li><a href="/guide#math-practice-timer">Mathematics Practice Timer</a></li>
+          <li><a href="/guide#physics-practice-timer">Physics Practice Timer</a></li>
+          <li><a href="/guide#chemistry-practice-timer">Chemistry Practice Timer</a></li>
+          <li><a href="/guide#science-practice-timer">Science Practice Timer</a></li>
+          <li><a href="/guide#pyq-timer">Previous Year Paper (PYQ) Timer</a></li>
+          <li><a href="/guide#homework-revision-timer">Homework & Revision Sprints</a></li>
+          <li><a href="/guide#speed-practice-timer">Speed Practice & Drill Timer</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Comparisons & Legal -->
+      <div class="footer-col">
+        <h4 class="col-heading">Comparisons & About</h4>
+        <ul class="col-links">
+          <li><a href="/comparisons#timer-vs-pomodoro">Exam Timer vs Pomodoro</a></li>
+          <li><a href="/comparisons#timer-vs-stopwatch">Exam Timer vs Stopwatch</a></li>
+          <li><a href="/comparisons#timer-vs-phone">Exam Timer vs Phone Timer</a></li>
+          <li><a href="/comparisons#practice-vs-mock">Practice Test vs Mock Exam</a></li>
+          <li><a href="/about">About Us & Educational Philosophy</a></li>
+          <li><a href="/faq">Frequently Asked Questions</a></li>
+          <li><a href="/contact">Contact Us & Problem Report</a></li>
+          <li><a href="/privacy">Privacy & Cookie Policy</a></li>
+          <li><a href="/terms">Terms of Service & Disclaimer</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Attribution & Metadata Bar -->
+    <div class="footer-bottom-bar">
+      <div class="bottom-left">
+        <p>&copy; {currentYear} <strong>Exam Timer Online</strong>. Free & open educational pacing tool.</p>
+      </div>
+      <div class="bottom-right">
+        <span class="offline-indicator">🟢 Offline Ready (PWA Enabled)</span>
+        <a href="#top" class="back-to-top" title="Scroll back to top">↑ Top</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    width: 100%;
+    max-width: 1240px;
+    margin: 3rem auto 1.5rem;
+    padding: 2.5rem 2rem 1.5rem;
+    border-radius: 1.25rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .footer-brand-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .footer-brand-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, var(--brand-accent) 0%, #4338ca 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer-desc {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .footer-trust-pills {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-top: 0.25rem;
+  }
+
+  .trust-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  .pill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green-accent);
+  }
+
+  .col-heading {
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .col-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .col-links a {
+    text-decoration: none;
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+    display: inline-block;
+  }
+
+  .col-links a:hover {
+    color: var(--brand-accent);
+    transform: translateX(2px);
+  }
+
+  /* Bottom Bar */
+  .footer-bottom-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .bottom-left p {
+    margin: 0;
+  }
+
+  .bottom-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .offline-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--green-accent);
+  }
+
+  .back-to-top {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 0.4rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+  }
+
+  .back-to-top:hover {
+    color: var(--text-primary);
+    border-color: var(--border-hover);
+  }
+
+  @media (max-width: 960px) {
+    .footer-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    .brand-col {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .site-footer {
+      padding: 1.75rem 1.25rem 1.25rem;
+    }
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .footer-bottom-bar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+  }
+</style>

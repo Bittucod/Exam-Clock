@@ -4,19 +4,23 @@
 
 <div class="setup-card glass-panel">
   <div class="setup-header">
-    <h2>Configure New Session</h2>
-    <p class="subtitle">Set your duration or absolute exam window</p>
+    <h2 class="setup-main-title">Configure New Session</h2>
   </div>
 
-  <!-- Tab Selectors -->
+  <!-- Tab Selectors (Clickable Options with Blue Pop-Up on Select) -->
   <div class="tabs-container">
-    <button type="button" class="tab-btn active" data-tab="tab-duration">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-      Duration
+    <button type="button" class="tab-btn active" data-tab="tab-duration" id="tab-btn-duration" aria-label="Set exam duration">
+      <div class="tab-btn-content">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" class="tab-icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        <span class="tab-label">Duration</span>
+      </div>
     </button>
-    <button type="button" class="tab-btn" data-tab="tab-window">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-      Start & End Time
+    <button type="button" class="tab-btn" data-tab="tab-window" id="tab-btn-window" aria-label="Set start and end time">
+      <div class="tab-btn-content">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" class="tab-icon"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        <span class="tab-label tab-label-desktop">Start & End Time</span>
+        <span class="tab-label tab-label-mobile">Start / End</span>
+      </div>
     </button>
   </div>
 
@@ -32,7 +36,7 @@
       <div class="input-group">
         <label for="setup-minutes">Minutes</label>
         <div class="number-input-wrapper">
-          <input type="number" id="setup-minutes" min="0" max="59" value="30" placeholder="00" />
+          <input type="number" id="setup-minutes" min="0" max="59" value="0" placeholder="00" />
           <span class="unit">m</span>
         </div>
       </div>
@@ -57,20 +61,22 @@
         <input type="time" id="setup-end-time" class="time-input" />
       </div>
     </div>
-    <p class="window-calc-text" id="window-duration-feedback">Calculated Duration: 2 Hours 30 Minutes</p>
+    <p class="window-calc-text" id="window-duration-feedback">Calculated Duration: 2 Hours 0 Minutes</p>
   </div>
 
   <!-- Presets -->
   <div class="section-divider"></div>
   <div class="setup-section">
-    <label class="section-label">Quick Presets</label>
+    <label class="section-label">Quick Presets (1-Click Select)</label>
     <div class="presets-grid" id="standard-presets-container">
+      <button type="button" class="preset-badge" data-seconds="300">5 min</button>
       <button type="button" class="preset-badge" data-seconds="900">15 min</button>
       <button type="button" class="preset-badge" data-seconds="1800">30 min</button>
       <button type="button" class="preset-badge" data-seconds="2700">45 min</button>
       <button type="button" class="preset-badge" data-seconds="3600">1 hour</button>
       <button type="button" class="preset-badge" data-seconds="5400">1.5 hours</button>
-      <button type="button" class="preset-badge active" data-seconds="9000">2 hours</button>
+      <button type="button" class="preset-badge active" data-seconds="7200">2 hours</button>
+      <button type="button" class="preset-badge" data-seconds="9000">2.5 hours</button>
       <button type="button" class="preset-badge" data-seconds="10800">3 hours</button>
     </div>
   </div>
@@ -126,71 +132,204 @@
     </div>
   </div>
 
-  <!-- Big Action Button -->
-  <button type="button" class="btn-start-exam" id="btn-launch-exam">
-    Launch Exam Clock
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" class="icon"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-  </button>
+  <!-- Big Prominent Action Button -->
+  <div class="launch-action-wrapper">
+    <button type="button" class="btn-start-exam" id="btn-launch-exam">
+      <span class="btn-text">Launch Exam Clock</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" class="icon"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+    </button>
+    <div class="launch-sub-badges">
+      <span class="sub-badge-item">✓ Distraction-Free</span>
+      <span class="sub-badge-item">✓ Chime Alerts</span>
+      <span class="sub-badge-item">✓ 100% Offline Ready</span>
+      <span class="sub-badge-item">✓ No Sign-up</span>
+    </div>
+  </div>
 </div>
 
 <style>
   .setup-card {
-    padding: 1.75rem;
+    padding: 2.25rem 2.25rem 2rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    height: 100%;
-    overflow-y: auto;
+    height: auto;
+    overflow: visible;
+    border-radius: 1.25rem;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
   }
 
-  .setup-header h2 {
+  .setup-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .setup-badge-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.25rem;
+  }
+
+  .setup-pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    background: rgba(var(--brand-accent-rgb), 0.1);
+    border: 1px solid rgba(var(--brand-accent-rgb), 0.2);
+    color: var(--brand-accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--brand-accent);
+    box-shadow: 0 0 8px var(--brand-accent);
+    animation: dotPulse 2s infinite ease-in-out;
+  }
+
+  @keyframes dotPulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.3); opacity: 1; }
+  }
+
+  .setup-header {
+    text-align: center;
+    padding: 0.25rem 0 0.5rem;
+  }
+
+  .setup-main-title {
     margin: 0;
-    font-size: 1.4rem;
-    font-weight: 600;
+    font-size: clamp(1.45rem, 3.8vw, 1.75rem);
+    font-weight: 800;
     color: var(--text-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    text-align: center;
   }
 
-  .setup-header .subtitle {
-    margin: 0.25rem 0 0;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-  }
-
-  /* Tabs */
+  /* Tabs - Clearly Clickable Options with Vibrant Blue Pop-Up */
   .tabs-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     background: var(--bg-secondary);
-    border: 1px stroke var(--border-color);
-    padding: 0.25rem;
-    border-radius: 0.75rem;
+    border: 1.5px solid var(--border-color);
+    padding: 0.35rem;
+    border-radius: 0.95rem;
+    gap: 0.5rem;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
   }
 
   .tab-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    background: transparent;
-    border: none;
+    background: var(--bg-tertiary);
+    border: 1.5px solid var(--border-color);
     color: var(--text-muted);
     font-family: inherit;
-    font-size: 0.9rem;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
+    font-size: clamp(0.8rem, 2.7vw, 0.92rem);
+    font-weight: 700;
+    padding: 0.7rem 0.6rem;
+    border-radius: 0.75rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    white-space: nowrap;
+    line-height: 1;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
-  .tab-btn.active {
-    background: var(--bg-tertiary);
-    color: var(--text-primary);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  .tab-btn-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
   }
 
+  .tab-icon {
+    flex-shrink: 0;
+    color: #3b82f6;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .tab-label-desktop {
+    display: inline;
+  }
+
+  .tab-label-mobile {
+    display: none;
+  }
+
+  @media (max-width: 400px) {
+    .tab-label-desktop {
+      display: none;
+    }
+    .tab-label-mobile {
+      display: inline;
+    }
+  }
+
+  /* Inactive button hover */
   .tab-btn:hover:not(.active) {
-    color: var(--text-primary);
+    color: #1d4ed8;
+    border-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.08);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(59, 130, 246, 0.15);
+  }
+
+  .tab-btn:hover:not(.active) .tab-icon {
+    transform: scale(1.1);
+  }
+
+  /* Active / Selected Button with Vibrant Blue Pop-Up */
+  .tab-btn.active {
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #3b82f6 100%) !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.35) !important;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45), 0 2px 6px rgba(0, 0, 0, 0.12) !important;
+    z-index: 2;
+  }
+
+  .tab-btn.active .tab-icon {
+    color: #ffffff !important;
+    transform: scale(1.1);
+  }
+
+  .tab-btn:active {
+    transform: scale(0.97);
+  }
+
+  /* Light Theme overrides for max clarity and tactile feel */
+  html:not(.dark) .tabs-container {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+  }
+
+  html:not(.dark) .tab-btn:not(.active) {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    color: #475569;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  html:not(.dark) .tab-btn.active {
+    background: linear-gradient(135deg, #1e40af 0%, #2563eb 55%, #3b82f6 100%) !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.45) !important;
+    box-shadow: 0 6px 22px rgba(37, 99, 235, 0.45), 0 2px 8px rgba(37, 99, 235, 0.25) !important;
   }
 
   .tab-content {
@@ -506,32 +645,54 @@
     transform: translateX(20px);
   }
 
-  /* Start Button */
+  /* Primary Launch Action Area */
+  .launch-action-wrapper {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    align-items: stretch;
+  }
+
   .btn-start-exam {
-    margin-top: auto;
-    background: var(--brand-accent);
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #4338ca 0%, #4f46e5 50%, #6366f1 100%);
     color: #ffffff;
     border: none;
-    border-radius: 0.75rem;
-    padding: 0.85rem 1.5rem;
-    font-size: 1.05rem;
-    font-weight: 600;
+    border-radius: 0.85rem;
+    padding: 1.1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.025em;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
-    box-shadow: 0 4px 15px rgba(var(--brand-accent-rgb), 0.35);
-    transition: all 0.2s ease;
+    gap: 0.85rem;
+    box-shadow: 0 6px 22px rgba(79, 70, 229, 0.42), 0 0 0 1px rgba(255, 255, 255, 0.25) inset;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: launchPulse 3.5s infinite ease-in-out;
+  }
+
+  @keyframes launchPulse {
+    0%, 100% {
+      box-shadow: 0 6px 22px rgba(79, 70, 229, 0.42), 0 0 0 1px rgba(255, 255, 255, 0.25) inset;
+    }
+    50% {
+      box-shadow: 0 8px 32px rgba(79, 70, 229, 0.68), 0 0 0 3px rgba(99, 102, 241, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.35) inset;
+    }
   }
 
   .btn-start-exam:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(var(--brand-accent-rgb), 0.5);
+    transform: translateY(-2.5px) scale(1.01);
+    background: linear-gradient(135deg, #3730a3 0%, #4338ca 50%, #4f46e5 100%);
+    box-shadow: 0 12px 34px rgba(79, 70, 229, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.4) inset;
   }
 
   .btn-start-exam:active {
-    transform: translateY(0);
+    transform: translateY(0) scale(0.99);
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
   }
 
   .btn-start-exam .icon {
@@ -539,6 +700,45 @@
   }
 
   .btn-start-exam:hover .icon {
-    transform: translateX(3px);
+    transform: translateX(4px);
+  }
+
+  .launch-sub-badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .sub-badge-item {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 640px) {
+    .setup-card {
+      padding: 1.5rem 1.25rem;
+      gap: 1.25rem;
+    }
+
+    .setup-header h2 {
+      font-size: 1.35rem;
+    }
+
+    .btn-start-exam {
+      padding: 1rem 1.25rem;
+      font-size: 1.08rem;
+    }
+
+    .launch-sub-badges {
+      gap: 0.5rem;
+    }
+
+    .sub-badge-item {
+      font-size: 0.72rem;
+    }
   }
 </style>

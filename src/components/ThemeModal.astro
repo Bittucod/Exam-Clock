@@ -1,0 +1,392 @@
+---
+// ThemeModal.astro
+---
+
+<div id="theme-modal-backdrop" class="modal-backdrop hidden">
+  <div class="modal-content glass-panel theme-modal-dialog">
+    
+    <!-- Modal Header -->
+    <div class="modal-header theme-modal-header">
+      <div class="theme-header-left">
+        <div class="theme-header-icon">🎨</div>
+        <div>
+          <h3>Visual Clock Gallery</h3>
+          <p class="theme-header-sub">Choose your analog display style and color mode</p>
+        </div>
+      </div>
+
+      <!-- Top Right Corner Actions (Dark/Light Toggle Icon + Close) -->
+      <div class="theme-header-right">
+        <button type="button" id="theme-mode-toggle-btn" class="icon-toggle-btn" title="Toggle Dark / Light Theme" aria-label="Toggle Dark / Light Theme">
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-icon hidden" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <button type="button" id="theme-modal-close" class="close-btn" aria-label="Close theme gallery">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal Body: Visual Image/Preview Cards -->
+    <div class="modal-body theme-modal-body">
+      <div class="clock-gallery-grid">
+        
+        <!-- THEME 1: Classic Pro Analog -->
+        <div class="theme-card active" data-theme="classic" id="card-theme-classic">
+          <div class="card-preview-box">
+            <svg class="preview-svg" viewBox="0 0 200 200">
+              <circle cx="100" cy="100" r="90" fill="var(--bg-tertiary)" stroke="var(--border-color)" stroke-width="4"/>
+              <!-- Sector wedge preview -->
+              <path d="M 100 100 L 100 15 A 85 85 0 0 1 175 135 Z" fill="rgba(99, 102, 241, 0.25)"/>
+              <line x1="100" y1="100" x2="100" y2="40" stroke="var(--text-primary)" stroke-width="5" stroke-linecap="round"/>
+              <line x1="100" y1="100" x2="145" y2="125" stroke="var(--text-muted)" stroke-width="3" stroke-linecap="round"/>
+              <line x1="100" y1="100" x2="65" y2="140" stroke="var(--red-accent)" stroke-width="1.8" stroke-linecap="round"/>
+              <circle cx="100" cy="100" r="5" fill="var(--red-accent)"/>
+            </svg>
+            <span class="active-pill">Active</span>
+          </div>
+          <div class="card-meta">
+            <h4>Classic Pro Analog</h4>
+            <p>Mathematical dial with elapsed sector sweep & 24h rings.</p>
+          </div>
+        </div>
+
+        <!-- THEME 2: Minimalist Wall Clock -->
+        <div class="theme-card" data-theme="wall" id="card-theme-wall">
+          <div class="card-preview-box">
+            <svg class="preview-svg" viewBox="0 0 200 200">
+              <circle cx="100" cy="100" r="88" fill="var(--bg-tertiary)" stroke="var(--border-color)" stroke-width="3"/>
+              <!-- Clean Hour numerals -->
+              <text x="100" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="var(--text-primary)" font-family="var(--font-sans)">12</text>
+              <text x="172" y="106" text-anchor="middle" font-size="16" font-weight="700" fill="var(--text-primary)" font-family="var(--font-sans)">3</text>
+              <text x="100" y="178" text-anchor="middle" font-size="16" font-weight="700" fill="var(--text-primary)" font-family="var(--font-sans)">6</text>
+              <text x="28" y="106" text-anchor="middle" font-size="16" font-weight="700" fill="var(--text-primary)" font-family="var(--font-sans)">9</text>
+              <line x1="100" y1="100" x2="100" y2="52" stroke="var(--text-primary)" stroke-width="4.5" stroke-linecap="round"/>
+              <line x1="100" y1="100" x2="135" y2="100" stroke="var(--brand-accent)" stroke-width="3" stroke-linecap="round"/>
+              <line x1="100" y1="100" x2="70" y2="135" stroke="var(--red-accent)" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="100" cy="100" r="4.5" fill="var(--brand-accent)"/>
+            </svg>
+            <span class="active-pill">Active</span>
+          </div>
+          <div class="card-meta">
+            <h4>Minimalist Wall Clock</h4>
+            <p>Clean classroom studio dial with high-contrast typography.</p>
+          </div>
+        </div>
+
+        <!-- THEME 3: 3D Retro Flip Cards -->
+        <div class="theme-card" data-theme="flip" id="card-theme-flip">
+          <div class="card-preview-box">
+            <div class="preview-flip-sim">
+              <div class="p-card"><span>0</span></div>
+              <div class="p-card"><span>2</span></div>
+              <span class="p-colon">:</span>
+              <div class="p-card"><span>3</span></div>
+              <div class="p-card"><span>0</span></div>
+            </div>
+            <span class="active-pill">Active</span>
+          </div>
+          <div class="card-meta">
+            <h4>3D Retro Flip Cards</h4>
+            <p>Mechanical split-flap countdown tiles with smooth folding physics.</p>
+          </div>
+        </div>
+
+        <!-- THEME 4: Magnifying Glass Canvas -->
+        <div class="theme-card" data-theme="magnifier" id="card-theme-magnifier">
+          <div class="card-preview-box">
+            <svg class="preview-svg" viewBox="0 0 200 200">
+              <circle cx="100" cy="100" r="90" fill="var(--bg-tertiary)" stroke="var(--border-color)" stroke-width="2"/>
+              <!-- Faint number rings -->
+              <circle cx="100" cy="100" r="40" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+              <circle cx="100" cy="100" r="62" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+              <circle cx="100" cy="100" r="82" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+              <!-- Magnifying Loupe Hands -->
+              <line x1="100" y1="100" x2="100" y2="58" stroke="var(--text-primary)" stroke-width="3"/>
+              <circle cx="100" cy="46" r="14" fill="rgba(99,102,241,0.25)" stroke="var(--brand-accent)" stroke-width="3"/>
+              <text x="100" y="51" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" font-family="var(--font-mono)">12</text>
+              
+              <line x1="100" y1="100" x2="135" y2="120" stroke="var(--text-primary)" stroke-width="2.5"/>
+              <circle cx="145" cy="126" r="13" fill="rgba(16,185,129,0.25)" stroke="var(--green-accent)" stroke-width="2.5"/>
+              <text x="145" y="130" text-anchor="middle" font-size="10" font-weight="700" fill="#fff" font-family="var(--font-mono)">25</text>
+            </svg>
+            <span class="active-pill">Active</span>
+          </div>
+          <div class="card-meta">
+            <h4>Magnifier Glass Canvas</h4>
+            <p>Interactive loupe lenses that enlarge and warp sweeping digits.</p>
+          </div>
+        </div>
+
+        <!-- THEME 5: Retro Film Countdown -->
+        <div class="theme-card" data-theme="film" id="card-theme-film">
+          <div class="card-preview-box">
+            <svg class="preview-svg" viewBox="0 0 200 200">
+              <rect x="25" y="25" width="150" height="150" rx="16" fill="var(--bg-tertiary)" stroke="var(--border-color)" stroke-width="2"/>
+              <!-- Target Crosshairs -->
+              <circle cx="100" cy="100" r="55" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+              <circle cx="100" cy="100" r="42" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+              <line x1="25" y1="100" x2="175" y2="100" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+              <line x1="100" y1="25" x2="100" y2="175" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+              <!-- Rotating Film Arm -->
+              <line x1="100" y1="100" x2="140" y2="60" stroke="var(--text-primary)" stroke-width="3"/>
+              <!-- Large Film Digit -->
+              <text x="100" y="112" text-anchor="middle" font-size="34" font-weight="800" fill="var(--text-primary)" font-family="var(--font-mono)">3</text>
+            </svg>
+            <span class="active-pill">Active</span>
+          </div>
+          <div class="card-meta">
+            <h4>Retro Film Countdown</h4>
+            <p>Vintage cinema projector countdown with sweeping arm.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(6px);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    transition: opacity 0.2s ease;
+  }
+
+  .modal-backdrop.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .theme-modal-dialog {
+    max-width: 820px;
+    width: 92%;
+    padding: 1.75rem;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    overflow-y: auto;
+  }
+
+  .theme-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+  }
+
+  .theme-header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .theme-header-icon {
+    font-size: 1.75rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    width: 44px;
+    height: 44px;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .theme-header-left h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .theme-header-sub {
+    margin: 0.15rem 0 0;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .theme-header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .icon-toggle-btn {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    width: 38px;
+    height: 38px;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .icon-toggle-btn:hover {
+    border-color: var(--brand-accent);
+    color: var(--brand-accent);
+    transform: scale(1.05);
+  }
+
+  .clock-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .theme-card {
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+  }
+
+  .theme-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .theme-card.active {
+    border-color: var(--brand-accent);
+    background: rgba(var(--brand-accent-rgb), 0.08);
+    box-shadow: 0 0 20px rgba(var(--brand-accent-rgb), 0.25);
+  }
+
+  .card-preview-box {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: var(--bg-secondary);
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0.5rem;
+  }
+
+  .preview-svg {
+    width: 100%;
+    height: 100%;
+    max-height: 110px;
+  }
+
+  .preview-flip-sim {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .p-card {
+    background: #1e1e24;
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+    font-weight: 700;
+    padding: 0.4rem 0.55rem;
+    border-radius: 0.35rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .p-colon {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--brand-accent);
+  }
+
+  .active-pill {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--brand-accent);
+    color: #ffffff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
+    display: none;
+  }
+
+  .theme-card.active .active-pill {
+    display: block;
+  }
+
+  .card-meta h4 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .card-meta p {
+    margin: 0.2rem 0 0;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .theme-modal-dialog {
+      padding: 1.25rem 1rem;
+    }
+
+    .clock-gallery-grid {
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+    }
+
+    .theme-card {
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .card-preview-box {
+      width: 90px;
+      height: 70px;
+      aspect-ratio: auto;
+      flex-shrink: 0;
+    }
+  }
+</style>

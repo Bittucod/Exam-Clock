@@ -7,6 +7,8 @@ import ProgressDisplay from '../components/ProgressDisplay.astro';
 import QuestionProgress from '../components/QuestionProgress.astro';
 import SettingsPanel from '../components/SettingsPanel.astro';
 import HistoryPanel from '../components/HistoryPanel.astro';
+import ThemeModal from '../components/ThemeModal.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 ---
 
 <Layout>
@@ -31,22 +33,37 @@ import HistoryPanel from '../components/HistoryPanel.astro';
         <span class="sys-time" id="sys-time">11:32 AM</span>
       </div>
 
+      <!-- Desktop Site Navigation Links -->
+      <nav class="app-nav-links" aria-label="Explore Exam Timer Resources">
+        <a href="/how-it-works" class="app-nav-item">How It Works</a>
+        <a href="/features" class="app-nav-item">Features</a>
+        <a href="/guide" class="app-nav-item">Guides</a>
+        <a href="/comparisons" class="app-nav-item">Comparisons</a>
+        <a href="/faq" class="app-nav-item">FAQ</a>
+      </nav>
+
       <!-- Action Toggles -->
       <div class="header-actions">
-        <!-- Study Mode Toggle -->
-        <button type="button" id="header-study-btn" class="header-action-btn secondary" title="Switch to Study/Pomodoro Mode">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-          <span>Study Mode</span>
+        <!-- Prominent Visual Themes Gallery Button -->
+        <button type="button" id="header-theme-btn" class="header-action-btn secondary theme-action-btn" title="Open Visual Clock Themes Gallery" aria-label="Clock Themes">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="theme-btn-svg">
+            <circle cx="13.5" cy="6.5" r="1.5" fill="currentColor"></circle>
+            <circle cx="17.5" cy="10.5" r="1.5" fill="currentColor"></circle>
+            <circle cx="8.5" cy="7.5" r="1.5" fill="currentColor"></circle>
+            <circle cx="6.5" cy="12.5" r="1.5" fill="currentColor"></circle>
+            <path d="M12 2C6.5 2 2 6.5 2 12a10 10 0 0 0 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
+          </svg>
+          <span class="theme-btn-label">Themes</span>
         </button>
 
-        <button type="button" id="header-history-btn" class="header-action-btn secondary" title="View past exam sessions">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"></path><circle cx="12" cy="12" r="10"></circle></svg>
-          <span>History</span>
+        <!-- Compact Icon-Based History Button -->
+        <button type="button" id="header-history-btn" class="header-action-btn secondary icon-only-action" title="View past exam session logs" aria-label="Session History">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"></path><circle cx="12" cy="12" r="10"></circle></svg>
         </button>
         
-        <button type="button" id="header-settings-btn" class="header-action-btn" title="Configure application settings">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-          <span>Settings</span>
+        <!-- Compact Icon-Based Settings & Audio Button -->
+        <button type="button" id="header-settings-btn" class="header-action-btn secondary icon-only-action" title="Audio & Alarm Settings" aria-label="Settings">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
         </button>
       </div>
     </header>
@@ -55,8 +72,14 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     <!-- Main Dynamic Body -->
     <main class="app-main-content">
       
-      <!-- SCREEN 1: Setup / Welcome Landing Page -->
-      <section id="screen-setup" class="layout-split active">
+      <!-- SCREEN 1: Setup / Welcome Landing Page (Top Priority: Configure New Session) -->
+      <section id="screen-setup" class="setup-screen-layout active">
+        <!-- 1. PRIMARY HERO FOCUS: Directly Accessible Setup Panel (Top on all devices) -->
+        <div class="setup-panel">
+          <TimerSetup />
+        </div>
+
+        <!-- 2. SECONDARY SECTION: Professional Exam Space & Feature Architecture (Below Setup) -->
         <div class="welcome-panel">
           <div class="hero-card glass-panel">
             <div class="hero-header-badge">
@@ -110,11 +133,6 @@ import HistoryPanel from '../components/HistoryPanel.astro';
               </button>
             </div>
           </div>
-        </div>
-
-        <!-- Directly Accessible Setup Panel (Golden Path: No extra clicks) -->
-        <div class="setup-panel">
-          <TimerSetup />
         </div>
       </section>
 
@@ -319,27 +337,52 @@ import HistoryPanel from '../components/HistoryPanel.astro';
             </details>
           </div>
         </article>
+
+        <!-- Section 4: Deep-Dive Resources Hub -->
+        <article class="seo-card glass-panel hub-card">
+          <div class="seo-badge">📚 Academic Timing Hub</div>
+          <h2>Specialized Study Timers, Subject Guides & Analysis</h2>
+          <p>Explore dedicated study guides, benchmark formulas, and comprehensive timer comparisons built for competitive exams and focused study:</p>
+          <div class="hub-grid">
+            <a href="/guide" class="hub-link-card">
+              <div class="hub-icon">📐</div>
+              <div class="hub-body">
+                <h3>Subject Practice Timers</h3>
+                <p>Calculated pacing techniques for Mathematics, Physics, Chemistry, PYQs & speed drilling.</p>
+              </div>
+            </a>
+            <a href="/comparisons" class="hub-link-card">
+              <div class="hub-icon">⚖️</div>
+              <div class="hub-body">
+                <h3>Exam Timer Comparisons</h3>
+                <p>Objective feature matrices: Pomodoro vs Countdown vs Stopwatches vs Phone Timers.</p>
+              </div>
+            </a>
+            <a href="/features" class="hub-link-card">
+              <div class="hub-icon">⚡</div>
+              <div class="hub-body">
+                <h3>Full Feature Catalog</h3>
+                <p>5 visual clock themes, Web Audio alarms, strict mode, question pacing & offline PWA.</p>
+              </div>
+            </a>
+            <a href="/how-it-works" class="hub-link-card">
+              <div class="hub-icon">🧠</div>
+              <div class="hub-body">
+                <h3>The Science of Visual Time</h3>
+                <p>Why analog sweep angles prevent cognitive overload and combat exam time blindness.</p>
+              </div>
+            </a>
+          </div>
+        </article>
       </section>
 
-      <!-- Semantic Footer -->
-      <footer class="app-footer glass-panel">
-        <div class="footer-content">
-          <div class="footer-left">
-            <span class="footer-brand">⚡ Exam Timer Online</span>
-            <span class="footer-tagline">Visual Exam Room & Mock Test Pacing Clock</span>
-          </div>
-          <div class="footer-center">
-            <span class="offline-badge">🟢 100% Offline PWA Ready</span>
-          </div>
-          <div class="footer-right">
-            <span>&copy; {new Date().getFullYear()} Exam Timer Online. Free & Open Focus Tool.</span>
-          </div>
-        </div>
-      </footer>
+      <!-- Comprehensive Semantic Footer -->
+      <SiteFooter />
 
     </main>
 
     <!-- Slide-out Drawers & Modals -->
+    <ThemeModal />
     <SettingsPanel />
     
     <!-- History Modal overlay -->
@@ -406,18 +449,46 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     <!-- PEAK-END RULE: Session Performance Debrief Overlay (Replaces raw alarm modal) -->
     <div id="session-debrief-overlay" class="times-up-overlay hidden">
       <div class="times-up-content glass-panel session-debrief-card">
+        <!-- Close dismiss button -->
+        <button type="button" class="debrief-close-btn" id="debrief-close-btn" title="Close" aria-label="Close debrief">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+
         <div class="debrief-header">
-          <div class="alarm-icon-bounce" id="debrief-icon">🎉</div>
+          <div class="debrief-icon-wrapper" id="debrief-icon-wrapper">
+            <span class="debrief-icon" id="debrief-icon">🎉</span>
+          </div>
           <h2 id="debrief-title">Session Complete!</h2>
-          <p id="debrief-tagline">Great work! Here is your performance and pacing breakdown.</p>
+          <div class="debrief-meta-row">
+            <span id="debrief-exam-name" class="debrief-name-badge">Mock Test</span>
+            <span id="debrief-status-pill" class="debrief-pill-completed">Completed</span>
+          </div>
+          <p id="debrief-tagline" class="debrief-tagline">Great work! Here is your performance and pacing breakdown.</p>
         </div>
 
-        <!-- Stats Grid -->
+        <!-- Alarm Silence / Sound control button (Controllable instantly) -->
+        <button type="button" id="debrief-alarm-silence-btn" class="debrief-silence-btn hidden" title="Silence active alarm">
+          <span class="silence-icon">🔊</span>
+          <span class="silence-text">Silence Alarm</span>
+        </button>
+
+        <!-- Visual Mini Progress Bar -->
+        <div class="debrief-progress-section">
+          <div class="debrief-progress-label-row">
+            <span class="debrief-progress-title">Session Progress</span>
+            <strong id="debrief-progress-pct-label" class="debrief-progress-pct">100%</strong>
+          </div>
+          <div class="debrief-progress-track">
+            <div id="debrief-progress-bar" class="debrief-progress-fill" style="width: 100%;"></div>
+          </div>
+        </div>
+
+        <!-- Stats Grid (auto-fits 2 or 3 items cleanly with NO empty boxes) -->
         <div class="debrief-stats-grid">
           <div class="debrief-stat-card">
             <span class="debrief-stat-label">Focus Time</span>
-            <span class="debrief-stat-val text-accent" id="debrief-focus-time">02:30:00</span>
-            <span class="debrief-stat-sub" id="debrief-target-time">of 02:30:00 target</span>
+            <span class="debrief-stat-val text-accent" id="debrief-focus-time">02:00:00</span>
+            <span class="debrief-stat-sub" id="debrief-target-time">of 02:00:00 target</span>
           </div>
           <div class="debrief-stat-card">
             <span class="debrief-stat-label">Completion</span>
@@ -431,14 +502,25 @@ import HistoryPanel from '../components/HistoryPanel.astro';
           </div>
         </div>
 
-        <div class="debrief-actions">
-          <button type="button" id="debrief-restart-btn" class="btn-start-exam">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            Start New Session
-          </button>
-          <button type="button" id="debrief-history-btn" class="btn-dialog-secondary">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3"></path><circle cx="12" cy="12" r="10"></circle></svg>
-            Review History
+        <!-- Dynamic Action Options -->
+        <div class="debrief-actions-stack">
+          <div class="debrief-actions-primary-row" id="debrief-primary-actions-row">
+            <button type="button" id="debrief-resume-btn" class="btn-debrief-primary hidden" title="Continue this exam session">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              <span>Resume Session</span>
+            </button>
+            <button type="button" id="debrief-restart-btn" class="btn-debrief-primary" title="Restart this exam">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+              <span id="debrief-restart-btn-text">Practice Again</span>
+            </button>
+            <button type="button" id="debrief-new-setup-btn" class="btn-debrief-secondary" title="Return to setup screen">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>New Setup</span>
+            </button>
+          </div>
+          <button type="button" id="debrief-history-btn" class="btn-debrief-tertiary" title="Review past exam sessions">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"></path><circle cx="12" cy="12" r="10"></circle></svg>
+            <span>Review History Log</span>
           </button>
         </div>
       </div>
@@ -648,11 +730,42 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     transition: all 0.2s ease;
   }
 
+  .theme-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.48rem 0.85rem;
+    border-radius: 0.65rem;
+  }
+
+  .theme-btn-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .theme-btn-svg {
+    color: #2563eb;
+    transition: transform 0.25s ease;
+  }
+
+  .theme-action-btn:hover .theme-btn-svg {
+    transform: rotate(18deg) scale(1.1);
+  }
+
+  .icon-only-action {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 0.6rem;
+  }
+
   .header-action-btn.secondary {
     background: var(--bg-tertiary);
-    border: 1px solid var(--border-color);
+    border: 1.5px solid var(--border-color);
     color: var(--text-primary);
-    box-shadow: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   }
 
   .header-action-btn:hover {
@@ -661,8 +774,100 @@ import HistoryPanel from '../components/HistoryPanel.astro';
   }
 
   .header-action-btn.secondary:hover {
-    border-color: var(--text-muted);
+    border-color: #3b82f6;
     background: var(--bg-secondary);
+    color: #2563eb;
+  }
+
+  html:not(.dark) .header-action-btn.secondary {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    color: #1e293b;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+
+  html:not(.dark) .header-action-btn.secondary:hover {
+    border-color: #3b82f6;
+    background: #f8fafc;
+    color: #2563eb;
+  }
+
+  /* Desktop Quick Navigation */
+  .app-nav-links {
+    display: none;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  @media (min-width: 1080px) {
+    .app-nav-links {
+      display: flex;
+    }
+  }
+
+  .app-nav-item {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.4rem 0.75rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .app-nav-item:hover {
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+  }
+
+  .distraction-free-viewport .app-nav-links {
+    display: none !important;
+  }
+
+  /* Academic Hub Grid */
+  .hub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
+
+  .hub-link-card {
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+    padding: 1.15rem;
+    border-radius: 0.85rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .hub-link-card:hover {
+    border-color: var(--brand-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .hub-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .hub-body h3 {
+    margin: 0 0 0.35rem;
+    font-size: 0.98rem;
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  .hub-body p {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: var(--text-muted);
   }
 
   /* Core Layout areas */
@@ -688,18 +893,39 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     display: grid;
   }
 
-  /* Screens Specific Adjustments */
-  #screen-setup {
-    grid-template-columns: 1fr 1.1fr;
+  /* Screen Setup - Top-to-Bottom Flow with Priority on Timer Setup on all devices */
+  #screen-setup,
+  .setup-screen-layout {
+    display: none;
+    flex-direction: column;
+    gap: 1.75rem;
+    width: 100%;
+    max-width: 880px;
+    margin: 0 auto 2.5rem;
+    align-items: stretch;
   }
 
-  /* Screen Setup - Left Welcome Column */
+  #screen-setup.active,
+  .setup-screen-layout.active {
+    display: flex;
+  }
+
+  /* Screen Setup - Top Primary Setup Column */
+  .setup-panel {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  /* Screen Setup - Secondary Feature & Info Section Below */
   .welcome-panel {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    overflow-y: auto;
-    padding-right: 0.25rem;
+    gap: 1.25rem;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    padding-right: 0;
   }
 
   .hero-card {
@@ -835,8 +1061,8 @@ import HistoryPanel from '../components/HistoryPanel.astro';
   }
 
   .setup-panel {
-    height: 100%;
-    overflow: hidden;
+    height: auto;
+    overflow: visible;
   }
 
   /* Setup Entry Card (Landing CTA) */
@@ -1728,29 +1954,63 @@ import HistoryPanel from '../components/HistoryPanel.astro';
 
   /* PEAK-END RULE: Session Performance Debrief Card */
   .session-debrief-card {
+    position: relative;
     width: 100%;
-    max-width: 500px;
-    padding: 2.25rem;
+    max-width: 520px;
+    padding: 2.5rem 2rem 2rem;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.25rem;
     border-radius: 1.5rem;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
     animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .debrief-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.4rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .debrief-close-btn:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    transform: scale(1.08);
   }
 
   .debrief-header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.4rem;
   }
 
-  .alarm-icon-bounce {
-    font-size: 3rem;
+  .debrief-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
     margin-bottom: 0.25rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
     animation: bouncePop 0.8s ease;
   }
 
@@ -1767,32 +2027,145 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     color: var(--text-primary);
   }
 
+  .debrief-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0.15rem 0;
+  }
+
+  .debrief-name-badge {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+  }
+
+  .debrief-pill-completed {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.28);
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .debrief-pill-stopped {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.28);
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
   .debrief-tagline {
     margin: 0;
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
   }
 
+  /* Alarm Silence Control Button */
+  .debrief-silence-btn {
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    animation: pulseSilence 2s infinite ease-in-out;
+  }
+
+  @keyframes pulseSilence {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+  }
+
+  .debrief-silence-btn:hover {
+    background: rgba(239, 68, 68, 0.22);
+    transform: scale(1.02);
+  }
+
+  .debrief-silence-btn.silenced {
+    background: var(--bg-tertiary);
+    color: var(--text-muted);
+    border-color: var(--border-color);
+    animation: none;
+    cursor: default;
+  }
+
+  /* Visual Progress Bar */
+  .debrief-progress-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-top: 0.25rem;
+  }
+
+  .debrief-progress-label-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .debrief-progress-pct {
+    color: var(--text-primary);
+  }
+
+  .debrief-progress-track {
+    width: 100%;
+    height: 8px;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+
+  .debrief-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4f46e5 0%, #10b981 100%);
+    border-radius: 4px;
+    transition: width 0.6s ease;
+  }
+
+  /* Auto-fitting Responsive Stats Grid */
   .debrief-stats-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 0.75rem;
     width: 100%;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 1rem;
-    padding: 1rem;
   }
 
   .debrief-stat-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.2rem;
-  }
-
-  .debrief-stat-card:not(:last-child) {
-    border-right: 1px solid var(--border-color);
+    gap: 0.25rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.85rem;
+    padding: 0.85rem 0.75rem;
+    text-align: center;
   }
 
   .debrief-stat-label {
@@ -1805,7 +2178,7 @@ import HistoryPanel from '../components/HistoryPanel.astro';
 
   .debrief-stat-val {
     font-family: var(--font-mono);
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     font-weight: 800;
     color: var(--text-primary);
   }
@@ -1823,21 +2196,91 @@ import HistoryPanel from '../components/HistoryPanel.astro';
   }
 
   .debrief-stat-sub {
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     color: var(--text-muted);
     font-weight: 500;
   }
 
-  .debrief-actions {
+  .debrief-actions-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .debrief-actions-primary-row {
     display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 0.65rem;
     width: 100%;
   }
 
-  .debrief-actions .btn-start-exam {
-    padding: 0.85rem 1.25rem;
+  .btn-debrief-primary {
+    background: linear-gradient(135deg, #4338ca 0%, #4f46e5 50%, #6366f1 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 0.85rem;
+    padding: 0.85rem 1.15rem;
     font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 16px rgba(79, 70, 229, 0.35);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-debrief-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.55);
+  }
+
+  .btn-debrief-secondary {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 0.85rem;
+    padding: 0.85rem 1.15rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+  }
+
+  .btn-debrief-secondary:hover {
+    background: var(--bg-secondary);
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+  }
+
+  .btn-debrief-tertiary {
+    background: transparent;
+    border: 1px dashed var(--border-color);
+    color: var(--text-muted);
+    border-radius: 0.75rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.84rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    transition: all 0.2s ease;
+    width: 100%;
+  }
+
+  .btn-debrief-tertiary:hover {
+    color: var(--brand-accent);
+    border-color: var(--brand-accent);
+    background: rgba(79, 70, 229, 0.06);
   }
 
   /* Global Toast Container */
@@ -2287,13 +2730,20 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       padding: 0.5rem 0.75rem;
     }
 
-    .header-action-btn span {
+    .header-action-btn .btn-text,
+    .theme-btn-label {
       display: none;
     }
 
+    .theme-action-btn,
     .header-action-btn {
-      padding: 0.5rem;
-      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border-radius: 0.55rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .welcome-panel .hero-card {
@@ -2360,7 +2810,11 @@ import HistoryPanel from '../components/HistoryPanel.astro';
   const appViewport = document.querySelector('.app-viewport')!;
   const btnToggleControls = document.getElementById('dashboard-toggle-controls-btn');
 
-  // DOM Elements - Header Actions
+  // DOM Elements - Header Actions & Modals
+  const headerThemeBtn = document.getElementById('header-theme-btn');
+  const themeModalBackdrop = document.getElementById('theme-modal-backdrop');
+  const themeModalClose = document.getElementById('theme-modal-close');
+  const themeModeToggleBtn = document.getElementById('theme-mode-toggle-btn');
   const headerSettingsBtn = document.getElementById('header-settings-btn');
   const headerHistoryBtn = document.getElementById('header-history-btn');
   const headerStudyBtn = document.getElementById('header-study-btn');
@@ -2389,12 +2843,11 @@ import HistoryPanel from '../components/HistoryPanel.astro';
   const customPresetsContainer = document.getElementById('custom-presets-container');
   const btnSaveCustomPreset = document.getElementById('btn-save-custom-preset');
   
-  // DOM Elements - Settings Form
-  const themeToggle = document.getElementById('settings-theme-toggle') as HTMLInputElement | null;
+  // DOM Elements - Settings & Theme Form
   const selectClockRep = document.getElementById('settings-clock-rep') as HTMLSelectElement | null;
-  const selectClockTheme = document.getElementById('settings-clock-theme') as HTMLSelectElement | null;
-  const toggleShowSeconds = document.getElementById('settings-show-seconds') as HTMLInputElement | null;
-  const toggleShow24h = document.getElementById('settings-show-24h') as HTMLInputElement | null;
+  const clockRepSegments = document.querySelectorAll('#clock-rep-segments .segment-btn');
+  const btnToggleSeconds = document.getElementById('btn-toggle-seconds');
+  const btnToggle24h = document.getElementById('btn-toggle-24h');
   const toggleSoundOn = document.getElementById('settings-sound-enabled') as HTMLInputElement | null;
   const volumeSlider = document.getElementById('settings-volume') as HTMLInputElement | null;
   const volumeIndicator = document.getElementById('volume-indicator-val');
@@ -2465,9 +2918,15 @@ import HistoryPanel from '../components/HistoryPanel.astro';
 
   // Peak-End Session Debrief Elements
   const sessionDebriefOverlay = document.getElementById('session-debrief-overlay');
+  const debriefCloseBtn = document.getElementById('debrief-close-btn');
   const debriefIcon = document.getElementById('debrief-icon');
   const debriefTitle = document.getElementById('debrief-title');
+  const debriefExamName = document.getElementById('debrief-exam-name');
+  const debriefStatusPill = document.getElementById('debrief-status-pill');
   const debriefTagline = document.getElementById('debrief-tagline');
+  const debriefAlarmSilenceBtn = document.getElementById('debrief-alarm-silence-btn');
+  const debriefProgressBar = document.getElementById('debrief-progress-bar');
+  const debriefProgressPctLabel = document.getElementById('debrief-progress-pct-label');
   const debriefFocusTime = document.getElementById('debrief-focus-time');
   const debriefTargetTime = document.getElementById('debrief-target-time');
   const debriefCompletionPct = document.getElementById('debrief-completion-pct');
@@ -2475,9 +2934,21 @@ import HistoryPanel from '../components/HistoryPanel.astro';
   const debriefQuestionsCard = document.getElementById('debrief-questions-card');
   const debriefPaceRating = document.getElementById('debrief-pace-rating');
   const debriefPaceDetails = document.getElementById('debrief-pace-details');
+  const debriefResumeBtn = document.getElementById('debrief-resume-btn');
   const debriefRestartBtn = document.getElementById('debrief-restart-btn');
+  const debriefRestartBtnText = document.getElementById('debrief-restart-btn-text');
+  const debriefNewSetupBtn = document.getElementById('debrief-new-setup-btn');
   const debriefHistoryBtn = document.getElementById('debrief-history-btn');
   const timesUpFullscreenFlash = document.getElementById('times-up-fullscreen-flash');
+
+  let lastSessionConfig: {
+    name: string;
+    durationSec: number;
+    totalQuestions?: number;
+    showQuestions?: boolean;
+    elapsedSec: number;
+    status: 'Completed' | 'Stopped';
+  } | null = null;
 
   const historyListContainer = document.getElementById('history-list-container');
   const historyClearBtn = document.getElementById('history-clear-btn');
@@ -2621,21 +3092,60 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     });
   }
 
-  // Magnifier Hands Canvas renderer
+  // Authentic Magnifier Themes & Math from clock4.html
+  const MAGNIFIER_THEMES = [
+    { name: 'Cream',     bg: '#f4f3ef', ink: '#1a1810', ink2: 'rgba(26,24,16,0.88)',    faint: 'rgba(26,24,16,0.40)',    faint2: 'rgba(26,24,16,0.28)',    ring: '26,24,16',    glass: ['rgba(255,255,255,0.96)', 'rgba(236,240,238,0.9)', 'rgba(200,210,208,0.84)'], rim: '#7a6a48' },
+    { name: 'Slate',     bg: '#15181d', ink: '#f2f6fa', ink2: 'rgba(242,246,250,0.88)', faint: 'rgba(242,246,250,0.36)', faint2: 'rgba(242,246,250,0.24)', ring: '242,246,250', glass: ['rgba(86,96,110,0.92)', 'rgba(52,60,70,0.9)', 'rgba(30,36,44,0.88)'],     rim: '#8a94a4' },
+    { name: 'Blueprint', bg: '#0a2440', ink: '#e8f2ff', ink2: 'rgba(232,242,255,0.88)', faint: 'rgba(232,242,255,0.38)', faint2: 'rgba(232,242,255,0.26)', ring: '232,242,255', glass: ['rgba(52,94,138,0.9)', 'rgba(28,60,94,0.88)', 'rgba(14,40,68,0.86)'],     rim: '#a8c4e4' },
+    { name: 'Sepia',     bg: '#efe6d2', ink: '#3a2912', ink2: 'rgba(58,41,18,0.88)',    faint: 'rgba(58,41,18,0.40)',    faint2: 'rgba(58,41,18,0.28)',    ring: '58,41,18',    glass: ['rgba(255,248,232,0.96)', 'rgba(238,226,202,0.9)', 'rgba(208,188,150,0.84)'], rim: '#8a6a40' },
+    { name: 'Noir',      bg: '#0a0a0c', ink: '#ffffff', ink2: 'rgba(255,255,255,0.9)',  faint: 'rgba(255,255,255,0.34)', faint2: 'rgba(255,255,255,0.22)', ring: '255,255,255', glass: ['rgba(124,132,144,0.9)', 'rgba(72,80,92,0.9)', 'rgba(36,42,52,0.9)'],      rim: '#b4bcca' },
+    { name: 'Mint',      bg: '#e7f1ec', ink: '#142a1f', ink2: 'rgba(20,42,31,0.88)',    faint: 'rgba(20,42,31,0.40)',    faint2: 'rgba(20,42,31,0.28)',    ring: '20,42,31',    glass: ['rgba(245,255,250,0.96)', 'rgba(222,240,232,0.9)', 'rgba(190,216,202,0.84)'], rim: '#5a8a70' },
+    { name: 'Ocean',     bg: '#06232a', ink: '#d4f6f2', ink2: 'rgba(212,246,242,0.9)',  faint: 'rgba(212,246,242,0.36)', faint2: 'rgba(212,246,242,0.24)', ring: '212,246,242', glass: ['rgba(40,100,104,0.9)', 'rgba(22,68,74,0.9)', 'rgba(12,44,50,0.9)'],      rim: '#62bdb4' }
+  ];
+
+  let dispH: number | null = null;
+  let dispM: number | null = null;
+  let dispS: number | null = null;
+
+  function approachAngle(cur: number | null, tgt: number, rate: number) {
+    if (cur == null) return tgt;
+    const dd = ((tgt - cur + Math.PI * 3) % (Math.PI * 2)) - Math.PI;
+    return cur + dd * rate;
+  }
+
   function ringPos(cx: number, cy: number, r: number, angRad: number) {
     return { x: cx + Math.sin(angRad) * r, y: cy - Math.cos(angRad) * r };
   }
 
-  function drawHand(ctx: CanvasRenderingContext2D, cx: number, cy: number, angRad: number, len: number, width: number, inkColor: string) {
-    const p = ringPos(cx, cy, len, angRad);
-    ctx.strokeStyle = inkColor;
-    ctx.lineWidth = width;
-    ctx.lineCap = 'round';
-    ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.lineTo(p.x, p.y);
-    ctx.stroke();
-    return p;
+  function drawBaseDial(ctx: CanvasRenderingContext2D, g: any, TH: any) {
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = TH.faint;
+    ctx.font = '600 ' + g.fsH + 'px "JetBrains Mono", monospace';
+    for (let n = 1; n <= 12; n++) {
+      const p = ringPos(g.cx, g.cy, g.rH, (n / 12) * Math.PI * 2);
+      ctx.fillText(String(n), p.x, p.y);
+    }
+
+    ctx.fillStyle = TH.faint2;
+    ctx.font = '600 ' + g.fsM + 'px "JetBrains Mono", monospace';
+    for (let mm = 0; mm < 60; mm++) {
+      const q = ringPos(g.cx, g.cy, g.rM, (mm / 60) * Math.PI * 2);
+      ctx.fillText(mm < 10 ? '0' + mm : String(mm), q.x, q.y);
+    }
+
+    ctx.fillStyle = TH.faint2;
+    ctx.font = '600 ' + g.fsS + 'px "JetBrains Mono", monospace';
+    for (let ss = 0; ss < 60; ss++) {
+      const r = ringPos(g.cx, g.cy, g.rS, (ss / 60) * Math.PI * 2);
+      ctx.fillText(ss < 10 ? '0' + ss : String(ss), r.x, r.y);
+    }
+
+    ctx.strokeStyle = 'rgba(' + TH.ring + ',0.08)';
+    ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.arc(g.cx, g.cy, g.rH * 1.16, 0, Math.PI * 2); ctx.stroke();
+    ctx.beginPath(); ctx.arc(g.cx, g.cy, g.rM * 1.10, 0, Math.PI * 2); ctx.stroke();
+    ctx.beginPath(); ctx.arc(g.cx, g.cy, g.rS * 1.06, 0, Math.PI * 2); ctx.stroke();
   }
 
   function drawMagGlyphs(ctx: CanvasRenderingContext2D, g: any, c1: string, c2: string, cull: any) {
@@ -2644,61 +3154,62 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     const r2 = cull.r2;
     const cxC = cull.x;
     const cyC = cull.y;
-    
+
     ctx.fillStyle = c1;
-    ctx.font = '700 ' + g.fsH + 'px "JetBrains Mono", monospace';
+    ctx.font = '600 ' + g.fsH + 'px "JetBrains Mono", monospace';
     for (let n = 1; n <= 12; n++) {
       const p = ringPos(g.cx, g.cy, g.rH, (n / 12) * Math.PI * 2);
       const dx = p.x - cxC;
       const dy = p.y - cyC;
       if (dx * dx + dy * dy <= r2) ctx.fillText(String(n), p.x, p.y);
     }
-    
+
     ctx.fillStyle = c2;
-    ctx.font = '700 ' + g.fsM + 'px "JetBrains Mono", monospace';
+    ctx.font = '600 ' + g.fsM + 'px "JetBrains Mono", monospace';
     for (let mm = 0; mm < 60; mm++) {
       const p = ringPos(g.cx, g.cy, g.rM, (mm / 60) * Math.PI * 2);
       const dx = p.x - cxC;
       const dy = p.y - cyC;
-      if (dx * dx + dy * dy <= r2) ctx.fillText(String(mm).padStart(2, '0'), p.x, p.y);
+      if (dx * dx + dy * dy <= r2) ctx.fillText(mm < 10 ? '0' + mm : String(mm), p.x, p.y);
     }
-    
+
     ctx.fillStyle = c2;
-    ctx.font = '700 ' + g.fsS + 'px "JetBrains Mono", monospace';
+    ctx.font = '600 ' + g.fsS + 'px "JetBrains Mono", monospace';
     for (let ss = 0; ss < 60; ss++) {
       const p = ringPos(g.cx, g.cy, g.rS, (ss / 60) * Math.PI * 2);
       const dx = p.x - cxC;
       const dy = p.y - cyC;
-      if (dx * dx + dy * dy <= r2) ctx.fillText(String(ss).padStart(2, '0'), p.x, p.y);
+      if (dx * dx + dy * dy <= r2) ctx.fillText(ss < 10 ? '0' + ss : String(ss), p.x, p.y);
     }
   }
 
-  function drawLens(ctx: CanvasRenderingContext2D, lx: number, ly: number, lensR: number, g: any, theme: any) {
+  function drawLens(ctx: CanvasRenderingContext2D, lx: number, ly: number, lensR: number, g: any, TH: any) {
     const TAU = Math.PI * 2;
+    // Cast shadow first
     ctx.save();
-    ctx.shadowColor = 'rgba(0,0,0,0.3)';
-    ctx.shadowBlur = lensR * 0.45;
-    ctx.shadowOffsetX = lensR * 0.08;
-    ctx.shadowOffsetY = lensR * 0.16;
-    ctx.fillStyle = 'rgba(0,0,0,0.2)';
+    ctx.shadowColor = 'rgba(0,0,0,0.34)';
+    ctx.shadowBlur = lensR * 0.55;
+    ctx.shadowOffsetX = lensR * 0.10;
+    ctx.shadowOffsetY = lensR * 0.22;
+    ctx.fillStyle = 'rgba(0,0,0,0.30)';
     ctx.beginPath();
-    ctx.arc(lx, ly, lensR * 0.95, 0, TAU);
+    ctx.arc(lx, ly, lensR * 0.97, 0, TAU);
     ctx.fill();
     ctx.restore();
-    
+
     ctx.save();
     ctx.beginPath();
     ctx.arc(lx, ly, lensR, 0, TAU);
     ctx.clip();
 
     const gg = ctx.createRadialGradient(lx - lensR * 0.3, ly - lensR * 0.35, lensR * 0.1, lx, ly, lensR);
-    gg.addColorStop(0, theme.glass[0]);
-    gg.addColorStop(0.7, theme.glass[1]);
-    gg.addColorStop(1, theme.glass[2]);
+    gg.addColorStop(0, TH.glass[0]);
+    gg.addColorStop(0.7, TH.glass[1]);
+    gg.addColorStop(1, TH.glass[2]);
     ctx.fillStyle = gg;
     ctx.fillRect(lx - lensR, ly - lensR, lensR * 2, lensR * 2);
 
-    const N = 5, magC = 2.8, magE = 1.8;
+    const N = 7, magC = 4.0, magE = 2.05;
     for (let k = 0; k < N; k++) {
       const rIn = lensR * k / N;
       const rOut = lensR * (k + 1) / N;
@@ -2714,122 +3225,140 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       ctx.translate(-lx, -ly);
       const cw = lensR / mag + g.maxFs * 1.5;
       const cull = { x: lx, y: ly, r2: cw * cw };
-      drawMagGlyphs(ctx, g, theme.ink, theme.ink2, cull);
+      drawMagGlyphs(ctx, g, TH.ink, TH.ink2, cull);
+      if (k === N - 1) {
+        const off = 1.0 / mag;
+        ctx.globalCompositeOperation = 'lighter';
+        ctx.save(); ctx.translate(off, 0); drawMagGlyphs(ctx, g, 'rgba(255,48,40,0.5)', 'rgba(255,48,40,0.42)', cull); ctx.restore();
+        ctx.save(); ctx.translate(-off, 0); drawMagGlyphs(ctx, g, 'rgba(40,150,255,0.5)', 'rgba(40,150,255,0.42)', cull); ctx.restore();
+        ctx.globalCompositeOperation = 'source-over';
+      }
       ctx.restore();
     }
+
+    // Inner vignette
+    const vg = ctx.createRadialGradient(lx, ly, lensR * 0.55, lx, ly, lensR);
+    vg.addColorStop(0, 'rgba(0,0,0,0)');
+    vg.addColorStop(1, 'rgba(0,0,0,0.22)');
+    ctx.fillStyle = vg;
+    ctx.fillRect(lx - lensR, ly - lensR, lensR * 2, lensR * 2);
     ctx.restore();
 
-    ctx.lineWidth = lensR * 0.12;
-    ctx.strokeStyle = theme.rim;
+    // Brass / Machined rim
+    ctx.lineWidth = lensR * 0.18;
+    ctx.strokeStyle = TH.rim;
     ctx.beginPath();
     ctx.arc(lx, ly, lensR, 0, TAU);
     ctx.stroke();
 
-    ctx.lineWidth = lensR * 0.08;
-    ctx.strokeStyle = 'rgba(255,255,255,0.4)';
+    // Bevelled metal edge
+    ctx.lineWidth = lensR * 0.07;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = 'rgba(255,255,255,0.55)';
     ctx.beginPath();
-    ctx.arc(lx, ly, lensR * 0.75, Math.PI * 1.05, Math.PI * 1.55);
+    ctx.arc(lx, ly, lensR * 0.95, Math.PI * 1.02, Math.PI * 1.55);
+    ctx.stroke();
+    ctx.strokeStyle = 'rgba(0,0,0,0.34)';
+    ctx.beginPath();
+    ctx.arc(lx, ly, lensR * 0.95, Math.PI * 0.02, Math.PI * 0.55);
+    ctx.stroke();
+    ctx.lineCap = 'butt';
+
+    // Spectral dispersion
+    ctx.save();
+    ctx.globalCompositeOperation = 'screen';
+    ctx.lineWidth = lensR * 0.05;
+    ctx.strokeStyle = 'rgba(255,80,60,0.45)';
+    ctx.beginPath();
+    ctx.arc(lx, ly, lensR * 0.9, 0, TAU);
+    ctx.stroke();
+    ctx.lineWidth = lensR * 0.04;
+    ctx.strokeStyle = 'rgba(60,150,255,0.45)';
+    ctx.beginPath();
+    ctx.arc(lx, ly, lensR * 0.83, 0, TAU);
+    ctx.stroke();
+    ctx.restore();
+
+    // Glass highlights
+    ctx.lineWidth = lensR * 0.07;
+    ctx.strokeStyle = 'rgba(255,255,255,0.6)';
+    ctx.beginPath();
+    ctx.arc(lx, ly, lensR * 0.92, 0, TAU);
+    ctx.stroke();
+    ctx.lineWidth = lensR * 0.10;
+    ctx.strokeStyle = 'rgba(255,255,255,0.7)';
+    ctx.beginPath();
+    ctx.arc(lx, ly, lensR * 0.72, Math.PI * 1.05, Math.PI * 1.55);
     ctx.stroke();
   }
 
-  function drawAllMagnifierCanvases(hAngle: number, mAngle: number, sAngle: number) {
-    const isDark = document.documentElement.classList.contains('dark');
-    
-    const theme = isDark ? {
-      bg: '#0a0a0c',
-      ink: '#ffffff',
-      ink2: 'rgba(255,255,255,0.85)',
-      faint: 'rgba(255,255,255,0.18)',
-      faint2: 'rgba(255,255,255,0.1)',
-      ring: '255,255,255',
-      glass: ['rgba(80,80,90,0.8)', 'rgba(40,40,50,0.8)', 'rgba(20,20,30,0.8)'],
-      rim: 'var(--brand-accent)'
-    } : {
-      bg: '#f8fafc',
-      ink: '#0f172a',
-      ink2: 'rgba(15,23,42,0.85)',
-      faint: 'rgba(15,23,42,0.18)',
-      faint2: 'rgba(15,23,42,0.1)',
-      ring: '15,23,42',
-      glass: ['rgba(255,255,255,0.85)', 'rgba(240,240,245,0.8)', 'rgba(220,220,230,0.8)'],
-      rim: 'var(--brand-accent)'
-    };
+  function drawHand(ctx: CanvasRenderingContext2D, cx: number, cy: number, angRad: number, len: number, width: number, inkColor: string) {
+    const p = ringPos(cx, cy, len, angRad);
+    ctx.strokeStyle = inkColor;
+    ctx.lineWidth = width;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(p.x, p.y);
+    ctx.stroke();
+    return p;
+  }
 
-    const radH = hAngle * Math.PI / 180;
-    const radM = mAngle * Math.PI / 180;
-    const radS = sAngle * Math.PI / 180;
+  function drawAllMagnifierCanvases(targetHRad: number, targetMRad: number, targetSRad: number) {
+    const isDark = document.documentElement.classList.contains('dark');
+    const TH = isDark ? MAGNIFIER_THEMES[1] : MAGNIFIER_THEMES[0]; // Slate (dark) or Cream (light)
+
+    dispH = approachAngle(dispH, targetHRad, 0.22);
+    dispM = approachAngle(dispM, targetMRad, 0.22);
+    dispS = approachAngle(dispS, targetSRad, 0.35);
 
     magnifierCanvases.forEach(canvas => {
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
-      const size = parseFloat(canvas.style.width || '380');
-      
-      ctx.clearRect(0, 0, size, size);
-      
-      const cx = size / 2;
-      const cy = size / 2;
-      const base = size;
+      const W = parseFloat(canvas.style.width || '380');
+      const H = parseFloat(canvas.style.height || '380');
+      const base = Math.min(W, H);
 
-      const rH = base * 0.20;
+      ctx.clearRect(0, 0, W, H);
+      ctx.fillStyle = TH.bg;
+      ctx.fillRect(0, 0, W, H);
+
+      const cx = W / 2;
+      const cy = H / 2;
+      const rH = base * 0.19;
       const rM = base * 0.32;
-      const rS = base * 0.43;
-      const fsH = 10;
-      const fsM = 8;
-      const fsS = 7;
+      const rS = base * 0.45;
+      const fsH = Math.max(5, base * 0.018);
+      const fsM = Math.max(4, base * 0.014);
+      const fsS = Math.max(3.5, base * 0.012);
       const g = { cx, cy, rH, rM, rS, fsH, fsM, fsS, maxFs: fsH };
 
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      
-      ctx.fillStyle = theme.faint;
-      ctx.font = '600 ' + fsH + 'px "JetBrains Mono", monospace';
-      for (let n = 1; n <= 12; n++) {
-        const p = ringPos(cx, cy, rH, (n / 12) * Math.PI * 2);
-        ctx.fillText(String(n), p.x, p.y);
-      }
-      
-      ctx.fillStyle = theme.faint2;
-      ctx.font = '600 ' + fsM + 'px "JetBrains Mono", monospace';
-      for (let mm = 0; mm < 60; mm++) {
-        const p = ringPos(cx, cy, rM, (mm / 60) * Math.PI * 2);
-        ctx.fillText(String(mm).padStart(2, '0'), p.x, p.y);
-      }
-      
-      ctx.fillStyle = theme.faint2;
-      ctx.font = '600 ' + fsS + 'px "JetBrains Mono", monospace';
-      for (let ss = 0; ss < 60; ss++) {
-        const p = ringPos(cx, cy, rS, (ss / 60) * Math.PI * 2);
-        ctx.fillText(String(ss).padStart(2, '0'), p.x, p.y);
-      }
+      drawBaseDial(ctx, g, TH);
 
-      ctx.strokeStyle = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)';
-      ctx.lineWidth = 1.0;
-      ctx.beginPath(); ctx.arc(cx, cy, rH * 1.15, 0, Math.PI * 2); ctx.stroke();
-      ctx.beginPath(); ctx.arc(cx, cy, rM * 1.10, 0, Math.PI * 2); ctx.stroke();
-      ctx.beginPath(); ctx.arc(cx, cy, rS * 1.06, 0, Math.PI * 2); ctx.stroke();
-
-      const lensR = base * 0.075;
+      const lensR = base * 0.072;
       const lrH = lensR * 1.06;
       const lrM = lensR * 0.96;
       const lrS = lensR * 0.86;
 
-      drawHand(ctx, cx, cy, radH, rH - lrH, 3.5, theme.ink);
-      drawHand(ctx, cx, cy, radM, rM - lrM, 2.5, theme.ink);
+      drawHand(ctx, cx, cy, dispH!, rH - lrH, Math.max(3, base * 0.011), TH.ink);
+      drawHand(ctx, cx, cy, dispM!, rM - lrM, Math.max(2, base * 0.008), TH.ink);
       if (engine.settings.showSeconds) {
-        drawHand(ctx, cx, cy, radS, rS - lrS, 1.2, 'var(--red-accent)');
+        drawHand(ctx, cx, cy, dispS!, rS - lrS, Math.max(1.5, base * 0.005), TH.ink);
       }
 
-      ctx.beginPath(); ctx.arc(cx, cy, 6, 0, Math.PI * 2);
-      ctx.fillStyle = theme.ink; ctx.fill();
+      ctx.beginPath();
+      ctx.arc(cx, cy, base * 0.02, 0, Math.PI * 2);
+      ctx.fillStyle = TH.ink;
+      ctx.fill();
 
-      const hc = ringPos(cx, cy, rH, radH);
-      const mc = ringPos(cx, cy, rM, radM);
-      const sc = ringPos(cx, cy, rS, radS);
+      const hc = ringPos(cx, cy, rH, dispH!);
+      const mc = ringPos(cx, cy, rM, dispM!);
+      const sc = ringPos(cx, cy, rS, dispS!);
 
-      drawLens(ctx, hc.x, hc.y, lrH, g, theme);
-      drawLens(ctx, mc.x, mc.y, lrM, g, theme);
+      drawLens(ctx, hc.x, hc.y, lrH, g, TH);
+      drawLens(ctx, mc.x, mc.y, lrM, g, TH);
       if (engine.settings.showSeconds) {
-        drawLens(ctx, sc.x, sc.y, lrS, g, theme);
+        drawLens(ctx, sc.x, sc.y, lrS, g, TH);
       }
     });
   }
@@ -2841,14 +3370,71 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const rect = parent.getBoundingClientRect();
       const size = Math.max(100, Math.min(rect.width || 380, rect.height || 380));
-      
+
       canvas.width = Math.round(size * dpr);
       canvas.height = Math.round(size * dpr);
       canvas.style.width = size + 'px';
       canvas.style.height = size + 'px';
-      
+
       const ctx = canvas.getContext('2d');
       if (ctx) ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    });
+  }
+
+  function syncThemeToggleUI() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const sunIcon = themeModeToggleBtn?.querySelector('.sun-icon');
+    const moonIcon = themeModeToggleBtn?.querySelector('.moon-icon');
+    
+    if (isDark) {
+      sunIcon?.classList.remove('hidden');
+      moonIcon?.classList.add('hidden');
+      themeModeToggleBtn?.setAttribute('title', 'Switch to Light Theme');
+    } else {
+      sunIcon?.classList.add('hidden');
+      moonIcon?.classList.remove('hidden');
+      themeModeToggleBtn?.setAttribute('title', 'Switch to Dark Theme');
+    }
+  }
+
+  function toggleColorTheme() {
+    const isDark = document.documentElement.classList.contains('dark');
+    if (isDark) {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('exam-clock-theme', 'light');
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#f8fafc');
+      showToast('Switched to Light Theme', 'info', 2000);
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('exam-clock-theme', 'dark');
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0a0a0c');
+      showToast('Switched to Dark Theme', 'info', 2000);
+    }
+    syncThemeToggleUI();
+    if (engine.settings.clockTheme === 'magnifier') {
+      resizeMagnifierCanvases();
+    }
+  }
+
+  function syncActiveThemeCard() {
+    const current = engine.settings.clockTheme || 'classic';
+    document.querySelectorAll('.theme-card').forEach(card => {
+      if (card.getAttribute('data-theme') === current) {
+        card.classList.add('active');
+      } else {
+        card.classList.remove('active');
+      }
+    });
+  }
+
+  function syncClockRepSegments() {
+    const currentRep = engine.settings.clockRepresentation || 'remaining';
+    clockRepSegments.forEach(btn => {
+      if (btn.getAttribute('data-rep') === currentRep) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
     });
   }
 
@@ -2862,6 +3448,8 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       }
     });
 
+    syncActiveThemeCard();
+
     if (currentTheme === 'magnifier') {
       resizeMagnifierCanvases();
     }
@@ -2873,24 +3461,39 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     sound.setMute(isSoundMuted);
     sound.setVolume(engine.settings.volume / 100);
 
-    // Apply Theme Toggle Class
-    const hasDarkClass = document.documentElement.classList.contains('dark');
-    if (themeToggle) themeToggle.checked = hasDarkClass;
+    // Sync Dark / Light Toggle in Theme Modal
+    syncThemeToggleUI();
 
-    // Apply inputs values safely
-    if (toggleShowSeconds) toggleShowSeconds.checked = engine.settings.showSeconds;
-    if (toggleShow24h) toggleShow24h.checked = engine.settings.show24h;
+    // Apply button toggle states safely
+    if (btnToggleSeconds) {
+      if (engine.settings.showSeconds) {
+        btnToggleSeconds.classList.add('active');
+        btnToggleSeconds.setAttribute('data-active', 'true');
+      } else {
+        btnToggleSeconds.classList.remove('active');
+        btnToggleSeconds.setAttribute('data-active', 'false');
+      }
+    }
+    if (btnToggle24h) {
+      if (engine.settings.show24h) {
+        btnToggle24h.classList.add('active');
+        btnToggle24h.setAttribute('data-active', 'true');
+      } else {
+        btnToggle24h.classList.remove('active');
+        btnToggle24h.setAttribute('data-active', 'false');
+      }
+    }
     if (toggleSoundOn) toggleSoundOn.checked = engine.settings.soundOn;
     if (volumeSlider) volumeSlider.value = String(engine.settings.volume);
     if (volumeIndicator) volumeIndicator.innerText = `${engine.settings.volume}%`;
     if (selectClockRep) selectClockRep.value = engine.settings.clockRepresentation;
-    if (selectClockTheme) selectClockTheme.value = engine.settings.clockTheme || 'classic';
     if (selectAlarmSound) selectAlarmSound.value = engine.settings.alarmSound || 'classic';
     if (strictModeToggle) strictModeToggle.checked = engine.settings.strictMode;
 
-    // Set clock face classes
+    // Set clock face classes & segments
     updateClockFaceConfig();
     updateClockThemeConfig();
+    syncClockRepSegments();
 
     // Populate warning tags
     renderWarningList();
@@ -2945,22 +3548,25 @@ import HistoryPanel from '../components/HistoryPanel.astro';
 
   function calculateWindowDuration() {
     if (!inputStartTime?.value || !inputEndTime?.value) return;
-    const today = new Date().toDateString();
-    const start = new Date(`${today} ${inputStartTime.value}`);
-    let end = new Date(`${today} ${inputEndTime.value}`);
+    const [sh, sm] = inputStartTime.value.split(':').map(val => parseInt(val, 10));
+    const [eh, em] = inputEndTime.value.split(':').map(val => parseInt(val, 10));
 
-    if (end.getTime() < start.getTime()) {
-      end.setDate(end.getDate() + 1);
+    if (isNaN(sh) || isNaN(sm) || isNaN(eh) || isNaN(em)) return;
+
+    let startMins = sh * 60 + sm;
+    let endMins = eh * 60 + em;
+
+    if (endMins <= startMins) {
+      endMins += 24 * 60; // Crosses midnight
     }
 
-    const diffMs = end.getTime() - start.getTime();
-    const diffSec = Math.floor(diffMs / 1000);
-    setupDurationSec = diffSec;
+    const diffSec = (endMins - startMins) * 60;
+    setupDurationSec = Math.max(60, diffSec);
 
-    const hours = Math.floor(diffSec / 3600);
-    const mins = Math.floor((diffSec % 3600) / 60);
+    const hours = Math.floor(setupDurationSec / 3600);
+    const mins = Math.floor((setupDurationSec % 3600) / 60);
     if (windowDurationFeedback) {
-      windowDurationFeedback.innerText = `Calculated Duration: ${hours} Hours ${mins} Minutes`;
+      windowDurationFeedback.innerText = `Calculated Duration: ${hours} Hour${hours !== 1 ? 's' : ''} ${mins} Minute${mins !== 1 ? 's' : ''}`;
     }
   }
 
@@ -3009,54 +3615,110 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     screenSetup.classList.remove('active');
     screenDashboard.classList.add('active');
     renderHistoryList();
+
+    // Immediately render first tick state so dashboard never flashes 00 or stale values
+    if (engine.activeTimer) {
+      const metrics = engine.getTimerMetrics();
+      const digits = formatTimeDigits(metrics.remaining);
+      if (digitsCountdown) digitsCountdown.innerText = digits;
+      if (fsDigitalTime) fsDigitalTime.innerText = digits;
+      if (metricElapsed) metricElapsed.innerText = formatTimeDigits(metrics.elapsed);
+      if (metricRemaining) metricRemaining.innerText = formatTimeDigits(metrics.remaining);
+      if (metricTotal) metricTotal.innerText = formatTimeDigits(metrics.total);
+      if (metricPercent) metricPercent.innerText = `${Math.round(metrics.progressPercent)}% Remaining`;
+      if (progressFill) progressFill.style.width = `${metrics.progressPercent}%`;
+
+      const endTimeObj = new Date(engine.activeTimer.endTimestamp);
+      const endStr = `Ends at ${endTimeObj.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit', hour12: true })}`;
+      if (metricEndTime) metricEndTime.innerText = endStr;
+      if (fsEndsTime) fsEndsTime.innerText = endStr;
+    }
   }
 
   // Start Exam
   function launchSession() {
     let duration = 0;
     if (activeTab === 'duration') {
-      const h = parseInt(selectHours?.value || '0') || 0;
-      const m = parseInt(selectMinutes?.value || '0') || 0;
-      const s = parseInt(selectSeconds?.value || '0') || 0;
+      const h = Math.max(0, parseInt(selectHours?.value || '0', 10) || 0);
+      const m = Math.max(0, parseInt(selectMinutes?.value || '0', 10) || 0);
+      const s = Math.max(0, parseInt(selectSeconds?.value || '0', 10) || 0);
       duration = h * 3600 + m * 60 + s;
     } else {
+      calculateWindowDuration();
       duration = setupDurationSec;
     }
 
-    if (duration <= 0) {
-      showToast("Please enter an exam length greater than zero.", 'danger');
+    if (isNaN(duration) || duration <= 0) {
+      showToast("Please enter an exam duration greater than zero.", 'danger');
       return;
     }
 
     const showQ = enableQuestionsToggle?.checked || false;
-    const totalQ = showQ ? parseInt(inputTotalQuestions?.value || '0') || 0 : 0;
+    const totalQ = showQ ? Math.max(1, parseInt(inputTotalQuestions?.value || '0', 10) || 100) : 0;
     
     let name = "Mock Test Session";
     const activePresetBtn = standardPresetsContainer?.querySelector('.preset-badge.active');
     if (activePresetBtn) {
-      name = (activePresetBtn.textContent || "Mock") + " Mock Test";
+      name = (activePresetBtn.textContent?.trim() || "Mock") + " Mock Test";
+    } else {
+      name = `${formatSecondsToReadable(duration)} Mock Test`;
     }
 
     engine.startExam(name, duration, totalQ, showQ);
+    isTimerRunning = true;
     sound.playBeep(523.25, 0.4);
     switchToDashboard();
     showToast("Exam timer started. Focus and good luck!", 'success');
   }
 
   // Peak-End Debrief Trigger
-  function showSessionDebrief(summary: SessionSummary) {
+  function showSessionDebrief(summary: SessionSummary, isNaturalExpiry: boolean = false) {
     if (!sessionDebriefOverlay) return;
 
-    if (debriefTitle) debriefTitle.innerText = summary.status === 'Completed' ? "Exam Time Is Complete!" : "Exam Session Concluded";
-    if (debriefIcon) debriefIcon.innerText = summary.status === 'Completed' ? "🎉" : "📋";
-    if (debriefTagline) debriefTagline.innerText = `${summary.name} • ${summary.status}`;
+    lastSessionConfig = {
+      name: summary.name,
+      durationSec: summary.durationSec,
+      totalQuestions: summary.totalQuestions,
+      showQuestions: Boolean(summary.totalQuestions && summary.totalQuestions > 0),
+      elapsedSec: summary.elapsedSec,
+      status: summary.status
+    };
+
+    const didTimeNaturallyExpire = Boolean(isNaturalExpiry);
+
+    if (debriefTitle) debriefTitle.innerText = didTimeNaturallyExpire ? "Exam Time Is Complete!" : "Exam Session Concluded";
+    if (debriefIcon) debriefIcon.innerText = didTimeNaturallyExpire ? "🎉" : "⏱️";
+    if (debriefExamName) debriefExamName.innerText = summary.name;
+
+    if (debriefStatusPill) {
+      if (didTimeNaturallyExpire) {
+        debriefStatusPill.innerText = "Completed";
+        debriefStatusPill.className = "debrief-pill-completed";
+      } else {
+        debriefStatusPill.innerText = "Stopped Early";
+        debriefStatusPill.className = "debrief-pill-stopped";
+      }
+    }
+
+    if (debriefTagline) {
+      debriefTagline.innerText = didTimeNaturallyExpire
+        ? "Target time reached! Here is your final performance and pacing breakdown."
+        : "Session was stopped before time expired. You can resume, restart, or view logs.";
+    }
 
     if (debriefFocusTime) debriefFocusTime.innerText = formatTimeDigits(summary.elapsedSec);
     if (debriefTargetTime) debriefTargetTime.innerText = `of ${formatTimeDigits(summary.durationSec)} target`;
     if (debriefCompletionPct) debriefCompletionPct.innerText = `${summary.completionPercent}%`;
     if (debriefStatusBadge) {
-      debriefStatusBadge.innerText = summary.status;
-      debriefStatusBadge.className = `debrief-stat-sub ${summary.status === 'Completed' ? 'text-green' : 'text-orange'}`;
+      debriefStatusBadge.innerText = didTimeNaturallyExpire ? "Completed" : "Stopped";
+      debriefStatusBadge.className = `debrief-stat-sub ${didTimeNaturallyExpire ? 'text-green' : 'text-orange'}`;
+    }
+
+    if (debriefProgressBar) {
+      debriefProgressBar.style.width = `${summary.completionPercent}%`;
+    }
+    if (debriefProgressPctLabel) {
+      debriefProgressPctLabel.innerText = `${summary.completionPercent}%`;
     }
 
     if (debriefQuestionsCard) {
@@ -3082,215 +3744,251 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       }
     }
 
+    // Configure Action Buttons
+    if (didTimeNaturallyExpire) {
+      if (debriefResumeBtn) debriefResumeBtn.classList.add('hidden');
+      if (debriefRestartBtnText) debriefRestartBtnText.innerText = "Practice Again";
+    } else {
+      if (debriefResumeBtn) debriefResumeBtn.classList.remove('hidden');
+      if (debriefRestartBtnText) debriefRestartBtnText.innerText = "Restart Exam";
+    }
+
     sessionDebriefOverlay.classList.remove('hidden');
-    if (timesUpFullscreenFlash) timesUpFullscreenFlash.classList.remove('hidden');
-    sound.startAlarmLoop(engine.settings.alarmSound || 'classic');
+
+    // ONLY play the continuous alarm loop when time naturally ran out AND sound is enabled!
+    if (didTimeNaturallyExpire && !sound.getMute() && engine.settings.soundOn) {
+      sound.startAlarmLoop(engine.settings.alarmSound || 'classic');
+      if (timesUpFullscreenFlash) timesUpFullscreenFlash.classList.remove('hidden');
+      if (debriefAlarmSilenceBtn) {
+        debriefAlarmSilenceBtn.classList.remove('hidden', 'silenced');
+        debriefAlarmSilenceBtn.innerHTML = `<span class="silence-icon">🔊</span><span class="silence-text">Silence Alarm</span>`;
+      }
+    } else {
+      // Manual stop, manual reset, or early finish: DO NOT play the alarm!
+      sound.stopAlarmLoop();
+      if (timesUpFullscreenFlash) timesUpFullscreenFlash.classList.add('hidden');
+      if (debriefAlarmSilenceBtn) debriefAlarmSilenceBtn.classList.add('hidden');
+      // Gentle soft chime to acknowledge voluntary stop
+      if (!sound.getMute() && engine.settings.soundOn) {
+        sound.playBeep(440, 0.1, 'sine');
+      }
+    }
   }
 
   function hideSessionDebrief() {
     sound.stopAlarmLoop();
     if (sessionDebriefOverlay) sessionDebriefOverlay.classList.add('hidden');
     if (timesUpFullscreenFlash) timesUpFullscreenFlash.classList.add('hidden');
+    if (debriefAlarmSilenceBtn) {
+      debriefAlarmSilenceBtn.classList.add('hidden');
+      debriefAlarmSilenceBtn.classList.remove('silenced');
+    }
     switchToSetup();
   }
 
   // Ticking main animation frame loop (Synchronous render)
   function clockTickLoop() {
-    const now = new Date();
-    const formattedSysTime = now.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
-    const formattedSysDate = now.toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' });
-    
-    if (systemTimeLabel) systemTimeLabel.innerText = formattedSysTime;
-    if (systemDateLabel) systemDateLabel.innerText = formattedSysDate;
-
-    if (engine.activeTimer) {
-      const metrics = engine.getTimerMetrics();
-
-      const warningMin = engine.checkWarnings(metrics.remaining);
-      if (warningMin !== null) {
-        triggerWarningNotification(warningMin);
-      }
-
-      isTimerRunning = engine.activeTimer.isRunning;
-      isTimerPaused = engine.activeTimer.isPaused;
-
-      if (engine.activeTimer.mode === 'exam' && engine.activeTimer.strictMode) {
-        if (ctrlPlayPause) ctrlPlayPause.disabled = true;
-        if (fsPlayPauseBtn) fsPlayPauseBtn.disabled = true;
-      } else {
-        if (ctrlPlayPause) ctrlPlayPause.disabled = false;
-        if (fsPlayPauseBtn) fsPlayPauseBtn.disabled = false;
-      }
-
-      // Timer Expiry Trigger
-      if (metrics.remaining <= 0 && isTimerRunning) {
-        const summary = engine.reset('Completed');
-        isTimerRunning = false;
-        if (summary) showSessionDebrief(summary);
-      }
-
-      const digits = formatTimeDigits(metrics.remaining);
-      if (digitsCountdown) digitsCountdown.innerText = digits;
-      if (fsDigitalTime) fsDigitalTime.innerText = digits;
-
-      if (metrics.remaining <= 300) {
-        if (digitsCountdown) digitsCountdown.className = "digital-time-digits warn-red";
-        if (fsDigitalTime) fsDigitalTime.className = "fs-digits warn-red";
-        progressDisplayCard?.classList.add('critical');
-      } else if (metrics.remaining <= 600) {
-        if (digitsCountdown) digitsCountdown.className = "digital-time-digits warn-orange";
-        if (fsDigitalTime) fsDigitalTime.className = "fs-digits warn-orange";
-        progressDisplayCard?.classList.remove('critical');
-      } else {
-        if (digitsCountdown) digitsCountdown.className = "digital-time-digits";
-        if (fsDigitalTime) fsDigitalTime.className = "fs-digits";
-        progressDisplayCard?.classList.remove('critical');
-      }
-
-      const elapsedFormatted = formatTimeDigits(metrics.elapsed);
-      const remainingFormatted = formatTimeDigits(metrics.remaining);
-      const totalFormatted = formatTimeDigits(metrics.total);
-      const percentVal = Math.round(metrics.progressPercent);
-
-      if (metricPercent) metricPercent.innerText = `${percentVal}% Remaining`;
-      if (fsPercentRemaining) fsPercentRemaining.innerText = `${percentVal}% remaining`;
+    try {
+      const now = new Date();
+      const formattedSysTime = now.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+      const formattedSysDate = now.toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' });
       
-      if (metricElapsed) metricElapsed.innerText = elapsedFormatted;
-      if (metricRemaining) metricRemaining.innerText = remainingFormatted;
-      if (metricTotal) metricTotal.innerText = totalFormatted;
+      if (systemTimeLabel) systemTimeLabel.innerText = formattedSysTime;
+      if (systemDateLabel) systemDateLabel.innerText = formattedSysDate;
 
-      if (progressFill) progressFill.style.width = `${metrics.progressPercent}%`;
+      if (engine.activeTimer) {
+        const metrics = engine.getTimerMetrics();
 
-      let endMs = engine.activeTimer.endTimestamp;
-      if (engine.activeTimer.isPaused && engine.activeTimer.lastPauseTimestamp) {
-        const pauseOffset = Date.now() - engine.activeTimer.lastPauseTimestamp;
-        endMs += pauseOffset;
-      }
-      const endTimeObj = new Date(endMs);
-      const endStr = `Ends at ${endTimeObj.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit', hour12: true })}`;
-      if (metricEndTime) metricEndTime.innerText = endStr;
-      if (fsEndsTime) fsEndsTime.innerText = endStr;
+        const warningMin = engine.checkWarnings(metrics.remaining);
+        if (warningMin !== null) {
+          triggerWarningNotification(warningMin);
+        }
 
-      if (dashboardStatus) {
-        if (engine.activeTimer.mode === 'study') {
-          dashboardStatus.innerText = engine.activeTimer.studyType === 'pomodoro' ? 'STUDY BLOCK' : 'STUDY SESSION';
-          if (pomoStageBadge) {
-            if (engine.activeTimer.studyType === 'pomodoro') {
-              pomoStageBadge.classList.remove('hidden');
-              pomoStageBadge.innerText = engine.activeTimer.pomoState.toUpperCase();
+        isTimerRunning = engine.activeTimer.isRunning;
+        isTimerPaused = engine.activeTimer.isPaused;
+
+        if (engine.activeTimer.mode === 'exam' && engine.activeTimer.strictMode) {
+          if (ctrlPlayPause) ctrlPlayPause.disabled = true;
+          if (fsPlayPauseBtn) fsPlayPauseBtn.disabled = true;
+        } else {
+          if (ctrlPlayPause) ctrlPlayPause.disabled = false;
+          if (fsPlayPauseBtn) fsPlayPauseBtn.disabled = false;
+        }
+
+        // Timer Expiry Trigger (Natural zero countdown)
+        if (metrics.remaining <= 0 && isTimerRunning) {
+          isTimerRunning = false;
+          const summary = engine.reset('Completed');
+          if (summary) showSessionDebrief(summary, true /* natural expiry */);
+          // Return early to ensure next tick runs cleanly without accessing null activeTimer
+          return;
+        }
+
+        const digits = formatTimeDigits(metrics.remaining);
+        if (digitsCountdown) digitsCountdown.innerText = digits;
+        if (fsDigitalTime) fsDigitalTime.innerText = digits;
+
+        if (metrics.remaining <= 300) {
+          if (digitsCountdown) digitsCountdown.className = "digital-time-digits warn-red";
+          if (fsDigitalTime) fsDigitalTime.className = "fs-digits warn-red";
+          progressDisplayCard?.classList.add('critical');
+        } else if (metrics.remaining <= 600) {
+          if (digitsCountdown) digitsCountdown.className = "digital-time-digits warn-orange";
+          if (fsDigitalTime) fsDigitalTime.className = "fs-digits warn-orange";
+          progressDisplayCard?.classList.remove('critical');
+        } else {
+          if (digitsCountdown) digitsCountdown.className = "digital-time-digits";
+          if (fsDigitalTime) fsDigitalTime.className = "fs-digits";
+          progressDisplayCard?.classList.remove('critical');
+        }
+
+        const elapsedFormatted = formatTimeDigits(metrics.elapsed);
+        const remainingFormatted = formatTimeDigits(metrics.remaining);
+        const totalFormatted = formatTimeDigits(metrics.total);
+        const percentVal = Math.round(metrics.progressPercent);
+
+        if (metricPercent) metricPercent.innerText = `${percentVal}% Remaining`;
+        if (fsPercentRemaining) fsPercentRemaining.innerText = `${percentVal}% remaining`;
+        
+        if (metricElapsed) metricElapsed.innerText = elapsedFormatted;
+        if (metricRemaining) metricRemaining.innerText = remainingFormatted;
+        if (metricTotal) metricTotal.innerText = totalFormatted;
+
+        if (progressFill) progressFill.style.width = `${metrics.progressPercent}%`;
+
+        let endMs = engine.activeTimer.endTimestamp;
+        if (engine.activeTimer.isPaused && engine.activeTimer.lastPauseTimestamp) {
+          const pauseOffset = Date.now() - engine.activeTimer.lastPauseTimestamp;
+          endMs += pauseOffset;
+        }
+        const endTimeObj = new Date(endMs);
+        const endStr = `Ends at ${endTimeObj.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit', hour12: true })}`;
+        if (metricEndTime) metricEndTime.innerText = endStr;
+        if (fsEndsTime) fsEndsTime.innerText = endStr;
+
+        if (dashboardStatus) {
+          if (engine.activeTimer.mode === 'study') {
+            dashboardStatus.innerText = engine.activeTimer.studyType === 'pomodoro' ? 'STUDY BLOCK' : 'STUDY SESSION';
+            if (pomoStageBadge) {
+              if (engine.activeTimer.studyType === 'pomodoro') {
+                pomoStageBadge.classList.remove('hidden');
+                pomoStageBadge.innerText = engine.activeTimer.pomoState.toUpperCase();
+              } else {
+                pomoStageBadge.classList.add('hidden');
+              }
+            }
+          } else {
+            dashboardStatus.innerText = engine.activeTimer.strictMode ? 'STRICT EXAM IN PROGRESS' : 'EXAM IN PROGRESS';
+            pomoStageBadge?.classList.add('hidden');
+          }
+        }
+
+        if (engine.activeTimer.mode === 'exam' && engine.activeTimer.showQuestions && engine.activeTimer.totalQuestions > 0) {
+          qTrackerCard?.classList.remove('hidden');
+          if (qTrackerTotalBadge) qTrackerTotalBadge.innerText = `${engine.activeTimer.totalQuestions} Questions`;
+
+          const totalQ = engine.activeTimer.totalQuestions;
+          const avgSecPerQ = metrics.total / totalQ;
+          const suggestedQ = Math.min(totalQ, Math.floor(metrics.elapsed / avgSecPerQ) + 1);
+
+          if (qTrackerSuggested) qTrackerSuggested.innerText = `Q. ${suggestedQ}`;
+          if (qTrackerTimePerQ) qTrackerTimePerQ.innerText = `${formatSecondsToReadable(avgSecPerQ)} each`;
+
+          const currentQ = engine.activeTimer.currentQuestion || 1;
+          if (qTrackerCurrentQ) qTrackerCurrentQ.innerText = `Q. ${currentQ}`;
+
+          const diff = currentQ - suggestedQ;
+
+          if (qTrackerCard && qTrackerStatusText) {
+            if (diff < 0) {
+              qTrackerCard.className = "tracker-card glass-panel behind";
+              qTrackerStatusText.innerText = `You are ${Math.abs(diff)} question(s) behind schedule. Pick up the pace!`;
+            } else if (diff > 0) {
+              qTrackerCard.className = "tracker-card glass-panel ahead";
+              qTrackerStatusText.innerText = `You are ${diff} question(s) ahead of schedule. Keep it up!`;
             } else {
-              pomoStageBadge.classList.add('hidden');
+              qTrackerCard.className = "tracker-card glass-panel on-track";
+              qTrackerStatusText.innerText = "You are exactly on schedule.";
             }
           }
         } else {
-          dashboardStatus.innerText = engine.activeTimer.strictMode ? 'STRICT EXAM IN PROGRESS' : 'EXAM IN PROGRESS';
-          pomoStageBadge?.classList.add('hidden');
+          qTrackerCard?.classList.add('hidden');
         }
-      }
 
-      if (engine.activeTimer.mode === 'exam' && engine.activeTimer.showQuestions && engine.activeTimer.totalQuestions > 0) {
-        qTrackerCard?.classList.remove('hidden');
-        if (qTrackerTotalBadge) qTrackerTotalBadge.innerText = `${engine.activeTimer.totalQuestions} Questions`;
-
-        const totalQ = engine.activeTimer.totalQuestions;
-        const avgSecPerQ = metrics.total / totalQ;
-        const suggestedQ = Math.min(totalQ, Math.floor(metrics.elapsed / avgSecPerQ) + 1);
-
-        if (qTrackerSuggested) qTrackerSuggested.innerText = `Q. ${suggestedQ}`;
-        if (qTrackerTimePerQ) qTrackerTimePerQ.innerText = `${formatSecondsToReadable(avgSecPerQ)} each`;
-
-        const currentQ = engine.activeTimer.currentQuestion || 1;
-        if (qTrackerCurrentQ) qTrackerCurrentQ.innerText = `Q. ${currentQ}`;
-
-        const diff = currentQ - suggestedQ;
-
-        if (qTrackerCard && qTrackerStatusText) {
-          if (diff < 0) {
-            qTrackerCard.className = "tracker-card glass-panel behind";
-            qTrackerStatusText.innerText = `You are ${Math.abs(diff)} question(s) behind schedule. Pick up the pace!`;
-          } else if (diff > 0) {
-            qTrackerCard.className = "tracker-card glass-panel ahead";
-            qTrackerStatusText.innerText = `You are ${diff} question(s) ahead of schedule. Keep it up!`;
-          } else {
-            qTrackerCard.className = "tracker-card glass-panel on-track";
-            qTrackerStatusText.innerText = "You are exactly on schedule.";
+        if (isTimerPaused) {
+          iconPause?.classList.add('hidden');
+          iconPlay?.classList.remove('hidden');
+          if (ctrlPlayPauseText) ctrlPlayPauseText.innerText = "Resume";
+          if (fsPlayPauseBtn) {
+            fsPlayPauseBtn.innerText = "Resume";
+            fsPlayPauseBtn.className = "fs-btn primary";
+          }
+        } else {
+          iconPlay?.classList.add('hidden');
+          iconPause?.classList.remove('hidden');
+          if (ctrlPlayPauseText) ctrlPlayPauseText.innerText = "Pause";
+          if (fsPlayPauseBtn) {
+            fsPlayPauseBtn.innerText = "Pause";
+            fsPlayPauseBtn.className = "fs-btn";
           }
         }
-      } else {
-        qTrackerCard?.classList.add('hidden');
-      }
 
-      if (isTimerPaused) {
-        iconPause?.classList.add('hidden');
-        iconPlay?.classList.remove('hidden');
-        if (ctrlPlayPauseText) ctrlPlayPauseText.innerText = "Resume";
-        if (fsPlayPauseBtn) {
-          fsPlayPauseBtn.innerText = "Resume";
-          fsPlayPauseBtn.className = "fs-btn primary";
+        let clockSeconds = 0;
+        let clockMinutes = 0;
+        let clockHours = 0;
+
+        const representation = engine.settings.clockRepresentation;
+        if (representation === 'wall') {
+          clockSeconds = now.getSeconds() + now.getMilliseconds() / 1000;
+          clockMinutes = now.getMinutes() + clockSeconds / 60;
+          clockHours = (now.getHours() % 12) + clockMinutes / 60;
+        } else if (representation === 'elapsed') {
+          clockSeconds = metrics.elapsed % 60;
+          clockMinutes = (metrics.elapsed / 60) % 60;
+          clockHours = (metrics.elapsed / 3600) % 12;
+        } else {
+          clockSeconds = metrics.remaining % 60;
+          clockMinutes = (metrics.remaining / 60) % 60;
+          clockHours = (metrics.remaining / 3600) % 12;
         }
-      } else {
-        iconPlay?.classList.add('hidden');
-        iconPause?.classList.remove('hidden');
-        if (ctrlPlayPauseText) ctrlPlayPauseText.innerText = "Pause";
-        if (fsPlayPauseBtn) {
-          fsPlayPauseBtn.innerText = "Pause";
-          fsPlayPauseBtn.className = "fs-btn";
+
+        const sAngle = clockSeconds * 6;
+        const mAngle = clockMinutes * 6;
+        const hAngle = clockHours * 30;
+
+        hands.classicHour.forEach(el => el.setAttribute('transform', `rotate(${hAngle}, 200, 200)`));
+        hands.classicMinute.forEach(el => el.setAttribute('transform', `rotate(${mAngle}, 200, 200)`));
+        hands.classicSecond.forEach(el => el.setAttribute('transform', `rotate(${sAngle}, 200, 200)`));
+        
+        const classicSectorD = getSectorPath(mAngle, 190);
+        document.querySelectorAll('.theme-classic .clock-highlight-sector').forEach(el => el.setAttribute('d', classicSectorD));
+
+        hands.wallHour.forEach(el => el.setAttribute('transform', `rotate(${hAngle}, 200, 200)`));
+        hands.wallMinute.forEach(el => el.setAttribute('transform', `rotate(${mAngle}, 200, 200)`));
+        hands.wallSecond.forEach(el => el.setAttribute('transform', `rotate(${sAngle}, 200, 200)`));
+
+        const flipSecToDisplay = representation === 'elapsed' ? metrics.elapsed : metrics.remaining;
+        if (flipSecToDisplay !== lastRenderedFlipSec) {
+          lastRenderedFlipSec = flipSecToDisplay;
+          updateFlipClockDisplay(flipSecToDisplay);
+        }
+
+        hands.filmRotator.forEach(el => el.setAttribute('transform', `rotate(${sAngle}, 200, 200)`));
+        const filmSectorD = getSectorPath(sAngle, 160);
+        document.querySelectorAll('.theme-film .clock-highlight-sector').forEach(el => el.setAttribute('d', filmSectorD));
+
+        const filmCounterVal = Math.floor(metrics.remaining % 10);
+        document.querySelectorAll('#film-counter').forEach(el => el.textContent = String(filmCounterVal));
+
+        if (engine.settings.clockTheme === 'magnifier') {
+          drawAllMagnifierCanvases(hAngle * Math.PI / 180, mAngle * Math.PI / 180, sAngle * Math.PI / 180);
         }
       }
-
-      let clockSeconds = 0;
-      let clockMinutes = 0;
-      let clockHours = 0;
-
-      const representation = engine.settings.clockRepresentation;
-      if (representation === 'wall') {
-        clockSeconds = now.getSeconds() + now.getMilliseconds() / 1000;
-        clockMinutes = now.getMinutes() + clockSeconds / 60;
-        clockHours = (now.getHours() % 12) + clockMinutes / 60;
-      } else if (representation === 'elapsed') {
-        clockSeconds = metrics.elapsed % 60;
-        clockMinutes = (metrics.elapsed / 60) % 60;
-        clockHours = (metrics.elapsed / 3600) % 12;
-      } else {
-        clockSeconds = metrics.remaining % 60;
-        clockMinutes = (metrics.remaining / 60) % 60;
-        clockHours = (metrics.remaining / 3600) % 12;
-      }
-
-      const sAngle = clockSeconds * 6;
-      const mAngle = clockMinutes * 6;
-      const hAngle = clockHours * 30;
-
-      hands.classicHour.forEach(el => el.setAttribute('transform', `rotate(${hAngle}, 200, 200)`));
-      hands.classicMinute.forEach(el => el.setAttribute('transform', `rotate(${mAngle}, 200, 200)`));
-      hands.classicSecond.forEach(el => el.setAttribute('transform', `rotate(${sAngle}, 200, 200)`));
-      
-      const classicSectorD = getSectorPath(mAngle, 190);
-      document.querySelectorAll('.theme-classic .clock-highlight-sector').forEach(el => el.setAttribute('d', classicSectorD));
-
-      hands.wallHour.forEach(el => el.setAttribute('transform', `rotate(${hAngle}, 200, 200)`));
-      hands.wallMinute.forEach(el => el.setAttribute('transform', `rotate(${mAngle}, 200, 200)`));
-      hands.wallSecond.forEach(el => el.setAttribute('transform', `rotate(${sAngle}, 200, 200)`));
-
-      const flipSecToDisplay = representation === 'elapsed' ? metrics.elapsed : metrics.remaining;
-      if (flipSecToDisplay !== lastRenderedFlipSec) {
-        lastRenderedFlipSec = flipSecToDisplay;
-        updateFlipClockDisplay(flipSecToDisplay);
-      }
-
-      hands.filmRotator.forEach(el => el.setAttribute('transform', `rotate(${sAngle}, 200, 200)`));
-      const filmSectorD = getSectorPath(sAngle, 160);
-      document.querySelectorAll('.theme-film .clock-highlight-sector').forEach(el => el.setAttribute('d', filmSectorD));
-
-      const filmCounterVal = Math.floor(metrics.remaining % 10);
-      document.querySelectorAll('#film-counter').forEach(el => el.textContent = String(filmCounterVal));
-
-      if (engine.settings.clockTheme === 'magnifier') {
-        drawAllMagnifierCanvases(hAngle, mAngle, sAngle);
-      }
+    } catch (err) {
+      console.error('Error in clockTickLoop:', err);
+    } finally {
+      requestAnimationFrame(clockTickLoop);
     }
-
-    requestAnimationFrame(clockTickLoop);
   }
 
   function triggerWarningNotification(minutes: number) {
@@ -3392,6 +4090,15 @@ import HistoryPanel from '../components/HistoryPanel.astro';
             questionsCollapsible?.classList.add('hidden');
           }
         }
+
+        // Switch to duration tab if clicked
+        activeTab = 'duration';
+        document.querySelectorAll('.tab-btn').forEach(b => {
+          if (b.getAttribute('data-tab') === 'tab-duration') b.classList.add('active');
+          else b.classList.remove('active');
+        });
+        document.getElementById('tab-duration')?.classList.remove('hidden');
+        document.getElementById('tab-window')?.classList.add('hidden');
       });
     });
 
@@ -3484,6 +4191,8 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       }
     } else if (e.key === 'Escape') {
       hideConfirmDialog();
+      hideSessionDebrief();
+      themeModalBackdrop?.classList.add('hidden');
       settingsBackdrop?.classList.add('hidden');
       historyModalBackdrop?.classList.add('hidden');
       studyPresetsPanel?.classList.add('hidden');
@@ -3509,28 +4218,35 @@ import HistoryPanel from '../components/HistoryPanel.astro';
 
   function triggerEndExam() {
     if (!engine.activeTimer) return;
+    sound.stopAlarmLoop();
     showConfirmDialog(
       "End & Submit Exam?",
-      "Are you sure you want to finish this session? Your progress will be saved as Completed in the history log.",
+      "Are you sure you want to finish this session? Your progress will be saved in the history log.",
       "Yes, End Exam",
       () => {
         hideConfirmDialog();
-        const summary = engine.reset('Completed');
-        if (summary) showSessionDebrief(summary);
+        sound.stopAlarmLoop();
+        const metrics = engine.getTimerMetrics();
+        // If candidate finished >= 95% of duration or <= 10s remaining, mark Completed; otherwise Stopped
+        const status = (metrics.progressPercent >= 95 || metrics.remaining <= 10) ? 'Completed' : 'Stopped';
+        const summary = engine.reset(status);
+        if (summary) showSessionDebrief(summary, false /* manual stop - never play alarm */);
       }
     );
   }
 
   function triggerResetWithConfirmation() {
     if (!engine.activeTimer) return;
+    sound.stopAlarmLoop();
     showConfirmDialog(
       "Stop & Reset Timer?",
       "Stopping the timer will write your elapsed time to the log and return to the setup screen.",
       "Yes, Reset Timer",
       () => {
         hideConfirmDialog();
+        sound.stopAlarmLoop();
         const summary = engine.reset('Stopped');
-        if (summary) showSessionDebrief(summary);
+        if (summary) showSessionDebrief(summary, false /* manual reset - never play alarm */);
       }
     );
   }
@@ -3603,7 +4319,9 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       });
     });
 
+    inputStartTime?.addEventListener('input', calculateWindowDuration);
     inputStartTime?.addEventListener('change', calculateWindowDuration);
+    inputEndTime?.addEventListener('input', calculateWindowDuration);
     inputEndTime?.addEventListener('change', calculateWindowDuration);
 
     // Fast Preset Chips (Landing Page)
@@ -3620,6 +4338,15 @@ import HistoryPanel from '../components/HistoryPanel.astro';
         if (selectMinutes) selectMinutes.value = m;
         if (selectSeconds) selectSeconds.value = s;
 
+        // Switch to duration tab if clicked
+        activeTab = 'duration';
+        document.querySelectorAll('.tab-btn').forEach(b => {
+          if (b.getAttribute('data-tab') === 'tab-duration') b.classList.add('active');
+          else b.classList.remove('active');
+        });
+        document.getElementById('tab-duration')?.classList.remove('hidden');
+        document.getElementById('tab-window')?.classList.add('hidden');
+
         // Also sync setup preset badges if matching
         const targetSec = parseInt(h) * 3600 + parseInt(m) * 60 + parseInt(s);
         standardPresetsContainer?.querySelectorAll('.preset-badge').forEach(b => {
@@ -3629,6 +4356,12 @@ import HistoryPanel from '../components/HistoryPanel.astro';
             b.classList.remove('active');
           }
         });
+
+        // Smooth scroll to the top setup form to immediately view & launch
+        const setupCard = document.querySelector('.setup-card');
+        if (setupCard) {
+          setupCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       });
     });
 
@@ -3641,10 +4374,49 @@ import HistoryPanel from '../components/HistoryPanel.astro';
         const sec = parseInt(badge.getAttribute('data-seconds')!);
         const hours = Math.floor(sec / 3600);
         const mins = Math.floor((sec % 3600) / 60);
+        const secs = sec % 60;
 
         if (selectHours) selectHours.value = String(hours);
         if (selectMinutes) selectMinutes.value = String(mins);
-        if (selectSeconds) selectSeconds.value = '0';
+        if (selectSeconds) selectSeconds.value = String(secs);
+
+        // Switch to duration tab if clicked
+        activeTab = 'duration';
+        document.querySelectorAll('.tab-btn').forEach(b => {
+          if (b.getAttribute('data-tab') === 'tab-duration') b.classList.add('active');
+          else b.classList.remove('active');
+        });
+        document.getElementById('tab-duration')?.classList.remove('hidden');
+        document.getElementById('tab-window')?.classList.add('hidden');
+      });
+    });
+
+    // Inputs direct typing synchronization
+    [selectHours, selectMinutes, selectSeconds].forEach(input => {
+      input?.addEventListener('input', () => {
+        if (activeTab !== 'duration') {
+          activeTab = 'duration';
+          document.querySelectorAll('.tab-btn').forEach(b => {
+            if (b.getAttribute('data-tab') === 'tab-duration') b.classList.add('active');
+            else b.classList.remove('active');
+          });
+          document.getElementById('tab-duration')?.classList.remove('hidden');
+          document.getElementById('tab-window')?.classList.add('hidden');
+        }
+
+        const h = Math.max(0, parseInt(selectHours?.value || '0', 10) || 0);
+        const m = Math.max(0, parseInt(selectMinutes?.value || '0', 10) || 0);
+        const s = Math.max(0, parseInt(selectSeconds?.value || '0', 10) || 0);
+        const targetSec = h * 3600 + m * 60 + s;
+
+        // Sync active preset badge
+        standardPresetsContainer?.querySelectorAll('.preset-badge').forEach(b => {
+          if (parseInt(b.getAttribute('data-seconds') || '0', 10) === targetSec) {
+            b.classList.add('active');
+          } else {
+            b.classList.remove('active');
+          }
+        });
       });
     });
 
@@ -3669,6 +4441,7 @@ import HistoryPanel from '../components/HistoryPanel.astro';
         const s = parseInt(selectSeconds?.value || '0') || 0;
         sec = h * 3600 + m * 60 + s;
       } else {
+        calculateWindowDuration();
         sec = setupDurationSec;
       }
 
@@ -3731,16 +4504,115 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     });
 
     // Session Debrief Actions
-    debriefRestartBtn?.addEventListener('click', hideSessionDebrief);
+    debriefResumeBtn?.addEventListener('click', () => {
+      if (!lastSessionConfig) {
+        hideSessionDebrief();
+        return;
+      }
+      sound.stopAlarmLoop();
+      engine.startExam(
+        lastSessionConfig.name,
+        lastSessionConfig.durationSec,
+        lastSessionConfig.totalQuestions || 0,
+        lastSessionConfig.showQuestions || false
+      );
+      if (engine.activeTimer) {
+        engine.activeTimer.startTimestamp = Date.now() - (lastSessionConfig.elapsedSec * 1000);
+        engine.activeTimer.endTimestamp = engine.activeTimer.startTimestamp + (lastSessionConfig.durationSec * 1000);
+        engine.saveActiveTimer();
+      }
+      isTimerRunning = true;
+      hideSessionDebrief();
+      switchToDashboard();
+      sound.playBeep(587.33, 0.2);
+      showToast("Session resumed!", 'success', 2000);
+    });
+
+    debriefRestartBtn?.addEventListener('click', () => {
+      if (!lastSessionConfig) {
+        hideSessionDebrief();
+        return;
+      }
+      sound.stopAlarmLoop();
+      engine.startExam(
+        lastSessionConfig.name,
+        lastSessionConfig.durationSec,
+        lastSessionConfig.totalQuestions || 0,
+        lastSessionConfig.showQuestions || false
+      );
+      isTimerRunning = true;
+      hideSessionDebrief();
+      switchToDashboard();
+      sound.playBeep(523.25, 0.25);
+      showToast("Exam restarted with full time!", 'success', 2000);
+    });
+
+    debriefNewSetupBtn?.addEventListener('click', hideSessionDebrief);
+    debriefCloseBtn?.addEventListener('click', hideSessionDebrief);
+
+    debriefAlarmSilenceBtn?.addEventListener('click', () => {
+      sound.stopAlarmLoop();
+      if (timesUpFullscreenFlash) timesUpFullscreenFlash.classList.add('hidden');
+      if (debriefAlarmSilenceBtn) {
+        debriefAlarmSilenceBtn.innerHTML = `<span class="silence-icon">🔇</span><span class="silence-text">Alarm Silenced</span>`;
+        debriefAlarmSilenceBtn.classList.add('silenced');
+      }
+      showToast("Alarm silenced.", 'info', 1500);
+    });
+
+    sessionDebriefOverlay?.addEventListener('click', (e) => {
+      if (e.target === sessionDebriefOverlay) hideSessionDebrief();
+    });
+
     debriefHistoryBtn?.addEventListener('click', () => {
       hideSessionDebrief();
       historyModalBackdrop?.classList.remove('hidden');
       renderHistoryList();
     });
 
+    // Visual Themes Gallery modal open/close
+    headerThemeBtn?.addEventListener('click', () => {
+      themeModalBackdrop?.classList.remove('hidden');
+      syncThemeToggleUI();
+      syncActiveThemeCard();
+    });
+
+    themeModalClose?.addEventListener('click', () => {
+      themeModalBackdrop?.classList.add('hidden');
+    });
+
+    themeModalBackdrop?.addEventListener('click', (e) => {
+      if (e.target === themeModalBackdrop) {
+        themeModalBackdrop.classList.add('hidden');
+      }
+    });
+
+    // Top-Right Dark / Light Icon Mode Toggle
+    themeModeToggleBtn?.addEventListener('click', () => {
+      toggleColorTheme();
+      sound.playBeep(659.25, 0.08, 'sine');
+    });
+
+    // 1-Click Visual Theme Switcher Cards
+    document.querySelectorAll('.theme-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const themeId = card.getAttribute('data-theme') as any;
+        if (!themeId) return;
+
+        engine.settings.clockTheme = themeId;
+        engine.saveSettings();
+        updateClockThemeConfig();
+        
+        sound.playBeep(587.33, 0.1, 'sine');
+        const themeName = card.querySelector('.card-meta h4')?.textContent || themeId;
+        showToast(`Clock style set to ${themeName}`, 'success', 2500);
+      });
+    });
+
     // Settings drawer open/close
     headerSettingsBtn?.addEventListener('click', () => {
       settingsBackdrop?.classList.remove('hidden');
+      syncClockRepSegments();
     });
 
     settingsCloseBtn?.addEventListener('click', () => {
@@ -3753,33 +4625,48 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       }
     });
 
-    // Theme Switch Toggle
-    themeToggle?.addEventListener('change', () => {
-      updateTheme(themeToggle.checked);
+    // Clock Representation Segmented Controls
+    clockRepSegments.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const repVal = btn.getAttribute('data-rep') as any;
+        if (!repVal) return;
+        
+        clockRepSegments.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        engine.settings.clockRepresentation = repVal;
+        engine.saveSettings();
+        if (selectClockRep) selectClockRep.value = repVal;
+        sound.playBeep(523.25, 0.06, 'sine');
+      });
     });
 
-    // Clock config updates
-    selectClockRep?.addEventListener('change', () => {
-      engine.settings.clockRepresentation = selectClockRep.value as any;
+    btnToggleSeconds?.addEventListener('click', () => {
+      engine.settings.showSeconds = !engine.settings.showSeconds;
       engine.saveSettings();
-    });
-
-    selectClockTheme?.addEventListener('change', () => {
-      engine.settings.clockTheme = selectClockTheme.value as any;
-      engine.saveSettings();
-      updateClockThemeConfig();
-    });
-
-    toggleShowSeconds?.addEventListener('change', () => {
-      engine.settings.showSeconds = toggleShowSeconds.checked;
-      engine.saveSettings();
+      if (engine.settings.showSeconds) {
+        btnToggleSeconds.classList.add('active');
+        btnToggleSeconds.setAttribute('data-active', 'true');
+      } else {
+        btnToggleSeconds.classList.remove('active');
+        btnToggleSeconds.setAttribute('data-active', 'false');
+      }
       updateClockFaceConfig();
+      sound.playBeep(523.25, 0.06, 'sine');
     });
 
-    toggleShow24h?.addEventListener('change', () => {
-      engine.settings.show24h = toggleShow24h.checked;
+    btnToggle24h?.addEventListener('click', () => {
+      engine.settings.show24h = !engine.settings.show24h;
       engine.saveSettings();
+      if (engine.settings.show24h) {
+        btnToggle24h.classList.add('active');
+        btnToggle24h.setAttribute('data-active', 'true');
+      } else {
+        btnToggle24h.classList.remove('active');
+        btnToggle24h.setAttribute('data-active', 'false');
+      }
       updateClockFaceConfig();
+      sound.playBeep(523.25, 0.06, 'sine');
     });
 
     // Sound volumes settings updates

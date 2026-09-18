@@ -1,0 +1,473 @@
+---
+// src/pages/features.astro
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const breadcrumbs = [
+  { name: 'Features', href: '/features' }
+];
+
+const featureListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Exam Timer Online Feature Specifications",
+  "description": "Comprehensive overview of all examination clock, question pacing, and timing features.",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Mathematical Analog Clock with 5 Visual Themes",
+      "description": "Engages peripheral vision via angular hand sweeps to prevent time blindness during high-stakes exams."
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Dynamic Question Pacing Assistant",
+      "description": "Calculates real-time seconds-per-question benchmarks and notifies candidates if they are ahead or behind target schedule."
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Strict Exam Mode",
+      "description": "Locks out pause controls to simulate immutable real-world examination hall protocols."
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Multi-Milestone Audio Chime System",
+      "description": "Synthesizes 6 distinct alert tones at customizable milestone intervals (15m, 10m, 5m warnings)."
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "name": "Full PWA Offline Architecture",
+      "description": "Operates 100% offline without tracking cookies, server dependencies, or account logins."
+    }
+  ]
+};
+---
+
+<Layout
+  title="Features & Specifications — Visual Clock, Pacing Tracker & Strict Mode"
+  description="Explore the complete suite of features in Exam Timer Online: 5 analog clock themes, real-time question pacing calculations, strict exam hall mode, synthesized alarms, and offline PWA."
+  canonical="https://examtimer.online/features"
+  breadcrumbs={breadcrumbs}
+  customSchema={featureListSchema}
+>
+  <SiteHeader />
+
+  <main class="page-main-container">
+
+    <!-- Hero Header -->
+    <header class="page-hero">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumbs">
+        <a href="/">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Features</span>
+      </nav>
+      <span class="page-badge">🛠️ Complete Tool Catalog</span>
+      <h1>Engineered for Academic Precision</h1>
+      <p class="subtitle">
+        Discover every capability built into Exam Timer Online—designed from cognitive research to replicate authentic test hall conditions and eliminate exam-day time blindness.
+      </p>
+      <div class="hero-cta-row">
+        <a href="/" class="btn-primary-action">
+          <span>Try Features on Live Clock</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Features Detailed Grid -->
+    <section class="features-catalog">
+      
+      <!-- Feature 1: 5 Visual Analog Faces -->
+      <article class="feature-card glass-panel" id="analog-clock">
+        <div class="feature-icon-box">🎨</div>
+        <div class="feature-body">
+          <span class="feature-tag">Visual Time Architecture</span>
+          <h2>5 Visual Analog Clock Themes</h2>
+          <p>
+            Standard digital numbers force candidates to mentally calculate elapsed fractions. Exam Timer Online renders high-contrast SVG analog clocks with continuous angular sweeps that allow instant intuitive estimation via peripheral vision:
+          </p>
+          <ul class="feature-bullet-list">
+            <li><strong>Classic Examination Clock:</strong> High-contrast black/white dial mimicking official physical school and hall wall clocks.</li>
+            <li><strong>Modern Minimal Dial:</strong> Sleek borderless face optimized for OLED and distraction-free desktop monitors.</li>
+            <li><strong>Neo-Dark Cyber Face:</strong> Indigo and emerald luminescent markers tailored for night study sessions.</li>
+            <li><strong>Film Countdown Leader:</strong> Classic cinematic sector sweeps that make intense speed drills visually thrilling.</li>
+            <li><strong>Canvas Magnifier Lens:</strong> Dynamic real-time rendered canvas dial featuring smooth micro-needle sweeps.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Feature 2: Question Pacing Assistant -->
+      <article class="feature-card glass-panel" id="pacing-tracker">
+        <div class="feature-icon-box">🎯</div>
+        <div class="feature-body">
+          <span class="feature-tag">Cognitive Velocity</span>
+          <h2>Dynamic Question Pacing Assistant</h2>
+          <p>
+            Running out of time before reaching the final questions is the #1 reason students lose marks in competitive examinations (JEE, NEET, SAT, UPSC). Our pacing assistant solves this dynamically:
+          </p>
+          <ul class="feature-bullet-list">
+            <li><strong>Target per Question Calculation:</strong> Computes exact average seconds allocated per question based on total exam duration.</li>
+            <li><strong>Active Benchmark Schedule:</strong> Calculates which question you <em>should</em> be solving right now based on elapsed time.</li>
+            <li><strong>Status Indicator:</strong> Colors and badges alert you instantly whether you are <span class="tag-green">Ahead of Schedule</span>, <span class="tag-green">On Track</span>, or <span class="tag-orange">Behind Schedule</span>.</li>
+            <li><strong>1-Click Navigation:</strong> Advance or backtrack question counts via on-screen buttons or keyboard hotkeys (<code>]</code> and <code>[</code>).</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Feature 3: Strict Exam Hall Mode -->
+      <article class="feature-card glass-panel" id="strict-mode">
+        <div class="feature-icon-box">🔒</div>
+        <div class="feature-body">
+          <span class="feature-tag">Authentic Conditioning</span>
+          <h2>Strict Exam Hall Mode (Anti-Pause Lock)</h2>
+          <p>
+            Practicing with an ordinary phone timer encourages candidates to pause the clock whenever they encounter a difficult problem. In real test halls, the clock never stops.
+          </p>
+          <ul class="feature-bullet-list">
+            <li><strong>Disabled Pause Controls:</strong> Disables the spacebar and play/pause buttons once the session launches.</li>
+            <li><strong>Mental Resilience Training:</strong> Forces students to make realistic tactical decisions—flag difficult questions, skip ahead, and return during review buffers.</li>
+            <li><strong>Authentic Pressure Simulation:</strong> Conditions candidates to maintain continuous cognitive focus for the full 2 or 3-hour duration.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Feature 4: Synthesized Audio Alarms & Warnings -->
+      <article class="feature-card glass-panel" id="sound-alerts">
+        <div class="feature-icon-box">🔔</div>
+        <div class="feature-body">
+          <span class="feature-tag">Acoustic Alerts</span>
+          <h2>6 Synthesized Alert Chimes & Milestone Warnings</h2>
+          <p>
+            Powered by the browser's native <strong>Web Audio API</strong>, all sounds are synthesized mathematically in real time without downloading heavy MP3 files:
+          </p>
+          <ul class="feature-bullet-list">
+            <li><strong>6 Alarm Options:</strong> Classic Ding-Dong chime, rapid digital electronic beeps, traditional school bell, urgent alert siren, deep gentle gong, and triumphant fanfare flourish.</li>
+            <li><strong>Milestone Warnings:</strong> Set customizable acoustic reminders at 30m, 15m, 10m, and 5m remaining marks to manage concluding review phases.</li>
+            <li><strong>Smart Silence Button:</strong> Dedicated on-screen 1-click silence button that immediately mutes continuous completion alarms.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Feature 5: Fullscreen & Distraction-Free -->
+      <article class="feature-card glass-panel" id="fullscreen">
+        <div class="feature-icon-box">🖥️</div>
+        <div class="feature-body">
+          <span class="feature-tag">Total Immersion</span>
+          <h2>Fullscreen Mode & Distraction-Free View</h2>
+          <p>
+            Eliminate all operating system notifications, browser tabs, and desktop clutter:
+          </p>
+          <ul class="feature-bullet-list">
+            <li><strong>High-Contrast Projector View:</strong> Maximizes the analog dial and digital numbers across the entire monitor—ideal for classroom teachers and proctors.</li>
+            <li><strong>Distraction-Free Toggle:</strong> Hides sidebars, controls, and progress details leaving only the pure minimalist clock.</li>
+            <li><strong>1-Key Toggle:</strong> Press <code>F</code> to enter/exit fullscreen seamlessly.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Feature 6: Peak-End Debrief & Local History -->
+      <article class="feature-card glass-panel" id="debrief-history">
+        <div class="feature-icon-box">📊</div>
+        <div class="feature-body">
+          <span class="feature-tag">Performance Analytics</span>
+          <h2>Peak-End Performance Debrief & Local History</h2>
+          <p>
+            Rooted in Daniel Kahneman's <em>Peak-End Rule</em>, the conclusion of an exam session defines learning retention and confidence:
+          </p>
+          <ul class="feature-bullet-list">
+            <li><strong>Post-Exam Debrief Modal:</strong> Analyzes exact focus time spent, target completion percentage, and pacing consistency.</li>
+            <li><strong>Instant Resume & Restart:</strong> Resume an early-stopped mock session or practice the same test again with 1 click.</li>
+            <li><strong>100% Private Local Storage:</strong> All mock attempts and durations are stored locally on your device with zero cloud tracking.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Feature 7: Offline PWA Architecture -->
+      <article class="feature-card glass-panel" id="offline-pwa">
+        <div class="feature-icon-box">⚡</div>
+        <div class="feature-body">
+          <span class="feature-tag">Reliability Engineering</span>
+          <h2>Zero-Drift Offline PWA Architecture</h2>
+          <p>
+            Engineered for bulletproof reliability when it matters most:
+          </p>
+          <ul class="feature-bullet-list">
+            <li><strong>Absolute Timestamp Timing:</strong> Time calculations are based on UTC timestamps rather than fragile <code>setInterval</code> loops, preventing timer drift during background tab throttling.</li>
+            <li><strong>Progressive Web App (PWA):</strong> Install Exam Timer Online as a native desktop or mobile application on Windows, macOS, Linux, ChromeOS, iPadOS, and Android.</li>
+            <li><strong>Works 100% Offline:</strong> Operates seamlessly without Wi-Fi, mobile data, or external server connections.</li>
+          </ul>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Comprehensive Feature Matrix Table -->
+    <section class="feature-matrix-section glass-panel">
+      <h2>Exam Timer Online vs Standard Timers Feature Matrix</h2>
+      <p class="matrix-subtitle">See how our specialized exam suite compares to standard browser tools and phone timers.</p>
+
+      <div class="table-responsive">
+        <table class="specs-table">
+          <thead>
+            <tr>
+              <th>Feature Capability</th>
+              <th>Exam Timer Online</th>
+              <th>Phone Stopwatch / Clock</th>
+              <th>Generic Web Timer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Visual Analog Hand Sweeps</strong></td>
+              <td><span class="check-yes">✅ Yes (5 Themes)</span></td>
+              <td><span class="check-no">❌ Digital Only</span></td>
+              <td><span class="check-no">❌ Digital Only</span></td>
+            </tr>
+            <tr>
+              <td><strong>Question Pacing Assistant</strong></td>
+              <td><span class="check-yes">✅ Real-Time Ahead/Behind</span></td>
+              <td><span class="check-no">❌ No</span></td>
+              <td><span class="check-no">❌ No</span></td>
+            </tr>
+            <tr>
+              <td><strong>Strict Exam Mode (Anti-Pause)</strong></td>
+              <td><span class="check-yes">✅ Yes</span></td>
+              <td><span class="check-no">❌ No</span></td>
+              <td><span class="check-no">❌ No</span></td>
+            </tr>
+            <tr>
+              <td><strong>Milestone Warning Chimes</strong></td>
+              <td><span class="check-yes">✅ Configurable (15m/10m/5m)</span></td>
+              <td><span class="check-no">❌ Single End Alarm</span></td>
+              <td><span class="check-no">❌ Rare</span></td>
+            </tr>
+            <tr>
+              <td><strong>Zero Tab Throttling Drift</strong></td>
+              <td><span class="check-yes">✅ Timestamp Anchored</span></td>
+              <td><span class="check-no">⚠️ Variable</span></td>
+              <td><span class="check-no">❌ Drifts in background</span></td>
+            </tr>
+            <tr>
+              <td><strong>100% Offline PWA</strong></td>
+              <td><span class="check-yes">✅ Yes</span></td>
+              <td><span class="check-yes">✅ Yes</span></td>
+              <td><span class="check-no">❌ Requires Internet</span></td>
+            </tr>
+            <tr>
+              <td><strong>Privacy & Zero Tracking Cookies</strong></td>
+              <td><span class="check-yes">✅ 100% Local Storage</span></td>
+              <td><span class="check-yes">✅ Native</span></td>
+              <td><span class="check-no">❌ Heavy Ads & Trackers</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="cta-banner glass-panel">
+      <h2>Experience the Full Feature Set in Action</h2>
+      <p>Free forever, zero ads, no account registration required. Open the clock and launch your practice session now.</p>
+      <a href="/" class="btn-primary-action">
+        <span>Launch Exam Clock</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      </a>
+    </section>
+
+  </main>
+
+  <SiteFooter />
+</Layout>
+
+<style>
+  .hero-cta-row {
+    margin-top: 0.5rem;
+  }
+
+  .features-catalog {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .feature-card {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 2rem;
+    padding: 2.25rem 2.5rem;
+    border-radius: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .feature-icon-box {
+    width: 70px;
+    height: 70px;
+    border-radius: 1.25rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.25rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  }
+
+  .feature-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .feature-tag {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--brand-accent);
+  }
+
+  .feature-body h2 {
+    margin: 0;
+    font-size: 1.45rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+  }
+
+  .feature-body p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+
+  .feature-bullet-list {
+    margin: 0.5rem 0 0;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .feature-bullet-list strong {
+    color: var(--text-primary);
+  }
+
+  .tag-green {
+    color: var(--green-accent);
+    font-weight: 700;
+  }
+  .tag-orange {
+    color: var(--orange-accent);
+    font-weight: 700;
+  }
+
+  /* Feature Matrix */
+  .feature-matrix-section {
+    padding: 2.75rem 2.5rem;
+    border-radius: 1.5rem;
+    text-align: center;
+  }
+
+  .feature-matrix-section h2 {
+    font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+    font-weight: 800;
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  .matrix-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin: 0.5rem 0 2rem;
+  }
+
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.92rem;
+  }
+
+  .specs-table th, .specs-table td {
+    padding: 1.1rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .specs-table th {
+    background: var(--bg-tertiary);
+    font-weight: 800;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+  }
+
+  .specs-table tr:hover td {
+    background: rgba(var(--brand-accent-rgb), 0.03);
+  }
+
+  .check-yes {
+    color: var(--green-accent);
+    font-weight: 700;
+  }
+  .check-no {
+    color: var(--text-muted);
+  }
+
+  /* CTA Banner */
+  .cta-banner {
+    text-align: center;
+    padding: 3.5rem 2rem;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, rgba(var(--brand-accent-rgb), 0.08) 100%);
+  }
+
+  .cta-banner h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+    font-weight: 800;
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  .cta-banner p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 0 0.5rem;
+  }
+
+  @media (max-width: 800px) {
+    .feature-card {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      padding: 1.75rem 1.5rem;
+    }
+    .feature-icon-box {
+      width: 54px;
+      height: 54px;
+      font-size: 1.75rem;
+    }
+    .feature-matrix-section {
+      padding: 2rem 1.25rem;
+    }
+  }
+</style>

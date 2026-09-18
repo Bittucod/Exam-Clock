@@ -1,0 +1,465 @@
+---
+// src/pages/how-it-works.astro
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const breadcrumbs = [
+  { name: 'How It Works', href: '/how-it-works' }
+];
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Use Exam Timer Online for Mock Test Simulation",
+  "description": "A step-by-step walkthrough explaining how to configure the visual analog exam clock, set question pacing targets, enable strict exam mode, and review test performance.",
+  "totalTime": "PT1M",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Configure Session Duration",
+      "text": "Select an exam preset (e.g. 1 hour, 2 hours, 3 hours) or manually input hours, minutes, and seconds, or configure a fixed start/end time window."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Set Question Pacing Targets",
+      "text": "Enable the Question Progress Tracker and enter total questions. The engine calculates target seconds per question and displays real-time schedule feedback."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Launch & Maintain Strict Focus",
+      "text": "Launch the timer in Fullscreen mode with Strict Exam Mode activated to prevent accidental pauses and simulate realistic test hall conditions."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Review Performance Debrief",
+      "text": "Upon session completion or voluntary submission, analyze focus time, completion percentage, and pacing metrics in the Peak-End debrief modal."
+    }
+  ]
+};
+---
+
+<Layout 
+  title="How It Works — Step-by-Step Visual Exam Clock & Pacing Guide"
+  description="Master your exam pacing with Exam Timer Online. Learn how to configure visual analog dials, question pacing targets, strict mode, and warning milestone alerts."
+  canonical="https://examtimer.online/how-it-works"
+  breadcrumbs={breadcrumbs}
+  customSchema={howToSchema}
+>
+  <SiteHeader />
+
+  <main class="page-main-container">
+    
+    <!-- Hero Section -->
+    <header class="page-hero">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumbs">
+        <a href="/">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>How It Works</span>
+      </nav>
+      <span class="page-badge">⚙️ Complete Architecture</span>
+      <h1>How Exam Timer Online Works</h1>
+      <p class="subtitle">
+        Unlike basic phone alarms or passive digital stopwatches, Exam Timer Online combines cognitive time science, visual angular hand sweeps, and dynamic question pacing algorithms to train exam-day reflexes.
+      </p>
+      <div class="hero-cta-row">
+        <a href="/" class="btn-primary-action">
+          <span>Launch Free Clock</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        </a>
+        <a href="/features" class="btn-secondary-action">
+          <span>Explore All Features</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Step-by-Step Walkthrough Grid -->
+    <section class="steps-section">
+      <h2 class="section-title">4 Simple Steps to Realistic Exam Hall Conditioning</h2>
+      
+      <div class="steps-grid">
+        
+        <!-- Step 1 -->
+        <article class="step-card glass-panel">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <span class="step-tag">Duration Setup</span>
+            <h3>Choose Duration or Fixed Time Window</h3>
+            <p>
+              Select from popular competitive exam presets (<strong>30 min, 1 hour, 2 hours standard mock, 3 hours JEE/SAT</strong>) or set custom hours, minutes, and seconds. Alternatively, switch to the <em>Start & End Time</em> tab to mirror your exact scheduled exam hall session.
+            </p>
+            <div class="step-highlight">
+              💡 <strong>Instant Sync:</strong> Inputting numbers automatically links with matching quick preset badges.
+            </div>
+          </div>
+        </article>
+
+        <!-- Step 2 -->
+        <article class="step-card glass-panel">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <span class="step-tag">Pacing Intelligence</span>
+            <h3>Enable the Question Pacing Assistant</h3>
+            <p>
+              Toggle the Question Progress Tracker and enter your total exam questions (e.g. 75 questions for JEE Main, 100 for UPSC Prelims, or 54 for SAT). The engine computes target seconds per question and displays an active benchmark indicator.
+            </p>
+            <div class="step-highlight">
+              🎯 <strong>Real-Time Pacing:</strong> Instantly alerts you if you are <em>Ahead of Schedule</em>, <em>On Target</em>, or <em>Behind Schedule</em>.
+            </div>
+          </div>
+        </article>
+
+        <!-- Step 3 -->
+        <article class="step-card glass-panel">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <span class="step-tag">Realistic Discipline</span>
+            <h3>Activate Strict Exam Hall Mode</h3>
+            <p>
+              In real examination centers, invigilators never pause the wall clock when you sneeze or get stuck. Strict Exam Mode disables manual pauses, conditioning mental stamina and forcing tactical question-skipping discipline.
+            </p>
+            <div class="step-highlight">
+              🔒 <strong>Anti-Cheat Conditioning:</strong> Eliminates the bad habit of stopping the timer during challenging questions.
+            </div>
+          </div>
+        </article>
+
+        <!-- Step 4 -->
+        <article class="step-card glass-panel">
+          <div class="step-number">04</div>
+          <div class="step-content">
+            <span class="step-tag">Performance Review</span>
+            <h3>Analyze the Peak-End Debrief & History Log</h3>
+            <p>
+              When your session finishes or you voluntarily submit, the system presents an instant performance debrief. Review focus time, pacing accuracy, and completion percentages. All sessions are logged locally to your device.
+            </p>
+            <div class="step-highlight">
+              📊 <strong>100% Private:</strong> Data stays in your browser's LocalStorage with zero server uploads or tracking cookies.
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Deep-Dive Architecture: Visual Analog vs Digital -->
+    <section class="concept-section glass-panel">
+      <div class="concept-content">
+        <span class="page-badge">🧠 Cognitive Time Science</span>
+        <h2>Why Visual Analog Sweep Beats Digital Numbers</h2>
+        <p>
+          Reading numeric digital digits (e.g. <code>01:37:42</code>) requires active focal attention and mental subtraction to calculate remaining proportion. This micro-distraction consumes precious prefrontal cortex working memory.
+        </p>
+        <p>
+          By contrast, an <strong>analog clock face</strong> engages peripheral vision. A candidate glancing sideways immediately perceives angular wedge slices (e.g. <em>"half the dial is remaining"</em>) without interrupting mathematical calculation or textual reading comprehension.
+        </p>
+
+        <div class="feature-comparison-grid">
+          <div class="compare-box">
+            <h4>❌ Raw Phone / Digital Stopwatch</h4>
+            <ul>
+              <li>Forces mental arithmetic to gauge fraction of time left</li>
+              <li>Constant screen notifications and interruptions</li>
+              <li>Encourages clock-watching and test anxiety</li>
+              <li>Unrealistic compared to real physical exam halls</li>
+            </ul>
+          </div>
+          <div class="compare-box highlight">
+            <h4>✅ Exam Timer Online Clock</h4>
+            <ul>
+              <li>Visual colored sectors show exact remaining proportion</li>
+              <li>Distraction-free fullscreen mode with zero notifications</li>
+              <li>Customizable audio milestone chimes (15m, 10m, 5m warnings)</li>
+              <li>Works 100% offline via Progressive Web App (PWA)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Preview on How It Works -->
+    <section class="quick-faq-section">
+      <h2 class="section-title">Common Questions About Getting Started</h2>
+      
+      <div class="faq-accordion">
+        <details class="faq-item glass-panel" open>
+          <summary>Does the exam timer keep ticking if I switch tabs or minimize the browser?</summary>
+          <div class="faq-answer">
+            <p><strong>Yes, 100%.</strong> Exam Timer Online does not rely on fragile browser interval ticks that throttle when minimized. It tracks absolute UTC system timestamps. When you switch back or refresh, the clock immediately renders the exact millisecond-accurate remaining duration.</p>
+          </div>
+        </details>
+
+        <details class="faq-item glass-panel">
+          <summary>Can I use this timer without an internet connection?</summary>
+          <div class="faq-answer">
+            <p><strong>Yes!</strong> This web application is a verified Progressive Web App (PWA). Once loaded in your browser, all audio files, SVG clock faces, and state management scripts are cached on your device. You can run full mocks on an airplane or in isolated study rooms with zero internet connectivity.</p>
+          </div>
+        </details>
+
+        <details class="faq-item glass-panel">
+          <summary>What audio warning chimes are included?</summary>
+          <div class="faq-answer">
+            <p>You can enable audible warnings at key time milestones (e.g. 15 minutes, 10 minutes, and 5 minutes remaining). Choose between Classic Ding-Dong, Digital Electronic Beeps, Traditional School Bell, Urgent Siren, Deep Gong, and Fanfare.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Final Call to Action -->
+    <section class="cta-banner glass-panel">
+      <h2>Ready to Start Your Mock Test?</h2>
+      <p>Configure your exam duration in seconds, set pacing goals, and practice under realistic test conditions.</p>
+      <a href="/" class="btn-primary-action">
+        <span>Launch Exam Timer Now</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      </a>
+    </section>
+
+  </main>
+
+  <SiteFooter />
+</Layout>
+
+<style>
+  .hero-cta-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin: 0 0 2rem;
+  }
+
+  /* Steps Grid */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .step-card {
+    display: flex;
+    gap: 1.5rem;
+    padding: 2rem;
+    border-radius: 1.25rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .step-number {
+    font-family: var(--font-mono);
+    font-size: 2.75rem;
+    font-weight: 800;
+    color: var(--brand-accent);
+    opacity: 0.85;
+    line-height: 1;
+  }
+
+  .step-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .step-tag {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--brand-accent);
+  }
+
+  .step-card h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .step-card p {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .step-highlight {
+    margin-top: 0.5rem;
+    font-size: 0.82rem;
+    padding: 0.6rem 0.85rem;
+    border-radius: 0.65rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+  }
+
+  /* Concept Section */
+  .concept-section {
+    padding: 3rem 2.5rem;
+    border-radius: 1.5rem;
+  }
+
+  .concept-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .concept-content h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 800;
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  .concept-content p {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .feature-comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .compare-box {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+
+  .compare-box.highlight {
+    border-color: rgba(var(--brand-accent-rgb), 0.4);
+    background: rgba(var(--brand-accent-rgb), 0.04);
+  }
+
+  .compare-box h4 {
+    margin: 0 0 1rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .compare-box ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+  }
+
+  /* FAQ Accordion */
+  .faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+  }
+
+  .faq-item summary {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.3rem;
+    color: var(--brand-accent);
+    font-weight: 700;
+  }
+
+  .faq-item[open] summary::after {
+    content: '−';
+  }
+
+  .faq-answer {
+    margin-top: 0.85rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+    padding-top: 0.85rem;
+  }
+
+  .faq-answer p {
+    margin: 0;
+  }
+
+  /* CTA Banner */
+  .cta-banner {
+    text-align: center;
+    padding: 3.5rem 2rem;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, rgba(var(--brand-accent-rgb), 0.08) 100%);
+  }
+
+  .cta-banner h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+    font-weight: 800;
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  .cta-banner p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 0 0.5rem;
+  }
+
+  @media (max-width: 860px) {
+    .steps-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .feature-comparison-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .concept-section {
+      padding: 2rem 1.5rem;
+    }
+  }
+</style>

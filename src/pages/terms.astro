@@ -1,0 +1,197 @@
+---
+// src/pages/terms.astro
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const breadcrumbs = [
+  { name: 'Terms & Disclaimer', href: '/terms' }
+];
+---
+
+<Layout
+  title="Terms of Service & Educational Disclaimer | Exam Timer Online"
+  description="Read the Terms of Service and Educational Disclaimer for Exam Timer Online. Learn about acceptable use, intellectual property, and test agency disclaimers."
+  canonical="https://examtimer.online/terms"
+  breadcrumbs={breadcrumbs}
+>
+  <SiteHeader />
+
+  <main class="page-main-container">
+
+    <!-- Hero Header -->
+    <header class="page-hero">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumbs">
+        <a href="/">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Terms & Disclaimer</span>
+      </nav>
+      <span class="page-badge">⚖️ Terms of Use</span>
+      <h1>Terms of Service & Educational Disclaimer</h1>
+      <p class="subtitle">
+        Please review our straightforward terms regarding the use of Exam Timer Online for independent study, mock tests, and classroom timekeeping.
+      </p>
+    </header>
+
+    <div class="legal-content-card glass-panel">
+      
+      <section class="legal-block">
+        <h2>1. Acceptance of Terms</h2>
+        <p>
+          By accessing or using <strong>Exam Timer Online</strong> (the "Application", available at <code>https://examtimer.online/</code>), you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. If you do not agree with these terms, you may cease use of the tool at any time.
+        </p>
+      </section>
+
+      <section class="legal-block">
+        <h2>2. License & Permitted Use</h2>
+        <p>
+          Exam Timer Online is provided free of charge as an open educational utility. You are granted a non-exclusive, non-transferable, revocable license to:
+        </p>
+        <ul class="legal-list">
+          <li>Use the timer for individual academic study, test preparation, homework, and mock examinations.</li>
+          <li>Use the timer in educational institutions, schools, coaching centers, and testing halls to manage timed tests for students.</li>
+          <li>Project the clock face on classroom screens, projectors, or smartboards during proctored sessions.</li>
+        </ul>
+        <p>
+          You may not copy, reverse-engineer, mirror, or repackage the software for commercial resale or embed it inside paid proprietary software without express written authorization.
+        </p>
+      </section>
+
+      <section class="legal-block">
+        <h2>3. Educational Disclaimer & Third-Party Trademark Notice</h2>
+        <div class="disclaimer-callout">
+          <h4>Important Academic Notice</h4>
+          <p>
+            <strong>Exam Timer Online is an independent study utility.</strong> All product names, trademarks, exam acronyms, and registered marks mentioned across this website—including but not limited to <em>JEE, NEET, SAT, GRE, GMAT, UPSC, ACT, AP, GCSE, MCAT, LSAT, and Bar Exams</em>—are the property of their respective trademark holders.
+          </p>
+          <p>
+            Reference to these examination titles does not imply any affiliation, official endorsement, sponsorship, or certification by the National Testing Agency (NTA), the College Board, Educational Testing Service (ETS), Union Public Service Commission (UPSC), or any official test administering body.
+          </p>
+        </div>
+      </section>
+
+      <section class="legal-block">
+        <h2>4. Timing Accuracy & Hardware Disclaimer</h2>
+        <p>
+          Exam Timer Online is engineered with high precision using the Web Audio API and system UTC timestamp math. However, actual timing behavior can theoretically be impacted by extreme device conditions (such as device battery depletion, operating system task termination, or catastrophic hardware crashes).
+        </p>
+        <p>
+          The service is provided on an <strong>"AS IS"</strong> and <strong>"AS AVAILABLE"</strong> basis without warranties of any kind. Candidates are advised to always have a backup wall clock or physical timepiece during critical examination simulations.
+        </p>
+      </section>
+
+      <section class="legal-block">
+        <h2>5. Limitation of Liability</h2>
+        <p>
+          Under no circumstances shall the creators, developers, or contributors of Exam Timer Online be liable for any direct, indirect, incidental, or consequential damages resulting from the use or inability to use this software, including but not limited to test scores, admissions outcomes, or academic rankings.
+        </p>
+      </section>
+
+      <section class="legal-block">
+        <h2>6. Modifications to the Service</h2>
+        <p>
+          We reserve the right to modify, enhance, or refine features of the application at any time without prior notice. Continued use of the platform after modifications constitutes acceptance of the updated terms.
+        </p>
+        <p>
+          For questions or legal inquiries, please reach out via our <a href="/contact" class="legal-link">Contact Page</a>.
+        </p>
+        <p class="last-updated">Last Updated: September 2026</p>
+      </section>
+
+    </div>
+
+  </main>
+
+  <SiteFooter />
+</Layout>
+
+<style>
+  .legal-content-card {
+    padding: 3rem;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .legal-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .legal-block h2 {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .legal-block p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+
+  .legal-list {
+    margin: 0;
+    padding-left: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .disclaimer-callout {
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.28);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .disclaimer-callout h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--orange-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .disclaimer-callout p {
+    color: var(--text-primary);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .legal-link {
+    color: var(--brand-accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .legal-link:hover {
+    text-decoration: underline;
+  }
+
+  .last-updated {
+    font-size: 0.82rem !important;
+    font-style: italic;
+    margin-top: 1rem !important;
+  }
+
+  @media (max-width: 768px) {
+    .legal-content-card {
+      padding: 1.75rem 1.25rem;
+    }
+  }
+</style>

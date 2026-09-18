@@ -1,0 +1,634 @@
+---
+// src/pages/comparisons.astro
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const breadcrumbs = [
+  { name: 'Comparisons', href: '/comparisons' }
+];
+
+const comparisonFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between an Online Exam Timer and a Pomodoro Timer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An exam timer simulates fixed-duration, unpaused competitive test hall conditions (e.g. 2 to 3 hours) with question pacing benchmarks and zero breaks. A Pomodoro timer breaks study into short 25-minute intervals separated by 5-minute restorative breaks, which is ideal for homework and textbook learning but counterproductive for realistic mock test conditioning."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is a Countdown Timer better than a Stopwatch for exams?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A countdown timer counts backwards to zero, replicating real-world examination hall deadlines and immediately communicating remaining time without requiring mental arithmetic. A stopwatch counts upwards, obscuring deadline urgency and requiring candidates to subtract elapsed time from total duration in their heads."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why should students avoid using phone timers for exam preparation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Phone timers introduce continuous distraction vectors including social media notifications, messages, and calls. Furthermore, lock screens obscure the timer, whereas a dedicated exam timer provides continuous visual analog awareness and fullscreen immersion."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a Practice Test and a Mock Exam?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A practice test is a low-stakes learning exercise where students pause, consult notes, and solve problems untimed to build conceptual understanding. A mock exam is an authentic, strict simulation conducted under identical examination hall conditions (strict time limits, no notes, no pauses) to evaluate real exam day readiness."
+      }
+    }
+  ]
+};
+---
+
+<Layout
+  title="Exam Timer Comparisons — Pomodoro, Stopwatch, Phone Timer & Mock Exams"
+  description="In-depth comparisons: Online Exam Timer vs Pomodoro Timer, Exam Timer vs Stopwatch, Phone Timer vs Exam Clock, Digital vs Physical Timer, and Practice Test vs Mock Exam."
+  canonical="https://examtimer.online/comparisons"
+  keywords="online exam timer vs pomodoro timer, exam timer vs stopwatch, countdown timer vs stopwatch for exams, exam timer vs phone timer, digital timer vs physical exam timer, practice test vs mock exam"
+  breadcrumbs={breadcrumbs}
+  customSchema={comparisonFaqSchema}
+>
+  <SiteHeader />
+
+  <main class="page-main-container">
+
+    <!-- Hero Header -->
+    <header class="page-hero">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumbs">
+        <a href="/">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Comparisons</span>
+      </nav>
+      <span class="page-badge">⚖️ Comparative Analysis Matrix</span>
+      <h1>Exam Timing Methods & Tools Compared</h1>
+      <p class="subtitle">
+        Understand the cognitive differences between exam countdowns, interval Pomodoros, stopwatches, phone timers, and authentic mock simulations.
+      </p>
+      <div class="hero-cta-row">
+        <a href="/" class="btn-primary-action">
+          <span>Test the Exam Timer</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- Quick Navigation Anchor Pills -->
+    <nav class="comparison-anchors">
+      <a href="#timer-vs-pomodoro">Exam Timer vs Pomodoro</a>
+      <a href="#timer-vs-stopwatch">Exam Timer vs Stopwatch</a>
+      <a href="#countdown-vs-stopwatch">Countdown vs Stopwatch</a>
+      <a href="#timer-vs-phone">Exam Timer vs Phone Timer</a>
+      <a href="#digital-vs-physical">Digital vs Physical Clock</a>
+      <a href="#practice-vs-mock">Practice Test vs Mock Exam</a>
+    </nav>
+
+    <div class="comparisons-stack">
+
+      <!-- Comparison 1: Exam Timer vs Pomodoro Timer -->
+      <article class="comp-card glass-panel" id="timer-vs-pomodoro">
+        <span class="comp-tag">Comparison #1</span>
+        <h2>Online Exam Timer vs Pomodoro Timer</h2>
+        
+        <div class="ai-summary-box">
+          <div class="summary-badge">TL;DR / Quick Answer</div>
+          <p>
+            An <strong>Exam Timer</strong> trains prolonged cognitive endurance over continuous 2 to 3-hour mock exams without pauses or breaks, incorporating question pacing benchmarks. A <strong>Pomodoro Timer</strong> divides study into 25-minute sprints with 5-minute rest breaks, optimized for casual textbook reading and homework rather than full exam hall simulation.
+          </p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="comp-table">
+            <thead>
+              <tr>
+                <th>Dimension</th>
+                <th>Online Exam Timer</th>
+                <th>Pomodoro Timer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Primary Objective</strong></td>
+                <td>Simulate continuous, unpaused exam hall pressure and question pacing.</td>
+                <td>Combat study fatigue and maintain motivation during general learning.</td>
+              </tr>
+              <tr>
+                <td><strong>Session Duration</strong></td>
+                <td>60 to 180+ minutes (matches official exam duration).</td>
+                <td>25 or 50 minutes fixed interval blocks.</td>
+              </tr>
+              <tr>
+                <td><strong>Rest Breaks</strong></td>
+                <td><strong>Zero breaks</strong> (strictly forbidden during official exams).</td>
+                <td>5 to 15-minute frequent recovery breaks.</td>
+              </tr>
+              <tr>
+                <td><strong>Pacing Metrics</strong></td>
+                <td>Computes real-time target seconds per question (Ahead/Behind schedule).</td>
+                <td>None (tracks intervals completed).</td>
+              </tr>
+              <tr>
+                <td><strong>Pause Capability</strong></td>
+                <td>Disabled under Strict Exam Mode to enforce discipline.</td>
+                <td>Freely pausable at any moment.</td>
+              </tr>
+              <tr>
+                <td><strong>Best For</strong></td>
+                <td>Full mock tests, PYQ solving, competitive tests (JEE, NEET, SAT, UPSC).</td>
+                <td>Reading textbook chapters, writing essays, flashcard review.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="verdict-card">
+          <h4>💡 The Verdict</h4>
+          <p>
+            Use <strong>Pomodoro</strong> while learning concepts and memorizing theory during the first 80% of your revision calendar. Switch strictly to an <strong>Exam Timer</strong> during the final 4 to 8 weeks to condition real mental stamina and pacing discipline.
+          </p>
+        </div>
+      </article>
+
+      <!-- Comparison 2: Exam Timer vs Stopwatch -->
+      <article class="comp-card glass-panel" id="timer-vs-stopwatch">
+        <span class="comp-tag">Comparison #2</span>
+        <h2>Exam Timer vs Stopwatch</h2>
+
+        <div class="ai-summary-box">
+          <div class="summary-badge">TL;DR / Quick Answer</div>
+          <p>
+            An <strong>Exam Timer</strong> counts down to a hard deadline, creating realistic psychological urgency and providing instant remaining time visibility. A <strong>Stopwatch</strong> counts open-endedly upward from <code>00:00</code>, which measures total elapsed time but fails to convey deadline pressure or pacing against a fixed limit.
+          </p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="comp-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Exam Countdown Timer</th>
+                <th>Traditional Stopwatch</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Direction of Time</strong></td>
+                <td><strong>Counts Down to Zero</strong> (Deadline orientation).</td>
+                <td>Counts Upward indefinitely (Duration tracking).</td>
+              </tr>
+              <tr>
+                <td><strong>Mental Load</strong></td>
+                <td>Zero mental subtraction needed; remaining time is explicit.</td>
+                <td>Requires candidate to mentally subtract elapsed time from total.</td>
+              </tr>
+              <tr>
+                <td><strong>Visual Analog Sweeps</strong></td>
+                <td>Yes; shrinking angular wedge illustrates remaining portion.</td>
+                <td>No; only shows elapsed numbers.</td>
+              </tr>
+              <tr>
+                <td><strong>Milestone Warnings</strong></td>
+                <td>Acoustic chimes trigger at 15m, 10m, and 5m remaining.</td>
+                <td>No automated warning chimes prior to finish.</td>
+              </tr>
+              <tr>
+                <td><strong>Best Used For</strong></td>
+                <td>Timed examinations, mock tests, strict time limits.</td>
+                <td>Measuring how long a lab experiment or single problem takes.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="verdict-card">
+          <h4>💡 The Verdict</h4>
+          <p>
+            Stopwatches are diagnostic tools for measuring how long you take on a problem. <strong>Exam Timers</strong> are conditioning tools for training yourself to execute within non-negotiable test hall constraints.
+          </p>
+        </div>
+      </article>
+
+      <!-- Comparison 3: Countdown Timer vs Stopwatch for Exams -->
+      <article class="comp-card glass-panel" id="countdown-vs-stopwatch">
+        <span class="comp-tag">Comparison #3</span>
+        <h2>Countdown Timer vs Stopwatch for Exams</h2>
+
+        <div class="ai-summary-box">
+          <div class="summary-badge">TL;DR / Quick Answer</div>
+          <p>
+            For exams, a <strong>Countdown Timer</strong> is cognitively superior because it eliminates the need for mental arithmetic while solving complex questions. A candidate looking at a stopwatch reading <code>1:42:15</code> must stop problem solving to calculate <code>3:00:00 - 1:42:15 = 1:17:45 left</code>, disrupting mathematical concentration.
+          </p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="comp-table">
+            <thead>
+              <tr>
+                <th>Cognitive Factor</th>
+                <th>Countdown Timer</th>
+                <th>Stopwatch</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Cognitive Working Memory Drain</strong></td>
+                <td><strong>Minimal:</strong> Remaining minutes are directly visible.</td>
+                <td><strong>High:</strong> Candidate must pause calculation to do mental subtraction.</td>
+              </tr>
+              <tr>
+                <td><strong>Urgency Perception</strong></td>
+                <td>High authentic urgency as time narrows down to zero.</td>
+                <td>False sense of calm during early stages.</td>
+              </tr>
+              <tr>
+                <td><strong>Color Warning Transitions</strong></td>
+                <td>Turns Orange at 10m and Red at 5m for peripheral warning.</td>
+                <td>Static digits with no urgency cues.</td>
+              </tr>
+              <tr>
+                <td><strong>Automatic Completion Debrief</strong></td>
+                <td>Triggers instant performance review upon reaching zero.</td>
+                <td>Runs indefinitely until manually stopped.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- Comparison 4: Exam Timer vs Phone Timer -->
+      <article class="comp-card glass-panel" id="timer-vs-phone">
+        <span class="comp-tag">Comparison #4</span>
+        <h2>Exam Timer vs Phone Timer</h2>
+
+        <div class="ai-summary-box">
+          <div class="summary-badge">TL;DR / Quick Answer</div>
+          <p>
+            Practicing mock tests with a <strong>Phone Timer</strong> exposes candidates to notifications, texts, and lock screens while lacking exam-specific features like question pacing and analog dials. A dedicated <strong>Online Exam Timer</strong> provides fullscreen distraction-free focus, anti-pause strict mode, and authentic exam room ambiance.
+          </p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="comp-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Dedicated Exam Clock</th>
+                <th>Smartphone Timer App</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Distraction Resistance</strong></td>
+                <td><strong>100% Focused:</strong> Fullscreen mode hides OS clutter.</td>
+                <td><strong>Poor:</strong> WhatsApp, Instagram, and calls interrupt focus.</td>
+              </tr>
+              <tr>
+                <td><strong>Display Persistence</strong></td>
+                <td>Screen remains continuously awake without dimming.</td>
+                <td>Frequently locks or dims, requiring manual touch unlock.</td>
+              </tr>
+              <tr>
+                <td><strong>Question Pacing Support</strong></td>
+                <td>Calculates target time per question and schedule status.</td>
+                <td>None; standard phone clocks only track raw seconds.</td>
+              </tr>
+              <tr>
+                <td><strong>Strict Mode Protection</strong></td>
+                <td>Prevents candidates from casually pausing during hard questions.</td>
+                <td>Easy to pause, cheat, or reset upon facing difficulty.</td>
+              </tr>
+              <tr>
+                <td><strong>Exam Room Realism</strong></td>
+                <td>Mirrors classroom analog wall clocks with angular sweeps.</td>
+                <td>Unrealistic compared to paper/computer test halls.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- Comparison 5: Digital Timer vs Physical Exam Timer -->
+      <article class="comp-card glass-panel" id="digital-vs-physical">
+        <span class="comp-tag">Comparison #5</span>
+        <h2>Digital Timer vs Physical Exam Timer (Wall Clock)</h2>
+
+        <div class="ai-summary-box">
+          <div class="summary-badge">TL;DR / Quick Answer</div>
+          <p>
+            A <strong>Physical Wall Clock</strong> provides authentic exam hall visual conditioning but lacks automated question pacing calculations and multi-tone alerts. <strong>Exam Timer Online</strong> bridges both worlds by rendering an authentic visual analog wall clock with digital millisecond precision and pacing intelligence.
+          </p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="comp-table">
+            <thead>
+              <tr>
+                <th>Capability</th>
+                <th>Exam Timer Online (Hybrid Web)</th>
+                <th>Physical Hall Clock</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Visual Analog Experience</strong></td>
+                <td>Authentic SVG clock sweep with 5 customizable dials.</td>
+                <td>Traditional physical mechanical hands.</td>
+              </tr>
+              <tr>
+                <td><strong>Question Pacing Intelligence</strong></td>
+                <td>Real-time Ahead/Behind status calculations.</td>
+                <td>Candidate must calculate benchmarks manually.</td>
+              </tr>
+              <tr>
+                <td><strong>Milestone Audio Alerts</strong></td>
+                <td>Synthesized warning chimes at 15m, 10m, and 5m.</td>
+                <td>No sound until human proctor announces time.</td>
+              </tr>
+              <tr>
+                <td><strong>Session History Tracking</strong></td>
+                <td>Automatically logs attempts, elapsed times, and dates.</td>
+                <td>Manual paper logging required.</td>
+              </tr>
+              <tr>
+                <td><strong>Cost & Portability</strong></td>
+                <td>100% Free on any laptop, tablet, or phone (offline PWA).</td>
+                <td>Requires purchasing battery-powered wall clocks.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- Comparison 6: Practice Test vs Mock Exam -->
+      <article class="comp-card glass-panel" id="practice-vs-mock">
+        <span class="comp-tag">Comparison #6</span>
+        <h2>Practice Test vs Mock Exam</h2>
+
+        <div class="ai-summary-box">
+          <div class="summary-badge">TL;DR / Quick Answer</div>
+          <p>
+            A <strong>Practice Test</strong> is an exploratory, low-stakes diagnostic session where students pause, check solutions, and identify knowledge gaps without strict time limits. A <strong>Mock Exam</strong> is an authentic high-stakes dry run conducted under exact exam hall rules, strict timing, and zero external aids to test real-world execution.
+          </p>
+        </div>
+
+        <div class="table-responsive">
+          <table class="comp-table">
+            <thead>
+              <tr>
+                <th>Criterion</th>
+                <th>Practice Test</th>
+                <th>Mock Exam</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Core Purpose</strong></td>
+                <td>Identify concept weaknesses and learn problem-solving steps.</td>
+                <td>Test mental stamina, pacing discipline, and score under pressure.</td>
+              </tr>
+              <tr>
+                <td><strong>Time Limits</strong></td>
+                <td>Flexible or untimed; pausing is permitted.</td>
+                <td><strong>Strict & Immutable:</strong> Exact official exam minutes.</td>
+              </tr>
+              <tr>
+                <td><strong>Reference Materials</strong></td>
+                <td>Formula sheets, textbooks, and answer keys allowed.</td>
+                <td><strong>Zero aids:</strong> Only permitted exam stationery.</td>
+              </tr>
+              <tr>
+                <td><strong>Frequency</strong></td>
+                <td>Daily or weekly throughout the syllabus coverage phase.</td>
+                <td>Bi-weekly or weekly during the final 2 months before test day.</td>
+              </tr>
+              <tr>
+                <td><strong>Recommended Timer Mode</strong></td>
+                <td>Countdown or Stopwatch mode with free pause.</td>
+                <td><strong>Strict Exam Mode</strong> with Question Pacing Tracker.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Bottom CTA Banner -->
+    <section class="cta-banner glass-panel">
+      <h2>Apply the Best Method for Your Next Session</h2>
+      <p>Whether you need a continuous strict mock timer or a question pacing assistant, get started in seconds.</p>
+      <a href="/" class="btn-primary-action">
+        <span>Launch Free Exam Clock</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      </a>
+    </section>
+
+  </main>
+
+  <SiteFooter />
+</Layout>
+
+<style>
+  .hero-cta-row {
+    margin-top: 0.5rem;
+  }
+
+  /* Anchor Navigation */
+  .comparison-anchors {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    margin: 0.5rem 0 1.5rem;
+  }
+
+  .comparison-anchors a {
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: 0.45rem 0.85rem;
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+  }
+
+  .comparison-anchors a:hover {
+    color: var(--brand-accent);
+    border-color: var(--brand-accent);
+    background: rgba(var(--brand-accent-rgb), 0.08);
+    transform: translateY(-1px);
+  }
+
+  /* Comparisons Stack */
+  .comparisons-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .comp-card {
+    padding: 2.5rem 2.75rem;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .comp-tag {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--brand-accent);
+  }
+
+  .comp-card h2 {
+    font-size: clamp(1.45rem, 3.2vw, 2.1rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  /* AI Summary Box (Snippet Friendly) */
+  .ai-summary-box {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--brand-accent);
+    border-radius: 0.85rem;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .summary-badge {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--brand-accent);
+  }
+
+  .ai-summary-box p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .ai-summary-box strong {
+    color: var(--brand-accent);
+  }
+
+  /* Comparison Table */
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin: 0.5rem 0;
+  }
+
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  .comp-table th, .comp-table td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    line-height: 1.55;
+  }
+
+  .comp-table th {
+    background: var(--bg-tertiary);
+    font-weight: 800;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    font-size: 0.76rem;
+    letter-spacing: 0.05em;
+  }
+
+  .comp-table td:first-child {
+    font-weight: 700;
+    color: var(--text-primary);
+    width: 25%;
+  }
+
+  .comp-table td {
+    color: var(--text-muted);
+  }
+
+  .comp-table td strong {
+    color: var(--text-primary);
+  }
+
+  /* Verdict Card */
+  .verdict-card {
+    background: rgba(16, 185, 129, 0.06);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    border-radius: 0.85rem;
+    padding: 1.15rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .verdict-card h4 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--green-accent);
+  }
+
+  .verdict-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+  }
+
+  /* CTA Banner */
+  .cta-banner {
+    text-align: center;
+    padding: 3.5rem 2rem;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, rgba(var(--brand-accent-rgb), 0.08) 100%);
+  }
+
+  .cta-banner h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+    font-weight: 800;
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  .cta-banner p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 0 0.5rem;
+  }
+
+  @media (max-width: 800px) {
+    .comp-card {
+      padding: 1.75rem 1.25rem;
+    }
+    .comp-table th, .comp-table td {
+      padding: 0.85rem 0.85rem;
+    }
+  }
+</style>

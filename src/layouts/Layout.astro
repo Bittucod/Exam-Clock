@@ -1,235 +1,401 @@
 ---
+// Layout.astro
+interface BreadcrumbItem {
+  name: string;
+  href: string;
+}
+
 interface Props {
-	title?: string;
-	description?: string;
-	canonical?: string;
+  title?: string;
+  description?: string;
+  canonical?: string;
+  keywords?: string;
+  ogType?: 'website' | 'article';
+  breadcrumbs?: BreadcrumbItem[];
+  customSchema?: Record<string, any> | Array<Record<string, any>>;
 }
 
 const {
-	title = "Exam Timer Online — Free Visual Analog Clock & Mock Test Countdown",
-	description = "Free online exam timer with visual analog clock, digital countdown, customizable warning chimes, question pacing assistant, and fullscreen mock test mode. Works offline 100%.",
-	canonical = "https://examtimer.online/"
+  title = "Exam Timer Online — Free Visual Analog Clock & Mock Test Countdown",
+  description = "Free online exam timer with visual analog clock, digital countdown, customizable warning chimes, question pacing assistant, and fullscreen mock test mode. Works offline 100%.",
+  canonical = Astro.url.href,
+  keywords = "exam timer online, online exam clock, mock test timer, visual exam timer, analog countdown timer, exam stopwatch, test pacing timer, mathematics practice timer, physics practice timer, chemistry practice timer, previous year paper timer, homework timer, revision timer, pomodoro for students, competitive exam timer",
+  ogType = "website",
+  breadcrumbs = [],
+  customSchema
 } = Astro.props;
 
 const webAppSchema = {
-	"@context": "https://schema.org",
-	"@type": "WebApplication",
-	"name": "Exam Timer Online",
-	"alternateName": ["Online Exam Clock", "Mock Test Countdown Timer", "Visual Exam Timer"],
-	"url": "https://examtimer.online/",
-	"description": description,
-	"applicationCategory": "EducationalApplication",
-	"operatingSystem": "All",
-	"browserRequirements": "Requires modern browser with Web Audio API support",
-	"offers": {
-		"@type": "Offer",
-		"price": "0",
-		"priceCurrency": "USD"
-	},
-	"featureList": [
-		"Mathematical Analog Clock with 5 Custom Themes",
-		"Synchronized High-Precision Millisecond Digital Countdown",
-		"Question Pacing Assistant with Target per Question Calculations",
-		"Configurable Warning Audio Chimes at 15m, 10m, and 5m Milestones",
-		"Strict Exam Mode (Pause Prevention for Realistic Mocks)",
-		"Peak-End Session Performance Debrief and Local History Log",
-		"Full PWA Offline Support and Keyboard Navigation"
-	],
-	"aggregateRating": {
-		"@type": "AggregateRating",
-		"ratingValue": "4.9",
-		"ratingCount": "1280",
-		"bestRating": "5",
-		"worstRating": "1"
-	}
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Exam Timer Online",
+  "alternateName": ["Online Exam Clock", "Mock Test Countdown Timer", "Visual Exam Timer"],
+  "url": "https://examtimer.online/",
+  "description": description,
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires modern browser with Web Audio API support",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Mathematical Analog Clock with 5 Custom Themes",
+    "Synchronized High-Precision Millisecond Digital Countdown",
+    "Question Pacing Assistant with Target per Question Calculations",
+    "Configurable Warning Audio Chimes at 15m, 10m, and 5m Milestones",
+    "Strict Exam Mode (Pause Prevention for Realistic Mocks)",
+    "Peak-End Session Performance Debrief and Local History Log",
+    "Full PWA Offline Support and Keyboard Navigation"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "ratingCount": "1280",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
 };
 
-const faqSchema = {
-	"@context": "https://schema.org",
-	"@type": "FAQPage",
-	"mainEntity": [
-		{
-			"@type": "Question",
-			"name": "How does Exam Timer Online help improve mock test performance?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "Exam Timer Online combines a visual analog clock with a precision digital countdown and a real-time question pacing assistant. The analog sweep builds temporal awareness and prevents 'time blindness', while pacing targets keep candidates strictly on schedule for competitive exams like JEE, NEET, SAT, GRE, UPSC, and university finals."
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "Does the timer keep running if I switch tabs, close the browser, or go offline?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "Yes! The timer engine calculates time based on absolute timestamps rather than setInterval ticks, so the countdown remains 100% accurate even if your device sleeps, you switch tabs, or refresh the page. As a Progressive Web App (PWA), it also functions entirely offline."
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "What is Strict Exam Mode?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "Strict Exam Mode disables the ability to pause the timer once started, mimicking real-world examination hall regulations where the clock never stops for individual candidates."
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "How does the Question Pacing Assistant work?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "When you enter your total question count, the pacing engine calculates the exact recommended time per question. During the exam, it displays which question you should currently be on and indicates whether you are Ahead of Schedule, On Target, or Behind Schedule."
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "Are audio alarm tones and milestone warning alerts customizable?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "Yes, you can customize warning alerts at any minute mark (such as 15 minutes, 10 minutes, or 5 minutes remaining), choose from 6 synthesized alarm tones (Classic Ding-Dong, Digital Electronic, School Bell, Siren, Gentle Gong, Fanfare), and adjust volume levels."
-			}
-		},
-		{
-			"@type": "Question",
-			"name": "Is Exam Timer Online free and privacy-friendly?",
-			"acceptedAnswer": {
-				"@type": "Answer",
-				"text": "Yes, Exam Timer Online is 100% free with no sign-ups, no tracking cookies, and no intrusive ads. All settings and history logs are stored locally on your own device."
-			}
-		}
-	]
-};
+let breadcrumbSchema = null;
+if (breadcrumbs && breadcrumbs.length > 0) {
+  breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://examtimer.online/"
+      },
+      ...breadcrumbs.map((item, index) => ({
+        "@type": "ListItem",
+        "position": index + 2,
+        "name": item.name,
+        "item": item.href.startsWith('http') ? item.href : `https://examtimer.online${item.href}`
+      }))
+    ]
+  };
+}
 ---
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-		<link rel="icon" type="image/svg+xml" href="/icon.svg" />
-		<link rel="manifest" href="/manifest.json" />
-		<link rel="canonical" href={canonical} />
-		
-		<!-- Primary SEO Meta Tags -->
-		<title>{title}</title>
-		<meta name="title" content={title} />
-		<meta name="description" content={description} />
-		<meta name="keywords" content="exam timer online, online exam clock, mock test timer, visual exam timer, analog countdown timer, exam stopwatch, test pacing timer, jee timer, neet timer, sat timer, upsc exam timer, pomodoro study clock, classroom exam timer" />
-		<meta name="author" content="Exam Timer Online" />
-		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="canonical" href={canonical} />
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Exam Timer Online" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
-		<!-- Theme & Mobile App Setup -->
-		<meta name="theme-color" content="#0a0a0c" />
-		<meta name="mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-		<meta name="apple-mobile-web-app-title" content="Exam Timer" />
-		<meta name="generator" content={Astro.generator} />
+    <!-- Theme & Mobile App Setup -->
+    <meta name="theme-color" content="#0a0a0c" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Exam Timer" />
+    <meta name="generator" content={Astro.generator} />
 
-		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={canonical} />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content="/icon.svg" />
-		<meta property="og:site_name" content="Exam Timer Online" />
-		<meta property="og:locale" content="en_US" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/icon.svg" />
+    <meta property="og:site_name" content="Exam Timer Online" />
+    <meta property="og:locale" content="en_US" />
 
-		<!-- Twitter Card -->
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content={canonical} />
-		<meta property="twitter:title" content={title} />
-		<meta property="twitter:description" content={description} />
-		<meta property="twitter:image" content="/icon.svg" />
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonical} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content="/icon.svg" />
 
-		<!-- JSON-LD Structured Data for Rich Search Results -->
-		<script type="application/ld+json" set:html={JSON.stringify(webAppSchema)} />
-		<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-		
-		<!-- Preconnect to Google Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<!-- Fonts: Outfit (headings/UI) & JetBrains Mono (monospaced timer) -->
-		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- JSON-LD Structured Data for Rich Search Results -->
+    <script type="application/ld+json" set:html={JSON.stringify(webAppSchema)} />
+    {breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
+    {customSchema && (
+      Array.isArray(customSchema) 
+        ? customSchema.map(s => <script type="application/ld+json" set:html={JSON.stringify(s)} />)
+        : <script type="application/ld+json" set:html={JSON.stringify(customSchema)} />
+    )}
+    
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Fonts: Outfit (headings/UI) & JetBrains Mono (monospaced timer) -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-		<!-- Fast Theme Initialize Script (Prevents white flashes) -->
-		<script is:inline>
-			(function () {
-				const theme = localStorage.getItem('exam-clock-theme');
-				if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-					document.documentElement.classList.add('dark');
-					document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0a0a0c');
-				} else {
-					document.documentElement.classList.remove('dark');
-					document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#f8fafc');
-				}
-			})();
-		</script>
-	</head>
-	<body>
-		<slot />
+    <!-- Fast Theme Initialize Script (Prevents white flashes) -->
+    <script is:inline>
+      (function () {
+        const theme = localStorage.getItem('exam-clock-theme');
+        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+          document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0a0a0c');
+        } else {
+          document.documentElement.classList.remove('dark');
+          document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#f8fafc');
+        }
+      })();
+    </script>
+  </head>
+  <body id="top">
+    <slot />
 
-		<!-- Register PWA Service Worker -->
-		<script>
-			if ('serviceWorker' in navigator) {
-				window.addEventListener('load', () => {
-					navigator.serviceWorker.register('/sw.js')
-						.then((reg) => console.log('ServiceWorker registered successfully:', reg.scope))
-						.catch((err) => console.error('ServiceWorker registration failed:', err));
-				});
-			}
-		</script>
-	</body>
+    <!-- Register PWA Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((reg) => console.log('ServiceWorker registered successfully:', reg.scope))
+            .catch((err) => console.error('ServiceWorker registration failed:', err));
+        });
+      }
+    </script>
+  </body>
 </html>
 
 <style is:global>
-	:root {
-		--font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-		--font-mono: 'JetBrains Mono', 'Courier New', monospace;
-	}
+  /* Curated Unified Color Tokens */
+  :root {
+    --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
-	html {
-		margin: 0;
-		padding: 0;
-		width: 100%;
-		min-height: 100%;
-		min-height: 100dvh;
-		overflow-x: hidden;
-		overflow-y: auto;
-		-webkit-overflow-scrolling: touch;
-		scroll-behavior: smooth;
-	}
+    /* Dark Theme (Default) */
+    --bg-primary: #0a0a0c;
+    --bg-secondary: #121216;
+    --bg-tertiary: #191921;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(255, 255, 255, 0.16);
+    
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+    
+    --brand-accent: #6366f1; /* Violet-Indigo */
+    --brand-accent-hover: #4f46e5;
+    --brand-accent-glow: rgba(99, 102, 241, 0.35);
+    --brand-accent-rgb: 99, 102, 241;
+    
+    --green-accent: #10b981;
+    --orange-accent: #f59e0b;
+    --red-accent: #ef4444;
+  }
 
-	body {
-		margin: 0;
-		padding: 0;
-		width: 100%;
-		min-height: 100%;
-		min-height: 100dvh;
-		font-family: var(--font-sans);
-		overflow-x: hidden;
-		overflow-y: auto;
-		-webkit-overflow-scrolling: touch;
-		background-color: var(--bg-primary);
-		color: var(--text-primary);
-		transition: background-color 0.3s ease, color 0.3s ease;
-	}
+  /* Light Theme overrides */
+  html:not(.dark) {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f1f5f9;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --border-hover: rgba(0, 0, 0, 0.15);
+    
+    --text-primary: #0f172a;
+    --text-muted: #64748b;
+    
+    --brand-accent: #4f46e5;
+    --brand-accent-hover: #4338ca;
+    --brand-accent-glow: rgba(79, 70, 229, 0.2);
+    --brand-accent-rgb: 79, 70, 229;
+    
+    --green-accent: #059669;
+    --orange-accent: #d97706;
+    --red-accent: #dc2626;
+  }
 
-	*, *::before, *::after {
-		box-sizing: border-box;
-	}
+  html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
 
-	/* Custom Scrollbar */
-	::-webkit-scrollbar {
-		width: 6px;
-		height: 6px;
-	}
-	::-webkit-scrollbar-track {
-		background: transparent;
-	}
-	::-webkit-scrollbar-thumb {
-		background: rgba(148, 163, 184, 0.3);
-		border-radius: 4px;
-	}
-	::-webkit-scrollbar-thumb:hover {
-		background: rgba(148, 163, 184, 0.5);
-	}
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    min-height: 100dvh;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  /* Universal Glassmorphism panel */
+  .glass-panel {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .dark .glass-panel {
+    background: rgba(18, 18, 22, 0.75);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Common Page Shell Utilities */
+  .page-main-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 1rem 1.25rem 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .page-hero {
+    text-align: center;
+    max-width: 860px;
+    margin: 1.5rem auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .page-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--brand-accent);
+    background: rgba(var(--brand-accent-rgb), 0.1);
+    border: 1px solid rgba(var(--brand-accent-rgb), 0.25);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .page-hero p.subtitle {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0;
+    max-width: 720px;
+  }
+
+  /* Breadcrumb Trail */
+  .breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .breadcrumb-nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .breadcrumb-nav a:hover {
+    color: var(--brand-accent);
+  }
+
+  .breadcrumb-separator {
+    color: var(--text-muted);
+    opacity: 0.5;
+  }
+
+  /* Primary Button */
+  .btn-primary-action {
+    background: linear-gradient(135deg, #4338ca 0%, #4f46e5 50%, #6366f1 100%);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 0.85rem 1.6rem;
+    border-radius: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    box-shadow: 0 4px 18px rgba(79, 70, 229, 0.4);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 26px rgba(79, 70, 229, 0.6);
+  }
+
+  .btn-secondary-action {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.85rem 1.6rem;
+    border-radius: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .btn-secondary-action:hover {
+    background: var(--bg-secondary);
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.3);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.5);
+  }
 </style>

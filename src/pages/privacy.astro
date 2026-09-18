@@ -1,0 +1,247 @@
+---
+// src/pages/privacy.astro
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const breadcrumbs = [
+  { name: 'Privacy & Cookie Policy', href: '/privacy' }
+];
+---
+
+<Layout
+  title="Privacy Policy & Cookie Policy — 100% Local Storage | Exam Timer Online"
+  description="Read our clear Privacy Policy and Cookie Policy. Exam Timer Online uses zero tracking cookies, requires no registration, and stores all test logs locally on your device."
+  canonical="https://examtimer.online/privacy"
+  breadcrumbs={breadcrumbs}
+>
+  <SiteHeader />
+
+  <main class="page-main-container">
+
+    <!-- Hero Header -->
+    <header class="page-hero">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumbs">
+        <a href="/">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Privacy Policy</span>
+      </nav>
+      <span class="page-badge">🛡️ Privacy First Architecture</span>
+      <h1>Privacy Policy & Cookie Disclosure</h1>
+      <p class="subtitle">
+        Your academic study and mock test attempts belong exclusively to you. Exam Timer Online does not track, store, or transmit your personal data.
+      </p>
+    </header>
+
+    <div class="legal-content-card glass-panel">
+      
+      <section class="legal-block">
+        <h2>1. Summary (TL;DR)</h2>
+        <div class="highlight-box">
+          <p>
+            <strong>Zero Tracking, Zero Accounts, Zero Cloud Logging:</strong> Exam Timer Online does not require user registration, does not use third-party behavioral advertising cookies, and never uploads your exam scores or elapsed times to any remote server.
+          </p>
+        </div>
+      </section>
+
+      <section class="legal-block">
+        <h2>2. Information We Do NOT Collect</h2>
+        <p>Unlike commercial education platforms, we deliberately refuse to collect:</p>
+        <ul class="legal-list">
+          <li>Personal identification details (no names, telephone numbers, or physical addresses).</li>
+          <li>Authentication credentials (no passwords or social logins).</li>
+          <li>Individual question performance or academic grades.</li>
+          <li>Cross-site advertising profiles or behavioral browsing history.</li>
+        </ul>
+      </section>
+
+      <section class="legal-block">
+        <h2>3. Cookie Policy & Local Storage Transparency</h2>
+        <p>
+          Exam Timer Online <strong>does not use tracking cookies or third-party marketing cookies</strong>. 
+        </p>
+        <p>
+          To provide seamless persistent functionality, our application utilizes standard browser <strong>LocalStorage</strong> technology. The following keys are stored exclusively inside your own browser:
+        </p>
+
+        <div class="table-responsive">
+          <table class="legal-table">
+            <thead>
+              <tr>
+                <th>LocalStorage Key</th>
+                <th>Functional Purpose</th>
+                <th>Storage Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>exam-clock-settings</code></td>
+                <td>Stores your preferred alarm chime, volume levels, clock theme, and warning alert minutes.</td>
+                <td>Local Browser Only</td>
+              </tr>
+              <tr>
+                <td><code>exam-clock-presets</code></td>
+                <td>Saves custom examination duration presets you create using the "Save Current" button.</td>
+                <td>Local Browser Only</td>
+              </tr>
+              <tr>
+                <td><code>exam-clock-history</code></td>
+                <td>Stores your personal log of completed/stopped mock test attempts (date, duration, completion %).</td>
+                <td>Local Browser Only</td>
+              </tr>
+              <tr>
+                <td><code>exam-clock-theme</code></td>
+                <td>Remembers your Dark Mode or Light Mode preference between sessions.</td>
+                <td>Local Browser Only</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          <em>Note:</em> You can delete all locally saved data at any moment by clicking the <strong>"Clear History"</strong> button in the History drawer, or by clearing your browser's site data.
+        </p>
+      </section>
+
+      <section class="legal-block">
+        <h2>4. Progressive Web App (PWA) & Offline Caching</h2>
+        <p>
+          Exam Timer Online uses a native browser <code>Service Worker</code> to cache static assets (HTML, SVG dial graphics, CSS, and audio synthesis scripts). This allows the application to launch and run seamlessly without an active internet connection. No tracking or telemetry is performed via the Service Worker.
+        </p>
+      </section>
+
+      <section class="legal-block">
+        <h2>5. Children's Privacy</h2>
+        <p>
+          Because our platform collects no personal identifiable information whatsoever, Exam Timer Online is fully compliant with global student privacy regulations, including the U.S. Children's Online Privacy Protection Act (COPPA) and the EU General Data Protection Regulation (GDPR).
+        </p>
+      </section>
+
+      <section class="legal-block">
+        <h2>6. Policy Updates & Contact</h2>
+        <p>
+          If we make minor technical refinements to our offline caching or local storage mechanisms, updates will be reflected on this page with an updated revision date.
+        </p>
+        <p>
+          For questions regarding our privacy practices, please contact our team at <a href="mailto:privacy@examtimer.online" class="legal-link">privacy@examtimer.online</a> or through our <a href="/contact" class="legal-link">Contact Page</a>.
+        </p>
+        <p class="last-updated">Last Updated: September 2026</p>
+      </section>
+
+    </div>
+
+  </main>
+
+  <SiteFooter />
+</Layout>
+
+<style>
+  .legal-content-card {
+    padding: 3rem;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .legal-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .legal-block h2 {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .legal-block p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+
+  .highlight-box {
+    background: rgba(var(--brand-accent-rgb), 0.08);
+    border: 1px solid rgba(var(--brand-accent-rgb), 0.25);
+    border-radius: 0.85rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .highlight-box p {
+    color: var(--text-primary);
+  }
+
+  .legal-list {
+    margin: 0;
+    padding-left: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin: 0.5rem 0;
+  }
+
+  .legal-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  .legal-table th, .legal-table td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .legal-table th {
+    background: var(--bg-tertiary);
+    font-weight: 800;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    font-size: 0.76rem;
+    letter-spacing: 0.05em;
+  }
+
+  .legal-table code {
+    font-family: var(--font-mono);
+    color: var(--brand-accent);
+    background: var(--bg-tertiary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.4rem;
+    font-size: 0.85rem;
+  }
+
+  .legal-link {
+    color: var(--brand-accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .legal-link:hover {
+    text-decoration: underline;
+  }
+
+  .last-updated {
+    font-size: 0.82rem !important;
+    font-style: italic;
+    margin-top: 1rem !important;
+  }
+
+  @media (max-width: 768px) {
+    .legal-content-card {
+      padding: 1.75rem 1.25rem;
+    }
+  }
+</style>

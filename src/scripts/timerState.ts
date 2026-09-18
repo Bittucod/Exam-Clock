@@ -197,31 +197,32 @@ export class TimerEngine {
         remaining = Math.floor((this.activeTimer.endTimestamp - now) / 1000);
       }
 
-      remaining = Math.max(0, remaining);
-      elapsed = total - remaining;
+      remaining = isNaN(remaining) ? 0 : Math.max(0, remaining);
+      elapsed = Math.max(0, total - remaining);
     }
 
-    const progressPercent = total > 0 ? (remaining / total) * 100 : 0;
+    const progressPercent = total > 0 ? Math.min(100, Math.max(0, (remaining / total) * 100)) : 0;
 
     return {
-      remaining,
-      elapsed: Math.max(0, elapsed),
-      total,
-      progressPercent
+      remaining: isNaN(remaining) ? 0 : remaining,
+      elapsed: isNaN(elapsed) ? 0 : elapsed,
+      total: isNaN(total) ? 0 : total,
+      progressPercent: isNaN(progressPercent) ? 0 : progressPercent
     };
   }
 
   // Start exam timer
   public startExam(name: string, durationSec: number, totalQuestions: number = 0, showQuestions: boolean = false) {
+    const validDuration = Math.max(1, Math.floor(Number(durationSec) || 0));
     const start = Date.now();
     this.activeTimer = {
       name,
       isRunning: true,
       isPaused: false,
       startTimestamp: start,
-      endTimestamp: start + durationSec * 1000,
+      endTimestamp: start + validDuration * 1000,
       lastPauseTimestamp: null,
-      totalDurationSec: durationSec,
+      totalDurationSec: validDuration,
       mode: 'exam',
       strictMode: this.settings.strictMode,
       showQuestions,

@@ -1,0 +1,505 @@
+---
+// src/pages/guide.astro
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const breadcrumbs = [
+  { name: 'Exam Guide', href: '/guide' }
+];
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "The Ultimate Exam Preparation & Subject Practice Timer Guide",
+  "description": "Comprehensive guide on pacing mathematics, physics, chemistry, previous year papers, competitive exams, and homework with visual timers.",
+  "author": {
+    "@type": "Organization",
+    "name": "Exam Timer Online Academic Research Team"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Exam Timer Online"
+  }
+};
+---
+
+<Layout
+  title="Exam Preparation & Subject Practice Timer Guide — Math, Physics, Chemistry & PYQs"
+  description="Master time management across Mathematics, Physics, Chemistry, Previous Year Papers (PYQ), competitive exams, and homework. Learn speed practice and pacing formulas."
+  canonical="https://examtimer.online/guide"
+  keywords="exam preparation timer, mock test timer, previous year paper timer, mathematics practice timer, physics practice timer, chemistry practice timer, science practice timer, homework timer, revision timer, competitive exam timer, speed practice timer, pomodoro for students"
+  breadcrumbs={breadcrumbs}
+  customSchema={articleSchema}
+>
+  <SiteHeader />
+
+  <main class="page-main-container">
+
+    <!-- Hero Header -->
+    <header class="page-hero">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumbs">
+        <a href="/">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Guide</span>
+      </nav>
+      <span class="page-badge">📚 Academic Strategy Handbook</span>
+      <h1>Exam Preparation & Subject Practice Timer Guide</h1>
+      <p class="subtitle">
+        A masterclass in tactical time management. Discover how to pace mathematics calculations, physics derivations, chemistry speed-runs, previous year question papers, and homework revision sprints.
+      </p>
+      <div class="hero-cta-row">
+        <a href="/" class="btn-primary-action">
+          <span>Start Timed Practice</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- Quick Subject Navigation Grid -->
+    <section class="guide-nav-cards">
+      <a href="#math-practice-timer" class="nav-card glass-panel">
+        <span class="card-icon">📐</span>
+        <h4>Mathematics Practice</h4>
+        <p>Step pacing & mental math velocity</p>
+      </a>
+      <a href="#physics-practice-timer" class="nav-card glass-panel">
+        <span class="card-icon">⚡</span>
+        <h4>Physics Practice</h4>
+        <p>Numerical vs theory time allocation</p>
+      </a>
+      <a href="#chemistry-practice-timer" class="nav-card glass-panel">
+        <span class="card-icon">🧪</span>
+        <h4>Chemistry Practice</h4>
+        <p>Speed-banking organic & inorganic</p>
+      </a>
+      <a href="#pyq-timer" class="nav-card glass-panel">
+        <span class="card-icon">📝</span>
+        <h4>Previous Year Papers</h4>
+        <p>Authentic exam hall simulations</p>
+      </a>
+      <a href="#homework-revision-timer" class="nav-card glass-panel">
+        <span class="card-icon">📖</span>
+        <h4>Homework & Revision</h4>
+        <p>Overcoming student procrastination</p>
+      </a>
+      <a href="#speed-practice-timer" class="nav-card glass-panel">
+        <span class="card-icon">🚀</span>
+        <h4>Speed Drilling</h4>
+        <p>Rapid accuracy under pressure</p>
+      </a>
+    </section>
+
+    <!-- Article Content Stack -->
+    <div class="guide-article-stack">
+      
+      <!-- Section 1: Mathematics Practice Timer -->
+      <article class="guide-section glass-panel" id="math-practice-timer">
+        <span class="section-kicker">Subject Strategy #1</span>
+        <h2>Mathematics Practice Timer: Solving High-Velocity Calculations</h2>
+        <p>
+          Mathematics is the discipline where candidates suffer most from <strong>"tunnel vision"</strong>—spending 10 minutes obsessing over a single stubborn calculus or geometry problem while leaving 5 straightforward algebra questions unread at the end of the exam.
+        </p>
+
+        <div class="strategy-box">
+          <h4>The Golden Mathematics Pacing Formula</h4>
+          <code>Target Seconds Per Problem = (Total Exam Minutes - 15 min Review Buffer) × 60 ÷ Total Problems</code>
+          <p>
+            For example, in a 60-minute test with 30 mathematics questions: <code>(60 - 15) × 60 ÷ 30 = 90 seconds per problem</code>.
+          </p>
+        </div>
+
+        <h3>Tactics for Mathematics Time Management:</h3>
+        <ul class="guide-list">
+          <li><strong>The 90-Second Bailout Rule:</strong> If you haven't established a clear path to the solution within 90 seconds, flag the question, skip immediately, and proceed. Never gamble time on sunk costs.</li>
+          <li><strong>Scratch Paper Pacing:</strong> Dedicate separate quadrants on your scratch paper for each problem. Disorganized rough work wastes up to 15 seconds per question when retracing steps.</li>
+          <li><strong>Use Analog Clock Sweeps:</strong> Glancing at the continuous analog minute hand tells you instantly if a question is consuming more than its angular wedge of time without breaking your focus.</li>
+        </ul>
+      </article>
+
+      <!-- Section 2: Physics Practice Timer -->
+      <article class="guide-section glass-panel" id="physics-practice-timer">
+        <span class="section-kicker">Subject Strategy #2</span>
+        <h2>Physics Practice Timer: Balancing Derivations, Units & Conceptual Theory</h2>
+        <p>
+          Competitive physics exams (JEE, NEET, AP Physics, GCSE, SAT Subject) alternate between rapid conceptual questions (e.g. Lenz's law directions) and heavy multi-step numerical derivations (e.g. projectile motion, rotational dynamics).
+        </p>
+        <h3>How to Structure a Physics Mock Session:</h3>
+        <ul class="guide-list">
+          <li><strong>Phase 1: Conceptual Sweep (45 seconds per question):</strong> Solve all definitions, dimensional formulas, and qualitative reasoning questions first. This secures guaranteed points with zero arithmetic error risk.</li>
+          <li><strong>Phase 2: Single-Formula Numericals (1.5 to 2 minutes):</strong> Direct application of kinematics, thermodynamics, or electromagnetism formulas.</li>
+          <li><strong>Phase 3: Multi-Concept Numericals (3+ minutes):</strong> Reserve these for the second half when your score baseline is already secured.</li>
+        </ul>
+        <p class="pro-tip">
+          💡 <strong>Pro Tip:</strong> Set an audible <strong>15-Minute Warning Chime</strong> in Exam Timer Online to alert you when to cease new derivations and begin recalculating decimal calculations and unit conversions.
+        </p>
+      </article>
+
+      <!-- Section 3: Chemistry Practice Timer -->
+      <article class="guide-section glass-panel" id="chemistry-practice-timer">
+        <span class="section-kicker">Subject Strategy #3</span>
+        <h2>Chemistry Practice Timer: The "Speed-Banking" Master Strategy</h2>
+        <p>
+          Top rankers in competitive exams treat Chemistry as an <strong>"asset bank"</strong>. While Mathematics and Physics demand heavy calculations, Inorganic and Organic Chemistry are predominantly memory and pattern recognition.
+        </p>
+
+        <div class="table-responsive">
+          <table class="strategy-table">
+            <thead>
+              <tr>
+                <th>Chemistry Branch</th>
+                <th>Target Time Per Question</th>
+                <th>Tactical Approach</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Inorganic Chemistry</strong></td>
+                <td>20 – 35 seconds</td>
+                <td>Instant recall of periodic trends, coordination complexes, and qualitative reactions.</td>
+              </tr>
+              <tr>
+                <td><strong>Organic Chemistry</strong></td>
+                <td>30 – 50 seconds</td>
+                <td>Reagent identification, reaction mechanisms, and isomer identification.</td>
+              </tr>
+              <tr>
+                <td><strong>Physical Chemistry</strong></td>
+                <td>90 – 120 seconds</td>
+                <td>Stoichiometry, electrochemistry, and kinetics calculations funded by time saved in Inorganic/Organic.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- Section 4: Science Practice Timer -->
+      <article class="guide-section glass-panel" id="science-practice-timer">
+        <span class="section-kicker">Subject Strategy #4</span>
+        <h2>Science Practice Timer: Integrated STEM & Standardized Tests</h2>
+        <p>
+          For general science exams, biology papers, and middle/high school STEM assessments, timing challenges stem from lengthy reading passages, experimental data tables, and diagram interpretations.
+        </p>
+        <ul class="guide-list">
+          <li><strong>Data-First Inspection:</strong> Look at graphs, axes, and experiment variables before reading the full introductory background paragraph.</li>
+          <li><strong>Diagram Pacing:</strong> Allocate a maximum of 45 seconds to extract labels and pathway arrows before verifying with question choices.</li>
+          <li><strong>Pacing Alerts:</strong> Use Exam Timer Online's Question Pacing Tracker to maintain a steady cadence across 50 to 100 question science papers.</li>
+        </ul>
+      </article>
+
+      <!-- Section 5: Previous Year Paper (PYQ) Timer -->
+      <article class="guide-section glass-panel" id="pyq-timer">
+        <span class="section-kicker">High-Yield Practice</span>
+        <h2>Previous Year Paper (PYQ) Timer: Replicating Authentic Test Hall Conditions</h2>
+        <p>
+          Solving Previous Year Question (PYQ) papers without a strict timer gives students a false sense of security. An untimed score of 85% frequently drops to 55% under authentic exam hall conditions due to panic, hurried arithmetic, and poor triage.
+        </p>
+        <h3>How to Conduct Official PYQ Mock Sessions:</h3>
+        <ol class="guide-numbered-list">
+          <li><strong>Match the Exact Official Time Slot:</strong> If your real exam is scheduled from 9:00 AM to 12:00 PM, use the <em>Start & End Time</em> tab to run your mock precisely during those hours to align your cognitive circadian rhythm.</li>
+          <li><strong>Enable Strict Exam Mode:</strong> Lock out pauses. Do not open books, pause for phone messages, or take unscheduled water breaks.</li>
+          <li><strong>Print OMR Sheets or Use Physical Scratch Paper:</strong> Replicate the physical friction of bubbling answers or writing out calculations.</li>
+          <li><strong>Review with Peak-End Debrief:</strong> Log your elapsed time, question pacing rating, and completion percentage in your local exam history.</li>
+        </ol>
+      </article>
+
+      <!-- Section 6: Homework & Revision Timer -->
+      <article class="guide-section glass-panel" id="homework-revision-timer">
+        <span class="section-kicker">Daily Study Habits</span>
+        <h2>Homework Timer & Revision Sprint Timer: Defeating Procrastination</h2>
+        <p>
+          Parkinson's Law dictates that <em>"work expands to fill the time available for its completion."</em> Without an active visual countdown, an assignment that should take 30 minutes frequently stretches across 3 hours of unfocused tab-switching and daydreaming.
+        </p>
+        <div class="pomodoro-grid">
+          <div class="pomo-card">
+            <h4>📖 25-Minute Homework Sprint</h4>
+            <p>Set a 25-minute countdown for a single homework problem set. The visible analog sector sweep creates gentle psychological urgency that discourages phone checking.</p>
+          </div>
+          <div class="pomo-card">
+            <h4>🧠 45-Minute Active Recall Revision</h4>
+            <p>Spend 35 minutes actively reciting formulas or teaching concepts aloud from memory, followed by 10 minutes checking reference textbooks for knowledge gaps.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section 7: Speed Practice Timer -->
+      <article class="guide-section glass-panel" id="speed-practice-timer">
+        <span class="section-kicker">Speed & Accuracy</span>
+        <h2>Speed Practice Timer: Drilling Reflexive Accuracy Under Pressure</h2>
+        <p>
+          When you only have 30 to 45 seconds per question (such as in banking exams, GRE quantitative comparisons, or medical speed tests), deliberate thinking must be replaced by reflexive pattern recognition.
+        </p>
+        <ul class="guide-list">
+          <li><strong>The 60-Second Flash Drill:</strong> Select 10 questions and set a 10-minute timer. Track both your accuracy percentage and your time remaining.</li>
+          <li><strong>The 3-Pass Exam Triage Strategy:</strong>
+            <ul>
+              <li><strong>Pass 1 (60% time):</strong> Answer all questions you know with 100% certainty in under 45 seconds each.</li>
+              <li><strong>Pass 2 (30% time):</strong> Return to flagged questions requiring intermediate calculation.</li>
+              <li><strong>Pass 3 (10% time):</strong> Final review buffer to verify bubble entries, units, and tackle remaining problems.</li>
+            </ul>
+          </li>
+        </ul>
+      </article>
+
+    </div>
+
+    <!-- Bottom CTA Banner -->
+    <section class="cta-banner glass-panel">
+      <h2>Put These Pacing Strategies into Practice</h2>
+      <p>Launch the free visual exam timer, configure your subject duration, and train with authentic test hall precision.</p>
+      <a href="/" class="btn-primary-action">
+        <span>Launch Exam Clock</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      </a>
+    </section>
+
+  </main>
+
+  <SiteFooter />
+</Layout>
+
+<style>
+  .hero-cta-row {
+    margin-top: 0.5rem;
+  }
+
+  /* Quick Nav Cards Grid */
+  .guide-nav-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 0.5rem 0 1.5rem;
+  }
+
+  .nav-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1.25rem 1rem;
+    text-decoration: none;
+    border-radius: 1rem;
+    transition: all 0.2s ease;
+  }
+
+  .nav-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--border-hover);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .card-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .nav-card h4 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .nav-card p {
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* Article Stack */
+  .guide-article-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+  }
+
+  .guide-section {
+    padding: 2.5rem 2.75rem;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .section-kicker {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--brand-accent);
+  }
+
+  .guide-section h2 {
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .guide-section h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0.75rem 0 0.25rem;
+  }
+
+  .guide-section p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin: 0;
+  }
+
+  .strategy-box {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--brand-accent);
+    padding: 1.25rem 1.5rem;
+    border-radius: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+  }
+
+  .strategy-box h4 {
+    margin: 0;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .strategy-box code {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--brand-accent);
+    background: rgba(var(--brand-accent-rgb), 0.08);
+    padding: 0.35rem 0.65rem;
+    border-radius: 0.4rem;
+    display: inline-block;
+  }
+
+  .guide-list, .guide-numbered-list {
+    margin: 0;
+    padding-left: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+
+  .guide-list strong, .guide-numbered-list strong {
+    color: var(--text-primary);
+  }
+
+  .pro-tip {
+    font-size: 0.9rem;
+    padding: 0.85rem 1.15rem;
+    border-radius: 0.85rem;
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    color: var(--text-primary);
+    margin-top: 0.5rem;
+  }
+
+  /* Table */
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    margin: 0.5rem 0;
+  }
+
+  .strategy-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  .strategy-table th, .strategy-table td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .strategy-table th {
+    background: var(--bg-tertiary);
+    font-weight: 800;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    font-size: 0.76rem;
+    letter-spacing: 0.05em;
+  }
+
+  .strategy-table td strong {
+    color: var(--text-primary);
+  }
+
+  /* Pomodoro Grid */
+  .pomodoro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 0.5rem;
+  }
+
+  .pomo-card {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .pomo-card h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .pomo-card p {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+
+  /* CTA Banner */
+  .cta-banner {
+    text-align: center;
+    padding: 3.5rem 2rem;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, rgba(var(--brand-accent-rgb), 0.08) 100%);
+  }
+
+  .cta-banner h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+    font-weight: 800;
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  .cta-banner p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 0 0.5rem;
+  }
+
+  @media (max-width: 800px) {
+    .guide-section {
+      padding: 1.75rem 1.5rem;
+    }
+    .pomodoro-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

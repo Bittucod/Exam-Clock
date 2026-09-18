@@ -1,0 +1,368 @@
+---
+// SiteHeader.astro
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const navLinks = [
+  { name: 'Timer Clock', href: '/' },
+  { name: 'How It Works', href: '/how-it-works' },
+  { name: 'Features', href: '/features' },
+  { name: 'Exam Guide', href: '/guide' },
+  { name: 'Comparisons', href: '/comparisons' },
+  { name: 'FAQ', href: '/faq' },
+];
+---
+
+<header class="site-nav-header glass-panel">
+  <div class="header-container">
+    <!-- Brand Logo -->
+    <a href="/" class="brand-link" title="Exam Timer Online - Free Mock Test Clock">
+      <div class="brand-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">Exam Timer</span>
+        <span class="brand-badge">PRO</span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="desktop-nav" aria-label="Primary Navigation">
+      {navLinks.map(link => {
+        const isActive = (link.href === '/' && pathname === '/') || (link.href !== '/' && pathname.startsWith(link.href));
+        return (
+          <a 
+            href={link.href} 
+            class={`nav-item ${isActive ? 'active' : ''}`}
+            aria-current={isActive ? 'page' : undefined}
+          >
+            {link.name}
+          </a>
+        );
+      })}
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <!-- Dark/Light Theme Toggle -->
+      <button type="button" class="theme-toggle-btn" id="site-theme-toggle-btn" aria-label="Toggle dark or light theme" title="Toggle color theme">
+        <span class="theme-icon sun-icon">☀️</span>
+        <span class="theme-icon moon-icon">🌙</span>
+      </button>
+
+      <!-- Launch Clock Direct CTA -->
+      <a href="/" class="btn-header-cta">
+        <span>Launch Timer</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button type="button" class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Open mobile menu" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="hamburger-icon"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="close-icon hidden"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div class="mobile-nav-drawer hidden" id="mobile-nav-drawer">
+    <nav class="mobile-nav-links">
+      {navLinks.map(link => {
+        const isActive = (link.href === '/' && pathname === '/') || (link.href !== '/' && pathname.startsWith(link.href));
+        return (
+          <a href={link.href} class={`mobile-nav-item ${isActive ? 'active' : ''}`}>
+            {link.name}
+          </a>
+        );
+      })}
+      <div class="mobile-drawer-footer">
+        <a href="/" class="btn-drawer-cta">⚡ Launch Full Exam Clock</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const themeBtn = document.getElementById('site-theme-toggle-btn');
+  const menuToggle = document.getElementById('mobile-menu-toggle');
+  const navDrawer = document.getElementById('mobile-nav-drawer');
+  const hamburgerIcon = menuToggle?.querySelector('.hamburger-icon');
+  const closeIcon = menuToggle?.querySelector('.close-icon');
+
+  function updateThemeDisplay() {
+    const isDark = document.documentElement.classList.contains('dark');
+    if (themeBtn) {
+      themeBtn.setAttribute('title', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+    }
+  }
+
+  themeBtn?.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('exam-clock-theme', isDark ? 'dark' : 'light');
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDark ? '#0a0a0c' : '#f8fafc');
+    updateThemeDisplay();
+  });
+
+  menuToggle?.addEventListener('click', () => {
+    const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+    navDrawer?.classList.toggle('hidden');
+    hamburgerIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (navDrawer && !navDrawer.classList.contains('hidden')) {
+      const target = e.target as HTMLElement;
+      if (!navDrawer.contains(target) && !menuToggle?.contains(target)) {
+        navDrawer.classList.add('hidden');
+        menuToggle?.setAttribute('aria-expanded', 'false');
+        hamburgerIcon?.classList.remove('hidden');
+        closeIcon?.classList.add('hidden');
+      }
+    }
+  });
+
+  updateThemeDisplay();
+</script>
+
+<style>
+  .site-nav-header {
+    position: sticky;
+    top: 0.75rem;
+    z-index: 100;
+    max-width: 1240px;
+    margin: 0.75rem auto 1.5rem;
+    padding: 0.6rem 1.25rem;
+    border-radius: 1rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(12px);
+    transition: all 0.25s ease;
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  /* Brand Logo */
+  .brand-link {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    color: var(--text-primary);
+  }
+
+  .brand-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 0.65rem;
+    background: linear-gradient(135deg, var(--brand-accent) 0%, #4338ca 100%);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px var(--brand-accent-glow);
+  }
+
+  .brand-text {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .brand-name {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+
+  .brand-badge {
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 0.15rem 0.45rem;
+    border-radius: 9999px;
+    background: var(--brand-accent);
+    color: #ffffff;
+    letter-spacing: 0.05em;
+  }
+
+  /* Desktop Navigation */
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .nav-item {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 0.45rem 0.85rem;
+    border-radius: 0.6rem;
+    transition: all 0.2s ease;
+  }
+
+  .nav-item:hover {
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+  }
+
+  .nav-item.active {
+    color: var(--brand-accent);
+    background: rgba(99, 102, 241, 0.12);
+    font-weight: 700;
+  }
+
+  /* Header Actions */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .theme-toggle-btn {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+  }
+
+  .theme-toggle-btn:hover {
+    background: var(--bg-secondary);
+    border-color: var(--border-hover);
+    transform: scale(1.05);
+  }
+
+  .dark .theme-toggle-btn .sun-icon {
+    display: inline-block;
+  }
+  .dark .theme-toggle-btn .moon-icon {
+    display: none;
+  }
+  :not(.dark) .theme-toggle-btn .sun-icon {
+    display: none;
+  }
+  :not(.dark) .theme-toggle-btn .moon-icon {
+    display: inline-block;
+  }
+
+  .btn-header-cta {
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.48rem 0.95rem;
+    border-radius: 0.6rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+    transition: all 0.2s ease;
+  }
+
+  .btn-header-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(79, 70, 229, 0.45);
+  }
+
+  /* Mobile menu button */
+  .mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 0.35rem;
+    border-radius: 0.5rem;
+  }
+
+  /* Mobile Drawer */
+  .mobile-nav-drawer {
+    display: none;
+    padding-top: 0.85rem;
+    margin-top: 0.65rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .mobile-nav-item {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.65rem 0.85rem;
+    border-radius: 0.6rem;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-nav-item:hover {
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+  }
+
+  .mobile-nav-item.active {
+    color: var(--brand-accent);
+    background: rgba(99, 102, 241, 0.12);
+    font-weight: 700;
+  }
+
+  .mobile-drawer-footer {
+    padding-top: 0.75rem;
+    margin-top: 0.35rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .btn-drawer-cta {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+    color: #ffffff;
+    font-weight: 700;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+  }
+
+  @media (max-width: 900px) {
+    .desktop-nav {
+      display: none;
+    }
+
+    .btn-header-cta {
+      display: none;
+    }
+
+    .mobile-menu-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-nav-drawer:not(.hidden) {
+      display: block;
+    }
+  }
+</style>

@@ -1,0 +1,366 @@
+---
+// src/pages/contact.astro
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const breadcrumbs = [
+  { name: 'Contact & Feedback', href: '/contact' }
+];
+
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Exam Timer Online & Report a Problem",
+  "description": "Submit feedback, suggest new examination presets, or report bugs to the Exam Timer Online team.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Exam Timer Online"
+  }
+};
+---
+
+<Layout
+  title="Contact Us & Report a Problem / Send Feedback | Exam Timer Online"
+  description="Have feedback, a feature request, or spotted a bug? Contact the Exam Timer Online development team. We welcome student and teacher feedback."
+  canonical="https://examtimer.online/contact"
+  breadcrumbs={breadcrumbs}
+  customSchema={contactSchema}
+>
+  <SiteHeader />
+
+  <main class="page-main-container">
+
+    <!-- Hero Header -->
+    <header class="page-hero">
+      <nav class="breadcrumb-nav" aria-label="Breadcrumbs">
+        <a href="/">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span>Contact & Feedback</span>
+      </nav>
+      <span class="page-badge">📬 We're Listening</span>
+      <h1>Contact Us & Report a Problem</h1>
+      <p class="subtitle">
+        Found an issue with a timer clock? Have an idea for a new competitive exam preset or pacing feature? Share your thoughts directly with our engineering team.
+      </p>
+    </header>
+
+    <div class="contact-grid">
+      
+      <!-- Contact Form -->
+      <section class="form-card glass-panel">
+        <h2>Send Feedback or Report an Issue</h2>
+        <form id="contact-feedback-form" class="feedback-form">
+          
+          <div class="form-group">
+            <label for="feedback-category">Topic Category</label>
+            <select id="feedback-category" class="form-input" required>
+              <option value="bug">🐛 Report a Problem / Bug</option>
+              <option value="feature">💡 Feature Request / Suggestion</option>
+              <option value="preset">🎯 Suggest New Exam Preset (JEE, NEET, SAT, etc.)</option>
+              <option value="feedback" selected>⭐ General Feedback</option>
+              <option value="other">💬 Other Inquiry</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="feedback-name">Your Name (Optional)</label>
+              <input type="text" id="feedback-name" class="form-input" placeholder="e.g. Alex" />
+            </div>
+            <div class="form-group">
+              <label for="feedback-email">Email (Optional, for replies)</label>
+              <input type="email" id="feedback-email" class="form-input" placeholder="e.g. alex@example.com" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="feedback-message">Message or Problem Description</label>
+            <textarea id="feedback-message" rows="5" class="form-input" placeholder="Describe what happened, what you expected, or your feature idea..." required></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary-action" id="btn-submit-feedback">
+              <span>Send Feedback</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
+            <button type="button" class="btn-secondary-action" id="btn-copy-diagnostics" title="Copy device diagnostics to clipboard">
+              <span>📋 Copy Diagnostic Info</span>
+            </button>
+          </div>
+
+          <div id="form-toast-msg" class="feedback-toast hidden"></div>
+        </form>
+      </section>
+
+      <!-- Sidebar: Direct Channels & Device Diagnostics -->
+      <aside class="info-sidebar">
+        
+        <div class="sidebar-card glass-panel">
+          <span class="card-kicker">Direct Contact</span>
+          <h3>Educational Inquiries</h3>
+          <p>
+            Are you a school administrator, tutor, or testing center using Exam Timer Online? We'd love to hear how we can tailor our timer displays for your classrooms.
+          </p>
+          <div class="direct-email-box">
+            <span class="email-label">Support Email:</span>
+            <a href="mailto:support@examtimer.online" class="email-link">support@examtimer.online</a>
+          </div>
+        </div>
+
+        <div class="sidebar-card glass-panel" id="report-problem">
+          <span class="card-kicker">Diagnostics</span>
+          <h3>Client Diagnostic Data</h3>
+          <p class="diag-sub">This information helps our developers debug device-specific audio or layout issues:</p>
+          <div class="diag-code-box" id="diag-code-box">
+            <span class="diag-item">Detecting environment...</span>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+  <SiteFooter />
+</Layout>
+
+<script>
+  // Populate real-time client diagnostics
+  const diagBox = document.getElementById('diag-code-box');
+  const copyDiagBtn = document.getElementById('btn-copy-diagnostics');
+  const form = document.getElementById('contact-feedback-form') as HTMLFormElement | null;
+  const toast = document.getElementById('form-toast-msg');
+
+  function getDiagnosticReport(): string {
+    const ua = navigator.userAgent;
+    const isOnline = navigator.onLine ? 'Online' : 'Offline';
+    const resolution = `${window.innerWidth}x${window.innerHeight} (Screen: ${window.screen.width}x${window.screen.height})`;
+    const isPWA = window.matchMedia('(display-mode: standalone)').matches ? 'Installed PWA' : 'Browser Tab';
+    const theme = document.documentElement.classList.contains('dark') ? 'Dark Mode' : 'Light Mode';
+
+    return `OS/Browser: ${ua}\nScreen: ${resolution}\nNetwork: ${isOnline}\nMode: ${isPWA}\nTheme: ${theme}`;
+  }
+
+  if (diagBox) {
+    diagBox.innerHTML = `
+      <div class="diag-line"><strong>Browser:</strong> ${navigator.userAgent.substring(0, 45)}...</div>
+      <div class="diag-line"><strong>Viewport:</strong> ${window.innerWidth}x${window.innerHeight} px</div>
+      <div class="diag-line"><strong>Network Status:</strong> ${navigator.onLine ? '🟢 Connected' : '🔴 Offline'}</div>
+      <div class="diag-line"><strong>App Mode:</strong> ${window.matchMedia('(display-mode: standalone)').matches ? 'Installed PWA' : 'Web Browser'}</div>
+    `;
+  }
+
+  copyDiagBtn?.addEventListener('click', () => {
+    const report = getDiagnosticReport();
+    navigator.clipboard.writeText(report).then(() => {
+      if (toast) {
+        toast.innerText = "✓ Diagnostic specs copied to clipboard!";
+        toast.className = "feedback-toast success";
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 3500);
+      }
+    }).catch(() => {
+      alert("Diagnostics:\n" + report);
+    });
+  });
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const category = (document.getElementById('feedback-category') as HTMLSelectElement)?.value;
+    const message = (document.getElementById('feedback-message') as HTMLTextAreaElement)?.value;
+
+    if (!message || message.trim().length === 0) return;
+
+    if (toast) {
+      toast.innerText = "✓ Thank you! Your feedback has been received.";
+      toast.className = "feedback-toast success";
+      toast.classList.remove('hidden');
+    }
+
+    form.reset();
+  });
+</script>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+
+  .form-card {
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-card h2 {
+    margin: 0;
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .form-group label {
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+
+  .form-input:focus {
+    border-color: var(--brand-accent);
+    box-shadow: 0 0 0 3px rgba(var(--brand-accent-rgb), 0.15);
+  }
+
+  .form-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .feedback-toast {
+    padding: 0.85rem 1.25rem;
+    border-radius: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .feedback-toast.success {
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: var(--green-accent);
+  }
+
+  /* Sidebar */
+  .info-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .sidebar-card {
+    padding: 2rem 1.75rem;
+    border-radius: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .card-kicker {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--brand-accent);
+  }
+
+  .sidebar-card h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .sidebar-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  .direct-email-box {
+    margin-top: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .email-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .email-link {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--brand-accent);
+    text-decoration: none;
+  }
+
+  .email-link:hover {
+    text-decoration: underline;
+  }
+
+  .diag-sub {
+    font-size: 0.82rem !important;
+  }
+
+  .diag-code-box {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 0.85rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  @media (max-width: 860px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    .form-card {
+      padding: 1.75rem 1.25rem;
+    }
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
