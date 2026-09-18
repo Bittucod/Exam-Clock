@@ -1,3 +1,7 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
+
+# Sitemaps
+Sitemap: https://examtimer.online/sitemap.xml
+Sitemap: https://examtimer.online/sitemaps.xml

@@ -1,0 +1,30 @@
+# Exam Timer Online
+
+> Free online exam timer and mock test visual clock featuring realistic analog clock faces, high-precision digital countdown, custom warning chimes, question pacing assistant, and fullscreen distraction-free exam simulation. Works 100% offline with zero sign-up required.
+
+Exam Timer Online is built for students, test-takers, and educators preparing for timed competitive examinations such as JEE, NEET, SAT, ACT, GRE, GMAT, UPSC, and board exams. It replicates the visual experience of an exam room wall clock while providing pacing metrics and customizable audio alerts.
+
+## Core Pages & Application
+
+- [Exam Clock Dashboard](https://examtimer.online/): Interactive visual exam clock with synchronized analog and digital timers, custom duration and time window setups, 5 visual themes, fullscreen mode, and question progress tracking.
+- [Features](https://examtimer.online/features): In-depth catalog of features including 5 visual clock themes, distraction-free fullscreen, configurable chime milestones, strict mode, and offline PWA support.
+- [How It Works](https://examtimer.online/how-it-works): Comprehensive breakdown of the question pacing engine, time allocation algorithms, Web Audio sound synthesis, and offline-first architecture.
+- [Exam Guides & Strategies](https://examtimer.online/guide): Pacing strategies, section time allocation recommendations, and time management guides for competitive exams (JEE, NEET, SAT, UPSC).
+- [Timer Comparisons](https://examtimer.online/comparisons): Detailed benchmark and comparison of Exam Timer Online versus physical exam stopwatches, mobile phone timers, and standard Pomodoro apps.
+- [Frequently Asked Questions (FAQ)](https://examtimer.online/faq): Answers to questions regarding offline capabilities, browser sound permissions, privacy, screen sleep prevention, and mock exam best practices.
+
+## Information & Policies
+
+- [About Us](https://examtimer.online/about): The background, mission, and technology principles behind Exam Timer Online.
+- [Contact & Feedback](https://examtimer.online/contact): Feedback channels, feature requests, and bug reporting.
+- [Privacy Policy](https://examtimer.online/privacy): Clear privacy statement detailing 100% local-first client storage and zero personal data collection.
+- [Terms of Service](https://examtimer.online/terms): Usage terms, open educational access, and disclaimer information.
+
+## Key Capabilities & Technical Highlights
+
+- **Visual Analog Clock**: 5 mathematically accurate clock faces with real-time remaining pie-slice wedges and customizable ticks/hands.
+- **Synchronized Digital Display**: Millisecond-accurate digital countdown synchronized with the analog dial.
+- **Pacing Engine**: Dynamic question progress calculations showing required time per remaining question and ahead/behind delta indicators.
+- **Audio Milestone Chimes**: Web Audio API generated alerts (15m, 10m, 5m, and final gong) requiring no external sound file downloads.
+- **Strict Exam Mode**: Optional simulation mode that disables pausing to train authentic test-day discipline.
+- **100% Offline PWA**: Built with service worker caching so students can disconnect Wi-Fi to eliminate all online distractions.
