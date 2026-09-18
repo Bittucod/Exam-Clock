@@ -52,27 +52,43 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     </header>
 
     <!-- Main Dynamic Body -->
+    <!-- Main Dynamic Body -->
     <main class="app-main-content">
       
       <!-- SCREEN 1: Setup / Welcome Landing Page -->
       <section id="screen-setup" class="layout-split active">
         <div class="welcome-panel">
           <div class="hero-card glass-panel">
+            <div class="hero-header-badge">
+              <span class="pulse-dot"></span>
+              <span>Visual Time Architecture</span>
+            </div>
             <h2>Professional Exam Space</h2>
-            <p class="hero-tagline">Realistic visual manager optimized for mock tests & focus sessions.</p>
+            <p class="hero-tagline">Realistic exam room visual time manager with intelligent pacing guidance and distraction-free focus.</p>
             
             <div class="minimal-features">
-              <span class="feat-badge">⏱️ Visual Theme Clocks</span>
-              <span class="feat-badge">🎯 Pace Assistant</span>
-              <span class="feat-badge">🔒 Strict Exam Mock</span>
-              <span class="feat-badge">🔔 Milestones & Alerts</span>
+              <span class="feat-badge">⏱️ 5 Analog & Digital Themes</span>
+              <span class="feat-badge">🎯 Real-time Pace Assistant</span>
+              <span class="feat-badge">🔒 Strict Exam Simulation</span>
+              <span class="feat-badge">🔔 Web Audio Chime Alerts</span>
+            </div>
+
+            <!-- Instant Fast Start Presets Strip -->
+            <div class="fast-start-presets">
+              <span class="fast-start-title">Fast Start Presets:</span>
+              <div class="fast-preset-chips">
+                <button type="button" class="fast-chip" data-hours="1" data-mins="0" data-secs="0">⚡ 1 Hour</button>
+                <button type="button" class="fast-chip active" data-hours="2" data-mins="0" data-secs="0">⏱️ 2 Hours (Standard)</button>
+                <button type="button" class="fast-chip" data-hours="3" data-mins="0" data-secs="0">🎯 3 Hours (JEE/SAT)</button>
+                <button type="button" class="fast-chip pomo" data-hours="0" data-mins="25" data-secs="0">🍅 25m Pomodoro</button>
+              </div>
             </div>
           </div>
 
           <!-- Study mode selection widget -->
           <div class="study-mode-promo glass-panel hidden" id="study-presets-panel">
             <div class="study-promo-header">
-              <h4>Study Timer Options</h4>
+              <h4>Study Timer Presets</h4>
               <button type="button" class="text-action-btn" id="exit-study-mode-btn">Exit Study Mode</button>
             </div>
             <p class="promo-desc">Switch to Pomodoro sessions, a stopwatch, or custom countdown study blocks.</p>
@@ -90,78 +106,15 @@ import HistoryPanel from '../components/HistoryPanel.astro';
               <button type="button" class="study-choice-card" data-study="stopwatch">
                 <span class="study-icon">⏱️</span>
                 <span class="study-label">Stopwatch</span>
-                <span class="study-sub">Count-up Study Session</span>
+                <span class="study-sub">Count-up Focus Session</span>
               </button>
             </div>
           </div>
         </div>
 
+        <!-- Directly Accessible Setup Panel (Golden Path: No extra clicks) -->
         <div class="setup-panel">
-          <!-- Big Highlighted 'Set Timer' Hero Entry Card (Shown by default on landing) -->
-          <div id="setup-entry-card" class="setup-entry-card glass-panel">
-            <div class="entry-card-visual">
-              <div class="entry-clock-orb">
-                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="entry-main-clock-svg">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <polyline points="12 6 12 12 16 14"></polyline>
-                </svg>
-                <div class="entry-orb-ring"></div>
-                <div class="entry-orb-glow"></div>
-              </div>
-              <span class="entry-badge-pill">Ready to Begin</span>
-              <h2 class="entry-title">Exam & Study Session Timer</h2>
-              <p class="entry-tagline">Set your duration, exam window, pacing targets, and offline audio alerts.</p>
-            </div>
-
-            <!-- Big Glowing 'Set Timer' Action Button -->
-            <button type="button" id="btn-open-set-timer" class="btn-set-timer-cta">
-              <div class="cta-pulse-glow"></div>
-              <div class="cta-content-wrapper">
-                <div class="cta-icon-circle">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12 6 12 12 16 14"></polyline>
-                  </svg>
-                </div>
-                <div class="cta-label-stack">
-                  <span class="cta-head-text">Set Timer</span>
-                  <span class="cta-sub-text">Click to configure time duration & exam presets</span>
-                </div>
-                <div class="cta-arrow-circle">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </div>
-              </div>
-            </button>
-
-            <!-- Quick Instant Presets Bar -->
-            <div class="entry-instant-presets">
-              <span class="instant-preset-label">Or jump straight to instant presets:</span>
-              <div class="instant-preset-chips">
-                <button type="button" class="entry-preset-chip" data-hours="1" data-mins="0" data-secs="0">⚡ 1 Hour</button>
-                <button type="button" class="entry-preset-chip" data-hours="2" data-mins="0" data-secs="0">⏱️ 2 Hours</button>
-                <button type="button" class="entry-preset-chip" data-hours="3" data-mins="0" data-secs="0">🎯 3 Hours</button>
-                <button type="button" class="entry-preset-chip" data-hours="0" data-mins="25" data-secs="0">🍅 25m Pomo</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Configuration Form Card (Revealed when 'Set Timer' is clicked) -->
-          <div id="setup-form-wrapper" class="setup-form-wrapper hidden">
-            <div class="form-top-navigation">
-              <button type="button" id="btn-back-to-landing" class="btn-back-landing" title="Back to overview">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="19" y1="12" x2="5" y2="12"></line>
-                  <polyline points="12 19 5 12 12 5"></polyline>
-                </svg>
-                <span>Back</span>
-              </button>
-              <span class="form-nav-hint">Configuration Mode</span>
-            </div>
-            <TimerSetup />
-          </div>
+          <TimerSetup />
         </div>
       </section>
 
@@ -215,6 +168,175 @@ import HistoryPanel from '../components/HistoryPanel.astro';
         </div>
       </section>
 
+      <!-- Comprehensive Educational SEO Guide & FAQ Section (For Search Engines & Students) -->
+      <section class="seo-guide-container">
+        <!-- Section 1: Visual Time Architecture -->
+        <article class="seo-card glass-panel">
+          <div class="seo-badge">🕒 Temporal Architecture</div>
+          <h2>Why Practice with a Visual Analog Exam Timer?</h2>
+          <p>
+            Standard countdown clocks force candidates to continually perform mental arithmetic (e.g. <em>"I have 47 minutes left for 31 questions—how many seconds per question is that?"</em>). 
+            <strong>Exam Timer Online</strong> maps elapsed and remaining duration onto high-contrast angular sweep sectors. This engages peripheral vision and eliminates <strong>time blindness</strong> during high-stakes competitive examinations.
+          </p>
+          <div class="seo-benefits-grid">
+            <div class="benefit-item">
+              <div class="b-icon">🧠</div>
+              <h4>Prevents Time Blindness</h4>
+              <p>Analog hand sweeps let candidates monitor pacing with intuitive peripheral vision without interrupting problem-solving flow.</p>
+            </div>
+            <div class="benefit-item">
+              <div class="b-icon">⏱️</div>
+              <h4>Realistic Exam Hall Conditioning</h4>
+              <p>Physical test centers (JEE, NEET, SAT, UPSC, Bar Exams) feature wall-mounted clocks. Training with an analog face builds authentic temporal intuition.</p>
+            </div>
+            <div class="benefit-item">
+              <div class="b-icon">🎯</div>
+              <h4>Dynamic Question Pacing</h4>
+              <p>Real-time calculation alerts you immediately if you fall behind target pace, helping you make quick tactical skipping decisions.</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Section 2: Standardized Exam Timing Guide Matrix -->
+        <article class="seo-card glass-panel">
+          <div class="seo-badge">📊 Exam Pacing Matrix</div>
+          <h2>Standardized Exam Pacing & Timing Reference</h2>
+          <p>Recommended timing benchmarks for prominent national and international competitive examinations:</p>
+          
+          <div class="table-responsive">
+            <table class="exam-matrix-table">
+              <thead>
+                <tr>
+                  <th>Examination</th>
+                  <th>Total Duration</th>
+                  <th>Total Questions</th>
+                  <th>Target Pace / Question</th>
+                  <th>Recommended Preset</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>JEE Main (Paper 1)</strong></td>
+                  <td>180 min (3 Hours)</td>
+                  <td>75 Questions</td>
+                  <td>~2m 24s / question</td>
+                  <td><span class="matrix-badge">3 Hours Strict</span></td>
+                </tr>
+                <tr>
+                  <td><strong>NEET UG</strong></td>
+                  <td>200 min (3h 20m)</td>
+                  <td>180 Questions</td>
+                  <td>~1m 06s / question</td>
+                  <td><span class="matrix-badge">High Speed Pace</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Digital SAT</strong></td>
+                  <td>134 min (~2h 14m)</td>
+                  <td>98 Questions</td>
+                  <td>~1m 15s / question</td>
+                  <td><span class="matrix-badge">2 Hours Sectional</span></td>
+                </tr>
+                <tr>
+                  <td><strong>UPSC CSE Prelims (GS 1)</strong></td>
+                  <td>120 min (2 Hours)</td>
+                  <td>100 Questions</td>
+                  <td>~1m 12s / question</td>
+                  <td><span class="matrix-badge">2 Hours Standard</span></td>
+                </tr>
+                <tr>
+                  <td><strong>CAT (MBA Entrance)</strong></td>
+                  <td>120 min (40m/section)</td>
+                  <td>66 Questions</td>
+                  <td>~1m 49s / question</td>
+                  <td><span class="matrix-badge">Sectional Blocks</span></td>
+                </tr>
+                <tr>
+                  <td><strong>GMAT Focus Edition</strong></td>
+                  <td>135 min (45m/section)</td>
+                  <td>64 Questions</td>
+                  <td>~2m 06s / question</td>
+                  <td><span class="matrix-badge">Adaptive Strict</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- Section 3: FAQ Accordion -->
+        <article class="seo-card glass-panel">
+          <div class="seo-badge">❓ Frequently Asked Questions</div>
+          <h2>Frequently Asked Questions About Exam Timer Online</h2>
+          
+          <div class="faq-list">
+            <details class="faq-item" open>
+              <summary class="faq-question">
+                <span>How does Exam Timer Online help simulate real test conditions?</span>
+                <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </summary>
+              <div class="faq-answer">
+                <p>Exam Timer Online replicates physical examination rooms with analog sweep clocks, strict mode (pause-lock), customizable milestone chimes (e.g. at 15m, 10m, and 5m remaining), and a clean distraction-free fullscreen mode that mirrors official test hall conditions.</p>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">
+                <span>Does the countdown timer keep running if I switch tabs or lose internet?</span>
+                <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </summary>
+              <div class="faq-answer">
+                <p>Yes. The state engine calculates remaining time using true timestamp differentials (Date.now()) instead of fragile interval counters. It runs seamlessly offline via Service Worker Progressive Web App (PWA) caching.</p>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">
+                <span>Can I customize alarm sounds and milestone warnings?</span>
+                <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </summary>
+              <div class="faq-answer">
+                <p>Yes. You can choose from 6 synthesized tones (Classic Ding-Dong, Digital Beep, School Bell, Siren, Gentle Gong, Fanfare), add custom warning minute marks, and adjust master sound volume in the Settings drawer.</p>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">
+                <span>What keyboard shortcuts are available?</span>
+                <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </summary>
+              <div class="faq-answer">
+                <p>You can control the clock completely with your keyboard: <strong>Space</strong> (Pause / Resume), <strong>F</strong> (Fullscreen), <strong>M</strong> (Mute / Unmute), <strong>E</strong> (End Exam), <strong>]</strong> or <strong>→</strong> (Next Question), <strong>[</strong> or <strong>←</strong> (Previous Question), and <strong>Esc</strong> (Close modals/drawers).</p>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary class="faq-question">
+                <span>Is my exam history saved locally?</span>
+                <svg class="faq-chevron" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </summary>
+              <div class="faq-answer">
+                <p>Yes, all session metrics and summaries are saved locally in your browser's localStorage. No private data is ever sent to any remote server.</p>
+              </div>
+            </details>
+          </div>
+        </article>
+      </section>
+
+      <!-- Semantic Footer -->
+      <footer class="app-footer glass-panel">
+        <div class="footer-content">
+          <div class="footer-left">
+            <span class="footer-brand">⚡ Exam Timer Online</span>
+            <span class="footer-tagline">Visual Exam Room & Mock Test Pacing Clock</span>
+          </div>
+          <div class="footer-center">
+            <span class="offline-badge">🟢 100% Offline PWA Ready</span>
+          </div>
+          <div class="footer-right">
+            <span>&copy; {new Date().getFullYear()} Exam Timer Online. Free & Open Focus Tool.</span>
+          </div>
+        </div>
+      </footer>
+
     </main>
 
     <!-- Slide-out Drawers & Modals -->
@@ -225,12 +347,25 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       <div class="modal-content glass-panel">
         <div class="modal-header">
           <h3>Local Exam Logs</h3>
-          <button type="button" id="history-modal-close" class="close-btn">
+          <button type="button" id="history-modal-close" class="close-btn" aria-label="Close history modal">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
           </button>
         </div>
         <div class="modal-body">
           <HistoryPanel />
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom In-App Confirmation Modal (Replaces blocking native confirm) -->
+    <div id="app-confirm-dialog" class="modal-backdrop hidden">
+      <div class="modal-content glass-panel confirm-dialog-box">
+        <div class="confirm-icon-circle" id="confirm-icon-box">⚠️</div>
+        <h3 id="confirm-dialog-title">End Exam Session?</h3>
+        <p id="confirm-dialog-desc">Are you sure you want to end this session? Your metrics will be logged to History.</p>
+        <div class="confirm-dialog-actions">
+          <button type="button" id="confirm-cancel-btn" class="btn-dialog-secondary">Cancel / Continue</button>
+          <button type="button" id="confirm-accept-btn" class="btn-dialog-primary">Yes, End Exam</button>
         </div>
       </div>
     </div>
@@ -268,22 +403,52 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       </div>
     </div>
 
-    <!-- "Time's Up" Fullscreen Overlay -->
-    <div id="times-up-overlay" class="times-up-overlay hidden">
-      <div class="times-up-content glass-panel">
-        <div class="alarm-icon-bounce">🔔</div>
-        <h2>EXAM TIME IS UP!</h2>
-        <p>The countdown has reached zero. Please stop writing immediately.</p>
-        
-        <div class="times-up-actions">
-          <button type="button" id="times-up-new-btn" class="btn-start-exam">Start New Exam</button>
-          <button type="button" id="times-up-reset-btn" class="btn-sub-action">Reset and Clear</button>
+    <!-- PEAK-END RULE: Session Performance Debrief Overlay (Replaces raw alarm modal) -->
+    <div id="session-debrief-overlay" class="times-up-overlay hidden">
+      <div class="times-up-content glass-panel session-debrief-card">
+        <div class="debrief-header">
+          <div class="alarm-icon-bounce" id="debrief-icon">🎉</div>
+          <h2 id="debrief-title">Session Complete!</h2>
+          <p id="debrief-tagline">Great work! Here is your performance and pacing breakdown.</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="debrief-stats-grid">
+          <div class="debrief-stat-card">
+            <span class="debrief-stat-label">Focus Time</span>
+            <span class="debrief-stat-val text-accent" id="debrief-focus-time">02:30:00</span>
+            <span class="debrief-stat-sub" id="debrief-target-time">of 02:30:00 target</span>
+          </div>
+          <div class="debrief-stat-card">
+            <span class="debrief-stat-label">Completion</span>
+            <span class="debrief-stat-val" id="debrief-completion-pct">100%</span>
+            <span class="debrief-stat-sub" id="debrief-status-badge">Completed</span>
+          </div>
+          <div class="debrief-stat-card" id="debrief-questions-card">
+            <span class="debrief-stat-label">Pacing Target</span>
+            <span class="debrief-stat-val text-green" id="debrief-pace-rating">On Schedule</span>
+            <span class="debrief-stat-sub" id="debrief-pace-details">Pace managed</span>
+          </div>
+        </div>
+
+        <div class="debrief-actions">
+          <button type="button" id="debrief-restart-btn" class="btn-start-exam">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            Start New Session
+          </button>
+          <button type="button" id="debrief-history-btn" class="btn-dialog-secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3"></path><circle cx="12" cy="12" r="10"></circle></svg>
+            Review History
+          </button>
         </div>
       </div>
     </div>
 
     <!-- Fullscreen Flashing warning overlay when timer completes -->
     <div id="times-up-fullscreen-flash" class="fullscreen-flash-overlay hidden"></div>
+
+    <!-- Global Toast Notification Container -->
+    <div id="app-toast-container" class="toast-container"></div>
 
   </div>
 </Layout>
@@ -384,13 +549,14 @@ import HistoryPanel from '../components/HistoryPanel.astro';
 <style>
   /* App Viewport constraints */
   .app-viewport {
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
     background: var(--bg-primary);
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
   }
 
   /* Header style */
@@ -402,6 +568,7 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     align-items: center;
     gap: 1.5rem;
     z-index: 10;
+    flex-shrink: 0;
   }
 
   .header-logo-section {
@@ -500,18 +667,21 @@ import HistoryPanel from '../components/HistoryPanel.astro';
 
   /* Core Layout areas */
   .app-main-content {
-    padding: 0.5rem 1.5rem 1.5rem;
-    overflow: hidden;
+    padding: 0.5rem 1.5rem 3rem;
     position: relative;
-    height: 100%;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    flex: 1 0 auto;
   }
 
   .layout-split {
     display: none;
     grid-template-columns: 1.25fr 1fr;
     gap: 1.5rem;
-    height: 100%;
     align-items: stretch;
+    width: 100%;
+    margin-bottom: 2.5rem;
   }
 
   .layout-split.active {
@@ -1353,6 +1523,95 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     box-shadow: 0 4px 14px var(--brand-accent-glow);
   }
 
+  /* Hero Header Badge & Fast Presets */
+  .hero-header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.85rem;
+    border-radius: 9999px;
+    background: rgba(var(--brand-accent-rgb), 0.12);
+    border: 1px solid rgba(var(--brand-accent-rgb), 0.25);
+    color: var(--brand-accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    width: fit-content;
+  }
+
+  .pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--brand-accent);
+    box-shadow: 0 0 8px var(--brand-accent);
+    animation: blinker 1.5s infinite;
+  }
+
+  .fast-start-presets {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .fast-start-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .fast-preset-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .fast-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.85rem;
+    border-radius: 0.65rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .fast-chip:hover {
+    border-color: var(--brand-accent);
+    background: var(--bg-tertiary);
+    color: var(--brand-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--brand-accent-glow);
+  }
+
+  .fast-chip.active {
+    background: var(--brand-accent);
+    color: #ffffff;
+    border-color: var(--brand-accent);
+    box-shadow: 0 4px 14px var(--brand-accent-glow);
+  }
+
+  .fast-chip.pomo {
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+
+  .fast-chip.pomo:hover {
+    border-color: var(--red-accent);
+    color: var(--red-accent);
+  }
+
   /* Minimal Features Welcome Badge */
   .hero-tagline {
     font-size: 0.95rem !important;
@@ -1379,48 +1638,251 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   }
 
-  .times-up-content {
+  /* In-App Confirmation Dialog (Replaces native browser popup) */
+  .confirm-dialog-box {
     width: 100%;
-    max-width: 440px;
-    padding: 2.5rem;
+    max-width: 420px;
+    padding: 2rem 1.75rem;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.25rem;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    gap: 1rem;
+    border-radius: 1.25rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .alarm-icon-bounce {
-    font-size: 3.5rem;
-    animation: wobble 1s infinite;
-  }
-
-  .times-up-content h2 {
-    margin: 0;
-    font-size: 1.75rem;
-    font-weight: 800;
+  .confirm-icon-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.25);
     color: var(--red-accent);
-    letter-spacing: 0.05em;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .times-up-content p {
+  .confirm-dialog-box h3 {
     margin: 0;
-    font-size: 0.95rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .confirm-dialog-box p {
+    margin: 0;
+    font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.5;
   }
 
-  .times-up-actions {
-    display: flex;
-    flex-direction: column;
+  .confirm-dialog-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
     width: 100%;
     margin-top: 0.5rem;
   }
 
-  .times-up-actions button {
+  .btn-dialog-secondary {
+    padding: 0.75rem 1rem;
+    border-radius: 0.65rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-dialog-secondary:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--text-muted);
+  }
+
+  .btn-dialog-primary {
+    padding: 0.75rem 1rem;
+    border-radius: 0.65rem;
+    background: var(--red-accent);
+    border: none;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.35);
+    transition: all 0.2s ease;
+  }
+
+  .btn-dialog-primary:hover {
+    background: #dc2626;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.45);
+  }
+
+  /* PEAK-END RULE: Session Performance Debrief Card */
+  .session-debrief-card {
     width: 100%;
+    max-width: 500px;
+    padding: 2.25rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .debrief-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .alarm-icon-bounce {
+    font-size: 3rem;
+    margin-bottom: 0.25rem;
+    animation: bouncePop 0.8s ease;
+  }
+
+  @keyframes bouncePop {
+    0% { transform: scale(0.3); opacity: 0; }
+    60% { transform: scale(1.15); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .session-debrief-card h2 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .debrief-tagline {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+  }
+
+  .debrief-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    width: 100%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 1rem;
+  }
+
+  .debrief-stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+  }
+
+  .debrief-stat-card:not(:last-child) {
+    border-right: 1px solid var(--border-color);
+  }
+
+  .debrief-stat-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .debrief-stat-val {
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .debrief-stat-val.text-accent {
+    color: var(--brand-accent);
+  }
+
+  .debrief-stat-val.text-green {
+    color: var(--green-accent);
+  }
+
+  .debrief-stat-val.text-orange {
+    color: var(--orange-accent);
+  }
+
+  .debrief-stat-sub {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .debrief-actions {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .debrief-actions .btn-start-exam {
+    padding: 0.85rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  /* Global Toast Container */
+  .toast-container {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4000;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    pointer-events: none;
+  }
+
+  .app-toast {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    pointer-events: auto;
+    animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .app-toast.toast-danger {
+    border-color: rgba(239, 68, 68, 0.4);
+    background: rgba(239, 68, 68, 0.12);
+  }
+
+  .app-toast.toast-success {
+    border-color: rgba(16, 185, 129, 0.4);
+    background: rgba(16, 185, 129, 0.12);
+  }
+
+  @keyframes toastIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
   }
 
   /* Warning highlight critical triggers */
@@ -1463,41 +1925,275 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     75% { transform: rotate(-5deg); }
   }
 
+  /* Educational SEO Guide & FAQ Section Styling */
+  .seo-guide-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+    width: 100%;
+  }
+
+  .seo-card {
+    padding: 2.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .seo-badge {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--brand-accent);
+    background: rgba(var(--brand-accent-rgb), 0.1);
+    border: 1px solid rgba(var(--brand-accent-rgb), 0.25);
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+  }
+
+  .seo-card h2 {
+    margin: 0;
+    font-size: 1.65rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text-primary);
+  }
+
+  .seo-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+
+  .seo-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .benefit-item {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    border-radius: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .benefit-item:hover {
+    transform: translateY(-2px);
+    border-color: rgba(var(--brand-accent-rgb), 0.4);
+  }
+
+  .benefit-item .b-icon {
+    font-size: 1.75rem;
+  }
+
+  .benefit-item h4 {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .benefit-item p {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+
+  /* Responsive Pacing Table */
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border-color);
+  }
+
+  .exam-matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.9rem;
+  }
+
+  .exam-matrix-table th {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    font-weight: 600;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+  }
+
+  .exam-matrix-table td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-muted);
+  }
+
+  .exam-matrix-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .exam-matrix-table tbody tr:hover td {
+    background: rgba(var(--brand-accent-rgb), 0.04);
+  }
+
+  .exam-matrix-table strong {
+    color: var(--text-primary);
+  }
+
+  .matrix-badge {
+    display: inline-block;
+    padding: 0.25rem 0.65rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border-radius: 0.4rem;
+    background: rgba(var(--brand-accent-rgb), 0.12);
+    color: var(--brand-accent);
+    border: 1px solid rgba(var(--brand-accent-rgb), 0.25);
+    white-space: nowrap;
+  }
+
+  /* Interactive FAQ Accordion */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .faq-item {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+
+  .faq-item[open] {
+    border-color: rgba(var(--brand-accent-rgb), 0.4);
+  }
+
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.15rem 1.35rem;
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    transition: color 0.2s ease;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-chevron {
+    color: var(--text-muted);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+    color: var(--brand-accent);
+  }
+
+  .faq-answer {
+    padding: 0 1.35rem 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .faq-answer p {
+    margin: 0.75rem 0 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  /* Semantic Footer */
+  .app-footer {
+    padding: 1.5rem 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .footer-brand {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-primary);
+  }
+
+  .footer-tagline {
+    font-size: 0.8rem;
+  }
+
+  .offline-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    color: var(--green-accent);
+    border-radius: 9999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+
   /* Comprehensive Mobile, Tablet & Desktop Media Queries */
   @media (max-width: 1024px) {
-    .app-viewport {
-      overflow-y: auto;
-      height: auto;
-      min-height: 100vh;
-    }
-    
     .app-main-content {
-      height: auto;
-      overflow: visible;
+      padding: 0.5rem 1rem 2rem;
     }
 
     .layout-split {
       grid-template-columns: 1fr !important;
-      gap: 1.25rem;
-      height: auto;
+      gap: 1.5rem;
     }
 
     .welcome-panel,
     .setup-panel,
     .dashboard-sidebar-panel {
-      overflow-y: visible;
-      height: auto;
-    }
-
-    .setup-entry-card {
-      min-height: auto;
-      padding: 2rem 1.5rem;
+      width: 100%;
     }
 
     .dashboard-hero-panel {
-      height: auto;
-      aspect-ratio: auto;
-      padding: 2.5rem 1.5rem 2rem;
+      padding: 2.25rem 1.5rem 2rem;
     }
 
     .clock-stage {
@@ -1516,12 +2212,13 @@ import HistoryPanel from '../components/HistoryPanel.astro';
 
   @media (max-width: 768px) {
     .app-header {
+      margin: 0.5rem 0.75rem;
       padding: 0.6rem 0.85rem;
       gap: 0.5rem;
     }
 
     .header-logo-section h1 {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
     }
 
     .logo-badge {
@@ -1542,11 +2239,17 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     }
 
     .welcome-panel .hero-card {
-      padding: 1.25rem;
+      padding: 1.5rem 1.25rem;
     }
 
     .minimal-features {
-      justify-content: center;
+      justify-content: flex-start;
+      gap: 0.4rem;
+    }
+
+    .fast-chip {
+      padding: 0.5rem 0.85rem;
+      font-size: 0.85rem;
     }
 
     .dashboard-hero-panel {
@@ -1562,15 +2265,30 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     .digital-time-digits {
       font-size: clamp(2.2rem, 8vw, 3rem);
     }
+
+    .seo-card {
+      padding: 1.5rem 1.25rem;
+    }
+
+    .seo-card h2 {
+      font-size: 1.35rem;
+    }
+
+    .footer-content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
   }
 
   @media (max-width: 480px) {
     .app-header {
+      margin: 0.25rem 0.5rem;
       padding: 0.5rem 0.75rem;
     }
 
     .header-action-btn span {
-      display: none; /* Icon-only on very compact mobile headers */
+      display: none;
     }
 
     .header-action-btn {
@@ -1578,29 +2296,22 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       border-radius: 50%;
     }
 
-    .setup-entry-card {
-      padding: 1.5rem 1rem;
+    .welcome-panel .hero-card {
+      padding: 1.25rem 1rem;
     }
 
-    .entry-title {
-      font-size: 1.3rem;
+    .hero-card h2 {
+      font-size: 1.45rem;
     }
 
-    .btn-set-timer-cta {
-      padding: 0.95rem 1rem;
+    .fast-preset-chips {
+      gap: 0.4rem;
     }
 
-    .cta-head-text {
-      font-size: 1.15rem;
-    }
-
-    .cta-sub-text {
-      font-size: 0.7rem;
-    }
-
-    .cta-icon-circle {
-      width: 38px;
-      height: 38px;
+    .fast-chip {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
     }
 
     .dashboard-hero-panel {
@@ -1611,9 +2322,8 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       margin-top: 0.5rem;
     }
 
-    .hero-pause-btn {
-      padding: 0.4rem 1.1rem;
-      font-size: 0.8rem;
+    .debrief-stats-grid {
+      grid-template-columns: 1fr;
     }
 
     .times-up-content {
@@ -1623,145 +2333,164 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     .times-up-content h2 {
       font-size: 1.5rem;
     }
+
+    .app-main-content {
+      padding: 0.25rem 0.5rem 2rem;
+    }
+
+    .seo-benefits-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 
-<!-- Orchestration Client Code (The Timer Engine syncer) -->
+<!-- Orchestration Client Code (The Cognitive Timer Engine Syncer) -->
 <script>
-  import { TimerEngine } from '../scripts/timerState';
+  import { TimerEngine, type SessionSummary } from '../scripts/timerState';
   import { sound } from '../scripts/sound';
 
   // Instantiate the accurate state engine
   const engine = new TimerEngine();
 
-  // DOM Elements - General
+  // DOM Elements - General Views
   const screenSetup = document.getElementById('screen-setup')!;
   const screenDashboard = document.getElementById('screen-dashboard')!;
-  const systemTimeLabel = document.getElementById('sys-time')!;
-  const systemDateLabel = document.getElementById('sys-date')!;
+  const systemTimeLabel = document.getElementById('sys-time');
+  const systemDateLabel = document.getElementById('sys-date');
   const appViewport = document.querySelector('.app-viewport')!;
-  const btnToggleControls = document.getElementById('dashboard-toggle-controls-btn')!;
+  const btnToggleControls = document.getElementById('dashboard-toggle-controls-btn');
 
-  // DOM Elements - Buttons & Toggles
-  const headerSettingsBtn = document.getElementById('header-settings-btn')!;
-  const headerHistoryBtn = document.getElementById('header-history-btn')!;
-  const headerStudyBtn = document.getElementById('header-study-btn')!;
-  const exitStudyBtn = document.getElementById('exit-study-mode-btn')!;
-  const studyPresetsPanel = document.getElementById('study-presets-panel')!;
-  const settingsCloseBtn = document.getElementById('settings-close-btn')!;
-  const settingsResetBtn = document.getElementById('btn-reset-settings')!;
-  const historyModalBackdrop = document.getElementById('history-modal-backdrop')!;
-  const historyModalClose = document.getElementById('history-modal-close')!;
-  const settingsBackdrop = document.getElementById('settings-drawer-backdrop')!;
-  const settingsDrawer = document.getElementById('settings-drawer')!;
+  // DOM Elements - Header Actions
+  const headerSettingsBtn = document.getElementById('header-settings-btn');
+  const headerHistoryBtn = document.getElementById('header-history-btn');
+  const headerStudyBtn = document.getElementById('header-study-btn');
+  const exitStudyBtn = document.getElementById('exit-study-mode-btn');
+  const studyPresetsPanel = document.getElementById('study-presets-panel');
+  const settingsCloseBtn = document.getElementById('settings-close-btn');
+  const settingsResetBtn = document.getElementById('btn-reset-settings');
+  const historyModalBackdrop = document.getElementById('history-modal-backdrop');
+  const historyModalClose = document.getElementById('history-modal-close');
+  const settingsBackdrop = document.getElementById('settings-drawer-backdrop');
+  const settingsDrawer = document.getElementById('settings-drawer');
   
   // DOM Elements - Setup Form
-  const setupEntryCard = document.getElementById('setup-entry-card')!;
-  const setupFormWrapper = document.getElementById('setup-form-wrapper')!;
-  const btnOpenSetTimer = document.getElementById('btn-open-set-timer')!;
-  const btnBackToLanding = document.getElementById('btn-back-to-landing')!;
-  const btnLaunchExam = document.getElementById('btn-launch-exam')!;
-  const selectHours = document.getElementById('setup-hours') as HTMLInputElement;
-  const selectMinutes = document.getElementById('setup-minutes') as HTMLInputElement;
-  const selectSeconds = document.getElementById('setup-seconds') as HTMLInputElement;
-  const inputStartTime = document.getElementById('setup-start-time') as HTMLInputElement;
-  const inputEndTime = document.getElementById('setup-end-time') as HTMLInputElement;
-  const windowDurationFeedback = document.getElementById('window-duration-feedback')!;
-  const enableQuestionsToggle = document.getElementById('setup-enable-questions') as HTMLInputElement;
-  const questionsCollapsible = document.getElementById('setup-questions-collapsible')!;
-  const inputTotalQuestions = document.getElementById('setup-total-questions') as HTMLInputElement;
-  const strictModeToggle = document.getElementById('setup-strict-mode') as HTMLInputElement;
-  const standardPresetsContainer = document.getElementById('standard-presets-container')!;
-  const customPresetsContainer = document.getElementById('custom-presets-container')!;
-  const btnSaveCustomPreset = document.getElementById('btn-save-custom-preset')!;
+  const btnLaunchExam = document.getElementById('btn-launch-exam');
+  const selectHours = document.getElementById('setup-hours') as HTMLInputElement | null;
+  const selectMinutes = document.getElementById('setup-minutes') as HTMLInputElement | null;
+  const selectSeconds = document.getElementById('setup-seconds') as HTMLInputElement | null;
+  const inputStartTime = document.getElementById('setup-start-time') as HTMLInputElement | null;
+  const inputEndTime = document.getElementById('setup-end-time') as HTMLInputElement | null;
+  const windowDurationFeedback = document.getElementById('window-duration-feedback');
+  const enableQuestionsToggle = document.getElementById('setup-enable-questions') as HTMLInputElement | null;
+  const questionsCollapsible = document.getElementById('setup-questions-collapsible');
+  const inputTotalQuestions = document.getElementById('setup-total-questions') as HTMLInputElement | null;
+  const strictModeToggle = document.getElementById('setup-strict-mode') as HTMLInputElement | null;
+  const standardPresetsContainer = document.getElementById('standard-presets-container');
+  const customPresetsContainer = document.getElementById('custom-presets-container');
+  const btnSaveCustomPreset = document.getElementById('btn-save-custom-preset');
   
   // DOM Elements - Settings Form
-  const themeToggle = document.getElementById('settings-theme-toggle') as HTMLInputElement;
-  const selectClockRep = document.getElementById('settings-clock-rep') as HTMLSelectElement;
-  const selectClockTheme = document.getElementById('settings-clock-theme') as HTMLSelectElement;
-  const toggleShowSeconds = document.getElementById('settings-show-seconds') as HTMLInputElement;
-  const toggleShow24h = document.getElementById('settings-show-24h') as HTMLInputElement;
-  const toggleSoundOn = document.getElementById('settings-sound-enabled') as HTMLInputElement;
-  const volumeSlider = document.getElementById('settings-volume') as HTMLInputElement;
-  const volumeIndicator = document.getElementById('volume-indicator-val')!;
-  const selectAlarmSound = document.getElementById('settings-alarm-sound') as HTMLSelectElement;
-  const btnPreviewAlarmSound = document.getElementById('btn-preview-alarm-sound') as HTMLButtonElement;
-  const inputWarningMinutes = document.getElementById('warning-minutes-input') as HTMLInputElement;
-  const btnAddWarning = document.getElementById('btn-add-warning')!;
-  const warningsListContainer = document.getElementById('settings-warnings-list')!;
+  const themeToggle = document.getElementById('settings-theme-toggle') as HTMLInputElement | null;
+  const selectClockRep = document.getElementById('settings-clock-rep') as HTMLSelectElement | null;
+  const selectClockTheme = document.getElementById('settings-clock-theme') as HTMLSelectElement | null;
+  const toggleShowSeconds = document.getElementById('settings-show-seconds') as HTMLInputElement | null;
+  const toggleShow24h = document.getElementById('settings-show-24h') as HTMLInputElement | null;
+  const toggleSoundOn = document.getElementById('settings-sound-enabled') as HTMLInputElement | null;
+  const volumeSlider = document.getElementById('settings-volume') as HTMLInputElement | null;
+  const volumeIndicator = document.getElementById('volume-indicator-val');
+  const selectAlarmSound = document.getElementById('settings-alarm-sound') as HTMLSelectElement | null;
+  const btnPreviewAlarmSound = document.getElementById('btn-preview-alarm-sound');
+  const inputWarningMinutes = document.getElementById('warning-minutes-input') as HTMLInputElement | null;
+  const btnAddWarning = document.getElementById('btn-add-warning');
+  const warningsListContainer = document.getElementById('settings-warnings-list');
 
   // DOM Elements - Dashboard Outputs
-  const dashboardStatus = document.getElementById('dashboard-status-label')!;
-  const pomoStageBadge = document.getElementById('pomo-stage-badge')!;
-  const digitsCountdown = document.getElementById('digital-countdown-time')!;
-  const progressFill = document.getElementById('progress-bar-fill')!;
-  const progressDisplayCard = document.querySelector('.progress-display-card')!;
+  const dashboardStatus = document.getElementById('dashboard-status-label');
+  const pomoStageBadge = document.getElementById('pomo-stage-badge');
+  const digitsCountdown = document.getElementById('digital-countdown-time');
+  const progressFill = document.getElementById('progress-bar-fill');
+  const progressDisplayCard = document.querySelector('.progress-display-card');
   
   // Metrics DOM
-  const metricPercent = document.getElementById('metric-percent')!;
-  const metricEndTime = document.getElementById('metric-end-time')!;
-  const metricElapsed = document.getElementById('metric-elapsed')!;
-  const metricRemaining = document.getElementById('metric-remaining')!;
-  const metricTotal = document.getElementById('metric-total')!;
+  const metricPercent = document.getElementById('metric-percent');
+  const metricEndTime = document.getElementById('metric-end-time');
+  const metricElapsed = document.getElementById('metric-elapsed');
+  const metricRemaining = document.getElementById('metric-remaining');
+  const metricTotal = document.getElementById('metric-total');
   
   // Tracker DOM
-  const qTrackerCard = document.getElementById('questions-tracker-card')!;
-  const qTrackerTotalBadge = document.getElementById('tracker-q-total')!;
-  const qTrackerSuggested = document.getElementById('tracker-suggested-q')!;
-  const qTrackerTimePerQ = document.getElementById('tracker-time-per-q')!;
-  const qTrackerStatusDot = document.getElementById('tracker-status-dot')!;
-  const qTrackerStatusText = document.getElementById('tracker-status-text')!;
-  const qTrackerCurrentQ = document.getElementById('tracker-current-q')!;
-  const btnTrackerQDec = document.getElementById('tracker-q-dec')!;
-  const btnTrackerQInc = document.getElementById('tracker-q-inc')!;
-  const warningToastHost = document.getElementById('warning-toast-host')!;
+  const qTrackerCard = document.getElementById('questions-tracker-card');
+  const qTrackerTotalBadge = document.getElementById('tracker-q-total');
+  const qTrackerSuggested = document.getElementById('tracker-suggested-q');
+  const qTrackerTimePerQ = document.getElementById('tracker-time-per-q');
+  const qTrackerStatusDot = document.getElementById('tracker-status-dot');
+  const qTrackerStatusText = document.getElementById('tracker-status-text');
+  const qTrackerCurrentQ = document.getElementById('tracker-current-q');
+  const btnTrackerQDec = document.getElementById('tracker-q-dec');
+  const btnTrackerQInc = document.getElementById('tracker-q-inc');
+  const warningToastHost = document.getElementById('warning-toast-host');
 
   // DOM Elements - Controls
-  const ctrlPlayPause = document.getElementById('ctrl-play-pause') as HTMLButtonElement;
-  const ctrlPlayPauseText = document.getElementById('ctrl-play-pause-text')!;
-  const ctrlEndExam = document.getElementById('ctrl-end-exam') as HTMLButtonElement;
-  const ctrlReset = document.getElementById('ctrl-reset') as HTMLButtonElement;
-  const ctrlFullscreen = document.getElementById('ctrl-fullscreen') as HTMLButtonElement;
-  const ctrlSound = document.getElementById('ctrl-sound') as HTMLButtonElement;
-  const ctrlSoundText = document.getElementById('ctrl-sound-text')!;
-  const iconPause = document.getElementById('icon-pause')!;
-  const iconPlay = document.getElementById('icon-play')!;
-  const iconVolOn = document.getElementById('icon-volume-on')!;
-  const iconVolMute = document.getElementById('icon-volume-mute')!;
+  const ctrlPlayPause = document.getElementById('ctrl-play-pause') as HTMLButtonElement | null;
+  const ctrlPlayPauseText = document.getElementById('ctrl-play-pause-text');
+  const ctrlEndExam = document.getElementById('ctrl-end-exam') as HTMLButtonElement | null;
+  const ctrlReset = document.getElementById('ctrl-reset') as HTMLButtonElement | null;
+  const ctrlFullscreen = document.getElementById('ctrl-fullscreen') as HTMLButtonElement | null;
+  const ctrlSound = document.getElementById('ctrl-sound') as HTMLButtonElement | null;
+  const ctrlSoundText = document.getElementById('ctrl-sound-text');
+  const iconPause = document.getElementById('icon-pause');
+  const iconPlay = document.getElementById('icon-play');
+  const iconVolOn = document.getElementById('icon-volume-on');
+  const iconVolMute = document.getElementById('icon-volume-mute');
 
   // DOM Elements - Fullscreen
-  const fsOverlay = document.getElementById('fullscreen-exam-overlay')!;
-  const fsExamName = document.getElementById('fs-exam-name')!;
-  const fsStatus = document.getElementById('fs-status')!;
-  const fsDigitalTime = document.getElementById('fs-digital-time')!;
-  const fsPercentRemaining = document.getElementById('fs-percent-remaining')!;
-  const fsEndsTime = document.getElementById('fs-ends-time')!;
-  const fsPlayPauseBtn = document.getElementById('fs-play-pause-btn') as HTMLButtonElement;
-  const fsExitBtn = document.getElementById('fs-exit-btn')!;
-  const iconFsEnter = document.getElementById('icon-fs-enter')!;
-  const iconFsExit = document.getElementById('icon-fs-exit')!;
+  const fsOverlay = document.getElementById('fullscreen-exam-overlay');
+  const fsExamName = document.getElementById('fs-exam-name');
+  const fsStatus = document.getElementById('fs-status');
+  const fsDigitalTime = document.getElementById('fs-digital-time');
+  const fsPercentRemaining = document.getElementById('fs-percent-remaining');
+  const fsEndsTime = document.getElementById('fs-ends-time');
+  const fsPlayPauseBtn = document.getElementById('fs-play-pause-btn') as HTMLButtonElement | null;
+  const fsExitBtn = document.getElementById('fs-exit-btn');
+  const iconFsEnter = document.getElementById('icon-fs-enter');
+  const iconFsExit = document.getElementById('icon-fs-exit');
 
-  // DOM Elements - Time's Up
-  const timesUpOverlay = document.getElementById('times-up-overlay')!;
-  const timesUpFullscreenFlash = document.getElementById('times-up-fullscreen-flash')!;
-  const timesUpNewBtn = document.getElementById('times-up-new-btn')!;
-  const timesUpResetBtn = document.getElementById('times-up-reset-btn')!;
-  const historyListContainer = document.getElementById('history-list-container')!;
-  const historyClearBtn = document.getElementById('history-clear-btn')!;
+  // In-App Confirm Dialog Elements
+  const confirmDialog = document.getElementById('app-confirm-dialog');
+  const confirmTitle = document.getElementById('confirm-dialog-title');
+  const confirmDesc = document.getElementById('confirm-dialog-desc');
+  const confirmCancelBtn = document.getElementById('confirm-cancel-btn');
+  const confirmAcceptBtn = document.getElementById('confirm-accept-btn');
+  let confirmCallback: (() => void) | null = null;
+
+  // Peak-End Session Debrief Elements
+  const sessionDebriefOverlay = document.getElementById('session-debrief-overlay');
+  const debriefIcon = document.getElementById('debrief-icon');
+  const debriefTitle = document.getElementById('debrief-title');
+  const debriefTagline = document.getElementById('debrief-tagline');
+  const debriefFocusTime = document.getElementById('debrief-focus-time');
+  const debriefTargetTime = document.getElementById('debrief-target-time');
+  const debriefCompletionPct = document.getElementById('debrief-completion-pct');
+  const debriefStatusBadge = document.getElementById('debrief-status-badge');
+  const debriefQuestionsCard = document.getElementById('debrief-questions-card');
+  const debriefPaceRating = document.getElementById('debrief-pace-rating');
+  const debriefPaceDetails = document.getElementById('debrief-pace-details');
+  const debriefRestartBtn = document.getElementById('debrief-restart-btn');
+  const debriefHistoryBtn = document.getElementById('debrief-history-btn');
+  const timesUpFullscreenFlash = document.getElementById('times-up-fullscreen-flash');
+
+  const historyListContainer = document.getElementById('history-list-container');
+  const historyClearBtn = document.getElementById('history-clear-btn');
+  const toastContainer = document.getElementById('app-toast-container');
 
   // Clock Hand SVG Elements
   const hands = {
-    // Classic Pro Analog
     classicHour: document.querySelectorAll('.clock-classic-hour') as NodeListOf<SVGElement>,
     classicMinute: document.querySelectorAll('.clock-classic-minute') as NodeListOf<SVGElement>,
     classicSecond: document.querySelectorAll('.clock-classic-second') as NodeListOf<SVGElement>,
-    
-    // Minimalist Wall Analog
     wallHour: document.querySelectorAll('.theme-wall .wall-clock-hand.hour-hand') as NodeListOf<SVGElement>,
     wallMinute: document.querySelectorAll('.theme-wall .wall-clock-hand.minute-hand') as NodeListOf<SVGElement>,
     wallSecond: document.querySelectorAll('.theme-wall .wall-clock-hand.second-hand') as NodeListOf<SVGElement>,
-
-    // Film Countdown Rotator
     filmRotator: document.querySelectorAll('.film-arm') as NodeListOf<SVGElement>
   };
 
@@ -1771,9 +2500,45 @@ import HistoryPanel from '../components/HistoryPanel.astro';
   let activeTab: 'duration' | 'window' = 'duration';
   let isTimerRunning = false;
   let isTimerPaused = false;
-  let setupDurationSec = 9000; // default 2h 30m
+  let setupDurationSec = 7200; // default 2 hours (standard mock)
   let isSoundMuted = false;
   let lastRenderedFlipSec = -1;
+
+  // In-App Toast Helper
+  function showToast(message: string, type: 'info' | 'success' | 'danger' = 'info', duration = 4000) {
+    if (!toastContainer) return;
+    const toast = document.createElement('div');
+    toast.className = `app-toast ${type === 'danger' ? 'toast-danger' : type === 'success' ? 'toast-success' : ''}`;
+    toast.innerHTML = `
+      <span>${message}</span>
+    `;
+    toastContainer.appendChild(toast);
+    setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(10px)';
+      setTimeout(() => toast.remove(), 300);
+    }, duration);
+  }
+
+  // Non-blocking in-app confirmation modal
+  function showConfirmDialog(title: string, desc: string, acceptLabel: string, onAccept: () => void) {
+    if (!confirmDialog || !confirmTitle || !confirmDesc || !confirmAcceptBtn) {
+      if (confirm(desc)) onAccept();
+      return;
+    }
+    confirmTitle.innerText = title;
+    confirmDesc.innerText = desc;
+    confirmAcceptBtn.innerText = acceptLabel;
+    confirmCallback = onAccept;
+    confirmDialog.classList.remove('hidden');
+  }
+
+  function hideConfirmDialog() {
+    if (confirmDialog) {
+      confirmDialog.classList.add('hidden');
+    }
+    confirmCallback = null;
+  }
 
   // SVG Sector wedge path math
   function getSectorPath(angleDegrees: number, r = 190) {
@@ -1792,7 +2557,7 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     return `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} Z`;
   }
 
-  // 3D Flip Card transition digit updates using Web Animations API (exact GSAP/TweenMax physics)
+  // 3D Flip Card transition digit updates
   function animateFlipCard(cardEl: HTMLElement | null, val: string) {
     if (!cardEl) return;
     const top = cardEl.querySelector('.top') as HTMLElement;
@@ -1806,11 +2571,9 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     const currentVal = top.textContent?.trim();
     if (currentVal === String(val)) return;
 
-    // 1. Update the back values before animation starts
     backTopSpan.textContent = String(val);
     backBottomSpan.textContent = String(val);
 
-    // 2. Animate top card folding down (0deg -> -180deg)
     const topAnim = top.animate([
       { transform: 'perspective(300px) rotateX(0deg)' },
       { transform: 'perspective(300px) rotateX(-180deg)' }
@@ -1820,7 +2583,6 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       fill: 'forwards'
     });
 
-    // 3. Animate back_top card unfolding down (180deg -> 0deg)
     const backTopAnim = backTop.animate([
       { transform: 'perspective(300px) rotateX(180deg)' },
       { transform: 'perspective(300px) rotateX(0deg)' }
@@ -1830,7 +2592,6 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       fill: 'forwards'
     });
 
-    // 4. When animation completes, update static top and bottom and restore resting transform
     topAnim.onfinish = () => {
       top.textContent = String(val);
       bottom.textContent = String(val);
@@ -1958,14 +2719,12 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     }
     ctx.restore();
 
-    // Brass/Metal rim
     ctx.lineWidth = lensR * 0.12;
     ctx.strokeStyle = theme.rim;
     ctx.beginPath();
     ctx.arc(lx, ly, lensR, 0, TAU);
     ctx.stroke();
 
-    // Reflection highlight
     ctx.lineWidth = lensR * 0.08;
     ctx.strokeStyle = 'rgba(255,255,255,0.4)';
     ctx.beginPath();
@@ -2077,7 +2836,8 @@ import HistoryPanel from '../components/HistoryPanel.astro';
 
   function resizeMagnifierCanvases() {
     magnifierCanvases.forEach(canvas => {
-      const parent = canvas.parentElement!;
+      const parent = canvas.parentElement;
+      if (!parent) return;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const rect = parent.getBoundingClientRect();
       const size = Math.max(100, Math.min(rect.width || 380, rect.height || 380));
@@ -2087,8 +2847,8 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       canvas.style.width = size + 'px';
       canvas.style.height = size + 'px';
       
-      const ctx = canvas.getContext('2d')!;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const ctx = canvas.getContext('2d');
+      if (ctx) ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     });
   }
 
@@ -2115,18 +2875,18 @@ import HistoryPanel from '../components/HistoryPanel.astro';
 
     // Apply Theme Toggle Class
     const hasDarkClass = document.documentElement.classList.contains('dark');
-    themeToggle.checked = hasDarkClass;
+    if (themeToggle) themeToggle.checked = hasDarkClass;
 
-    // Apply inputs values
-    toggleShowSeconds.checked = engine.settings.showSeconds;
-    toggleShow24h.checked = engine.settings.show24h;
-    toggleSoundOn.checked = engine.settings.soundOn;
-    volumeSlider.value = String(engine.settings.volume);
-    volumeIndicator.innerText = `${engine.settings.volume}%`;
-    selectClockRep.value = engine.settings.clockRepresentation;
-    selectClockTheme.value = engine.settings.clockTheme || 'classic';
-    selectAlarmSound.value = engine.settings.alarmSound || 'classic';
-    strictModeToggle.checked = engine.settings.strictMode;
+    // Apply inputs values safely
+    if (toggleShowSeconds) toggleShowSeconds.checked = engine.settings.showSeconds;
+    if (toggleShow24h) toggleShow24h.checked = engine.settings.show24h;
+    if (toggleSoundOn) toggleSoundOn.checked = engine.settings.soundOn;
+    if (volumeSlider) volumeSlider.value = String(engine.settings.volume);
+    if (volumeIndicator) volumeIndicator.innerText = `${engine.settings.volume}%`;
+    if (selectClockRep) selectClockRep.value = engine.settings.clockRepresentation;
+    if (selectClockTheme) selectClockTheme.value = engine.settings.clockTheme || 'classic';
+    if (selectAlarmSound) selectAlarmSound.value = engine.settings.alarmSound || 'classic';
+    if (strictModeToggle) strictModeToggle.checked = engine.settings.strictMode;
 
     // Set clock face classes
     updateClockFaceConfig();
@@ -2145,15 +2905,14 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       switchToSetup();
     }
 
-    // Default start/end window inputs to current time + 2h 30m
+    // Default start/end window inputs to current time + 2 hours
     const now = new Date();
     const startStr = formatTimeInput(now);
     now.setHours(now.getHours() + 2);
-    now.setMinutes(now.getMinutes() + 30);
     const endStr = formatTimeInput(now);
 
-    inputStartTime.value = startStr;
-    inputEndTime.value = endStr;
+    if (inputStartTime) inputStartTime.value = startStr;
+    if (inputEndTime) inputEndTime.value = endStr;
     calculateWindowDuration();
   }
 
@@ -2185,12 +2944,11 @@ import HistoryPanel from '../components/HistoryPanel.astro';
   }
 
   function calculateWindowDuration() {
-    if (!inputStartTime.value || !inputEndTime.value) return;
+    if (!inputStartTime?.value || !inputEndTime?.value) return;
     const today = new Date().toDateString();
     const start = new Date(`${today} ${inputStartTime.value}`);
     let end = new Date(`${today} ${inputEndTime.value}`);
 
-    // If end time is earlier than start time, assume it spans to next day
     if (end.getTime() < start.getTime()) {
       end.setDate(end.getDate() + 1);
     }
@@ -2201,7 +2959,9 @@ import HistoryPanel from '../components/HistoryPanel.astro';
 
     const hours = Math.floor(diffSec / 3600);
     const mins = Math.floor((diffSec % 3600) / 60);
-    windowDurationFeedback.innerText = `Calculated Duration: ${hours} Hours ${mins} Minutes`;
+    if (windowDurationFeedback) {
+      windowDurationFeedback.innerText = `Calculated Duration: ${hours} Hours ${mins} Minutes`;
+    }
   }
 
   // Theme update
@@ -2209,25 +2969,25 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     if (dark) {
       document.documentElement.classList.add('dark');
       localStorage.setItem('exam-clock-theme', 'dark');
-      document.querySelector('meta[name="theme-color"]')!.setAttribute('content', '#0a0a0c');
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0a0a0c');
     } else {
       document.documentElement.classList.remove('dark');
       localStorage.setItem('exam-clock-theme', 'light');
-      document.querySelector('meta[name="theme-color"]')!.setAttribute('content', '#f8fafc');
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#f8fafc');
     }
   }
 
   // Update clock SVG appearance
   function updateClockFaceConfig() {
-    // Show/hide 24h
-    const grid24 = document.getElementById('clock-24h-numbers')!;
-    if (engine.settings.show24h) {
-      grid24.classList.remove('hidden');
-    } else {
-      grid24.classList.add('hidden');
+    const grid24 = document.getElementById('clock-24h-numbers');
+    if (grid24) {
+      if (engine.settings.show24h) {
+        grid24.classList.remove('hidden');
+      } else {
+        grid24.classList.add('hidden');
+      }
     }
 
-    // Seconds hand visibility
     const visible = engine.settings.showSeconds;
     hands.classicSecond.forEach(hand => {
       hand.style.display = visible ? 'block' : 'none';
@@ -2237,37 +2997,17 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     });
   }
 
-  // Screens toggle
-  function openSetupForm() {
-    setupEntryCard.classList.add('hidden');
-    setupFormWrapper.classList.remove('hidden');
-  }
-
-  function closeSetupForm() {
-    setupFormWrapper.classList.add('hidden');
-    setupEntryCard.classList.remove('hidden');
-  }
-
   function switchToSetup() {
     screenDashboard.classList.remove('active');
     screenSetup.classList.add('active');
-    closeSetupForm();
-    
-    // Remove distraction free modes
     screenDashboard.classList.remove('distraction-free');
     appViewport.classList.remove('distraction-free-viewport');
-    
     renderHistoryList();
   }
 
   function switchToDashboard() {
     screenSetup.classList.remove('active');
     screenDashboard.classList.add('active');
-    
-    // Automatically apply distraction-free modes on start
-    screenDashboard.classList.add('distraction-free');
-    appViewport.classList.add('distraction-free-viewport');
-    
     renderHistoryList();
   }
 
@@ -2275,37 +3015,87 @@ import HistoryPanel from '../components/HistoryPanel.astro';
   function launchSession() {
     let duration = 0;
     if (activeTab === 'duration') {
-      const h = parseInt(selectHours.value) || 0;
-      const m = parseInt(selectMinutes.value) || 0;
-      const s = parseInt(selectSeconds.value) || 0;
+      const h = parseInt(selectHours?.value || '0') || 0;
+      const m = parseInt(selectMinutes?.value || '0') || 0;
+      const s = parseInt(selectSeconds?.value || '0') || 0;
       duration = h * 3600 + m * 60 + s;
     } else {
       duration = setupDurationSec;
     }
 
     if (duration <= 0) {
-      alert("Invalid duration. Please enter an exam length greater than zero.");
+      showToast("Please enter an exam length greater than zero.", 'danger');
       return;
     }
 
-    const showQ = enableQuestionsToggle.checked;
-    const totalQ = showQ ? parseInt(inputTotalQuestions.value) || 0 : 0;
+    const showQ = enableQuestionsToggle?.checked || false;
+    const totalQ = showQ ? parseInt(inputTotalQuestions?.value || '0') || 0 : 0;
     
-    // Read preset names or custom name
-    let name = "Custom Exam Session";
-    const activePresetBtn = standardPresetsContainer.querySelector('.preset-badge.active');
+    let name = "Mock Test Session";
+    const activePresetBtn = standardPresetsContainer?.querySelector('.preset-badge.active');
     if (activePresetBtn) {
-      name = activePresetBtn.textContent + " Mock";
+      name = (activePresetBtn.textContent || "Mock") + " Mock Test";
     }
 
     engine.startExam(name, duration, totalQ, showQ);
-    sound.playBeep(523.25, 0.4); // play start beep
+    sound.playBeep(523.25, 0.4);
     switchToDashboard();
+    showToast("Exam timer started. Focus and good luck!", 'success');
+  }
+
+  // Peak-End Debrief Trigger
+  function showSessionDebrief(summary: SessionSummary) {
+    if (!sessionDebriefOverlay) return;
+
+    if (debriefTitle) debriefTitle.innerText = summary.status === 'Completed' ? "Exam Time Is Complete!" : "Exam Session Concluded";
+    if (debriefIcon) debriefIcon.innerText = summary.status === 'Completed' ? "🎉" : "📋";
+    if (debriefTagline) debriefTagline.innerText = `${summary.name} • ${summary.status}`;
+
+    if (debriefFocusTime) debriefFocusTime.innerText = formatTimeDigits(summary.elapsedSec);
+    if (debriefTargetTime) debriefTargetTime.innerText = `of ${formatTimeDigits(summary.durationSec)} target`;
+    if (debriefCompletionPct) debriefCompletionPct.innerText = `${summary.completionPercent}%`;
+    if (debriefStatusBadge) {
+      debriefStatusBadge.innerText = summary.status;
+      debriefStatusBadge.className = `debrief-stat-sub ${summary.status === 'Completed' ? 'text-green' : 'text-orange'}`;
+    }
+
+    if (debriefQuestionsCard) {
+      if (summary.totalQuestions && summary.totalQuestions > 0) {
+        debriefQuestionsCard.style.display = 'flex';
+        if (debriefPaceRating) {
+          if (summary.paceRating === 'ahead') {
+            debriefPaceRating.innerText = "Ahead of Schedule";
+            debriefPaceRating.className = "debrief-stat-val text-green";
+          } else if (summary.paceRating === 'behind') {
+            debriefPaceRating.innerText = "Behind Schedule";
+            debriefPaceRating.className = "debrief-stat-val text-orange";
+          } else {
+            debriefPaceRating.innerText = "On Target";
+            debriefPaceRating.className = "debrief-stat-val text-green";
+          }
+        }
+        if (debriefPaceDetails && summary.avgTimePerQuestionSec) {
+          debriefPaceDetails.innerText = `Target: ${formatSecondsToReadable(summary.avgTimePerQuestionSec)}/Q`;
+        }
+      } else {
+        debriefQuestionsCard.style.display = 'none';
+      }
+    }
+
+    sessionDebriefOverlay.classList.remove('hidden');
+    if (timesUpFullscreenFlash) timesUpFullscreenFlash.classList.remove('hidden');
+    sound.startAlarmLoop(engine.settings.alarmSound || 'classic');
+  }
+
+  function hideSessionDebrief() {
+    sound.stopAlarmLoop();
+    if (sessionDebriefOverlay) sessionDebriefOverlay.classList.add('hidden');
+    if (timesUpFullscreenFlash) timesUpFullscreenFlash.classList.add('hidden');
+    switchToSetup();
   }
 
   // Ticking main animation frame loop (Synchronous render)
   function clockTickLoop() {
-    // 1. Update system wall clocks
     const now = new Date();
     const formattedSysTime = now.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
     const formattedSysDate = now.toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' });
@@ -2313,150 +3103,141 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     if (systemTimeLabel) systemTimeLabel.innerText = formattedSysTime;
     if (systemDateLabel) systemDateLabel.innerText = formattedSysDate;
 
-    // 2. If timer is active, update dashboard
     if (engine.activeTimer) {
       const metrics = engine.getTimerMetrics();
 
-      // Check warnings alerts
       const warningMin = engine.checkWarnings(metrics.remaining);
       if (warningMin !== null) {
         triggerWarningNotification(warningMin);
       }
 
-      // Sync variables
       isTimerRunning = engine.activeTimer.isRunning;
       isTimerPaused = engine.activeTimer.isPaused;
 
-      // Handle Strict Exam Mode Pause disable
       if (engine.activeTimer.mode === 'exam' && engine.activeTimer.strictMode) {
-        ctrlPlayPause.disabled = true;
-        fsPlayPauseBtn.disabled = true;
+        if (ctrlPlayPause) ctrlPlayPause.disabled = true;
+        if (fsPlayPauseBtn) fsPlayPauseBtn.disabled = true;
       } else {
-        ctrlPlayPause.disabled = false;
-        fsPlayPauseBtn.disabled = false;
+        if (ctrlPlayPause) ctrlPlayPause.disabled = false;
+        if (fsPlayPauseBtn) fsPlayPauseBtn.disabled = false;
       }
 
-      // Check completion status (Zero reached)
+      // Timer Expiry Trigger
       if (metrics.remaining <= 0 && isTimerRunning) {
-        // Complete session
-        timesUpOverlay.classList.remove('hidden');
-        timesUpFullscreenFlash.classList.remove('hidden');
-        sound.startAlarmLoop(engine.settings.alarmSound || 'classic');
-        // Set state status complete
-        engine.reset('Completed');
+        const summary = engine.reset('Completed');
         isTimerRunning = false;
+        if (summary) showSessionDebrief(summary);
       }
 
-      // Sync Digital Timers
       const digits = formatTimeDigits(metrics.remaining);
-      digitsCountdown.innerText = digits;
-      fsDigitalTime.innerText = digits;
+      if (digitsCountdown) digitsCountdown.innerText = digits;
+      if (fsDigitalTime) fsDigitalTime.innerText = digits;
 
-      // Digital Warning Colors
-      if (metrics.remaining <= 300) { // < 5 mins (Critical Red)
-        digitsCountdown.className = "digital-time-digits warn-red";
-        fsDigitalTime.className = "fs-digits warn-red";
-        progressDisplayCard.classList.add('critical');
-      } else if (metrics.remaining <= 600) { // < 10 mins (Warning Orange)
-        digitsCountdown.className = "digital-time-digits warn-orange";
-        fsDigitalTime.className = "fs-digits warn-orange";
-        progressDisplayCard.classList.remove('critical');
+      if (metrics.remaining <= 300) {
+        if (digitsCountdown) digitsCountdown.className = "digital-time-digits warn-red";
+        if (fsDigitalTime) fsDigitalTime.className = "fs-digits warn-red";
+        progressDisplayCard?.classList.add('critical');
+      } else if (metrics.remaining <= 600) {
+        if (digitsCountdown) digitsCountdown.className = "digital-time-digits warn-orange";
+        if (fsDigitalTime) fsDigitalTime.className = "fs-digits warn-orange";
+        progressDisplayCard?.classList.remove('critical');
       } else {
-        digitsCountdown.className = "digital-time-digits";
-        fsDigitalTime.className = "fs-digits";
-        progressDisplayCard.classList.remove('critical');
+        if (digitsCountdown) digitsCountdown.className = "digital-time-digits";
+        if (fsDigitalTime) fsDigitalTime.className = "fs-digits";
+        progressDisplayCard?.classList.remove('critical');
       }
 
-      // Sync Progress percentage details
       const elapsedFormatted = formatTimeDigits(metrics.elapsed);
       const remainingFormatted = formatTimeDigits(metrics.remaining);
       const totalFormatted = formatTimeDigits(metrics.total);
       const percentVal = Math.round(metrics.progressPercent);
 
-      metricPercent.innerText = `${percentVal}% Remaining`;
-      fsPercentRemaining.innerText = `${percentVal}% remaining`;
+      if (metricPercent) metricPercent.innerText = `${percentVal}% Remaining`;
+      if (fsPercentRemaining) fsPercentRemaining.innerText = `${percentVal}% remaining`;
       
-      metricElapsed.innerText = elapsedFormatted;
-      metricRemaining.innerText = remainingFormatted;
-      metricTotal.innerText = totalFormatted;
+      if (metricElapsed) metricElapsed.innerText = elapsedFormatted;
+      if (metricRemaining) metricRemaining.innerText = remainingFormatted;
+      if (metricTotal) metricTotal.innerText = totalFormatted;
 
-      progressFill.style.width = `${metrics.progressPercent}%`;
+      if (progressFill) progressFill.style.width = `${metrics.progressPercent}%`;
 
-      // End Time estimation
       let endMs = engine.activeTimer.endTimestamp;
-      // If paused, end time shifts, so calculate estimated end time
       if (engine.activeTimer.isPaused && engine.activeTimer.lastPauseTimestamp) {
         const pauseOffset = Date.now() - engine.activeTimer.lastPauseTimestamp;
         endMs += pauseOffset;
       }
       const endTimeObj = new Date(endMs);
       const endStr = `Ends at ${endTimeObj.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit', hour12: true })}`;
-      metricEndTime.innerText = endStr;
-      fsEndsTime.innerText = endStr;
+      if (metricEndTime) metricEndTime.innerText = endStr;
+      if (fsEndsTime) fsEndsTime.innerText = endStr;
 
-      // Dashboard header modes
-      if (engine.activeTimer.mode === 'study') {
-        dashboardStatus.innerText = engine.activeTimer.studyType === 'pomodoro' ? 'STUDY BLOCK' : 'STUDY SESSION';
-        if (engine.activeTimer.studyType === 'pomodoro') {
-          pomoStageBadge.classList.remove('hidden');
-          pomoStageBadge.innerText = engine.activeTimer.pomoState.toUpperCase();
+      if (dashboardStatus) {
+        if (engine.activeTimer.mode === 'study') {
+          dashboardStatus.innerText = engine.activeTimer.studyType === 'pomodoro' ? 'STUDY BLOCK' : 'STUDY SESSION';
+          if (pomoStageBadge) {
+            if (engine.activeTimer.studyType === 'pomodoro') {
+              pomoStageBadge.classList.remove('hidden');
+              pomoStageBadge.innerText = engine.activeTimer.pomoState.toUpperCase();
+            } else {
+              pomoStageBadge.classList.add('hidden');
+            }
+          }
         } else {
-          pomoStageBadge.classList.add('hidden');
+          dashboardStatus.innerText = engine.activeTimer.strictMode ? 'STRICT EXAM IN PROGRESS' : 'EXAM IN PROGRESS';
+          pomoStageBadge?.classList.add('hidden');
         }
-      } else {
-        dashboardStatus.innerText = engine.activeTimer.strictMode ? 'STRICT EXAM IN PROGRESS' : 'EXAM IN PROGRESS';
-        pomoStageBadge.classList.add('hidden');
       }
 
-      // Pacing calculations (Question progress helper)
       if (engine.activeTimer.mode === 'exam' && engine.activeTimer.showQuestions && engine.activeTimer.totalQuestions > 0) {
-        qTrackerCard.classList.remove('hidden');
-        qTrackerTotalBadge.innerText = `${engine.activeTimer.totalQuestions} Questions`;
+        qTrackerCard?.classList.remove('hidden');
+        if (qTrackerTotalBadge) qTrackerTotalBadge.innerText = `${engine.activeTimer.totalQuestions} Questions`;
 
         const totalQ = engine.activeTimer.totalQuestions;
         const avgSecPerQ = metrics.total / totalQ;
         const suggestedQ = Math.min(totalQ, Math.floor(metrics.elapsed / avgSecPerQ) + 1);
 
-        qTrackerSuggested.innerText = `Q. ${suggestedQ}`;
-        qTrackerTimePerQ.innerText = `${formatSecondsToReadable(avgSecPerQ)} each`;
+        if (qTrackerSuggested) qTrackerSuggested.innerText = `Q. ${suggestedQ}`;
+        if (qTrackerTimePerQ) qTrackerTimePerQ.innerText = `${formatSecondsToReadable(avgSecPerQ)} each`;
 
-        // Retrieve current active question
         const currentQ = engine.activeTimer.currentQuestion || 1;
-        qTrackerCurrentQ.innerText = `Q. ${currentQ}`;
+        if (qTrackerCurrentQ) qTrackerCurrentQ.innerText = `Q. ${currentQ}`;
 
-        // Determine schedule variance: (Elapsed questions completed compared to actual target)
         const diff = currentQ - suggestedQ;
 
-        if (diff < 0) {
-          qTrackerCard.className = "tracker-card glass-panel behind";
-          qTrackerStatusText.innerText = `You are ${Math.abs(diff)} question(s) behind schedule. Pick up the pace!`;
-        } else if (diff > 0) {
-          qTrackerCard.className = "tracker-card glass-panel ahead";
-          qTrackerStatusText.innerText = `You are ${diff} question(s) ahead of schedule. Keep it up!`;
-        } else {
-          qTrackerCard.className = "tracker-card glass-panel on-track";
-          qTrackerStatusText.innerText = "You are exactly on schedule.";
+        if (qTrackerCard && qTrackerStatusText) {
+          if (diff < 0) {
+            qTrackerCard.className = "tracker-card glass-panel behind";
+            qTrackerStatusText.innerText = `You are ${Math.abs(diff)} question(s) behind schedule. Pick up the pace!`;
+          } else if (diff > 0) {
+            qTrackerCard.className = "tracker-card glass-panel ahead";
+            qTrackerStatusText.innerText = `You are ${diff} question(s) ahead of schedule. Keep it up!`;
+          } else {
+            qTrackerCard.className = "tracker-card glass-panel on-track";
+            qTrackerStatusText.innerText = "You are exactly on schedule.";
+          }
         }
       } else {
-        qTrackerCard.classList.add('hidden');
+        qTrackerCard?.classList.add('hidden');
       }
 
-      // Sync Controls buttons
       if (isTimerPaused) {
-        iconPause.classList.add('hidden');
-        iconPlay.classList.remove('hidden');
-        ctrlPlayPauseText.innerText = "Resume";
-        fsPlayPauseBtn.innerText = "Resume";
-        fsPlayPauseBtn.className = "fs-btn primary";
+        iconPause?.classList.add('hidden');
+        iconPlay?.classList.remove('hidden');
+        if (ctrlPlayPauseText) ctrlPlayPauseText.innerText = "Resume";
+        if (fsPlayPauseBtn) {
+          fsPlayPauseBtn.innerText = "Resume";
+          fsPlayPauseBtn.className = "fs-btn primary";
+        }
       } else {
-        iconPlay.classList.add('hidden');
-        iconPause.classList.remove('hidden');
-        ctrlPlayPauseText.innerText = "Pause";
-        fsPlayPauseBtn.innerText = "Pause";
-        fsPlayPauseBtn.className = "fs-btn";
+        iconPlay?.classList.add('hidden');
+        iconPause?.classList.remove('hidden');
+        if (ctrlPlayPauseText) ctrlPlayPauseText.innerText = "Pause";
+        if (fsPlayPauseBtn) {
+          fsPlayPauseBtn.innerText = "Pause";
+          fsPlayPauseBtn.className = "fs-btn";
+        }
       }
 
-      // 3. Mathematical Analog Clock Rotations
       let clockSeconds = 0;
       let clockMinutes = 0;
       let clockHours = 0;
@@ -2470,18 +3251,16 @@ import HistoryPanel from '../components/HistoryPanel.astro';
         clockSeconds = metrics.elapsed % 60;
         clockMinutes = (metrics.elapsed / 60) % 60;
         clockHours = (metrics.elapsed / 3600) % 12;
-      } else { // default 'remaining'
+      } else {
         clockSeconds = metrics.remaining % 60;
         clockMinutes = (metrics.remaining / 60) % 60;
         clockHours = (metrics.remaining / 3600) % 12;
       }
 
-      // Calculate angles
-      const sAngle = clockSeconds * 6; // 360 / 60
-      const mAngle = clockMinutes * 6; // 360 / 60
-      const hAngle = clockHours * 30; // 360 / 12
+      const sAngle = clockSeconds * 6;
+      const mAngle = clockMinutes * 6;
+      const hAngle = clockHours * 30;
 
-      // 1. Classic Analog theme rotations & highlight sector
       hands.classicHour.forEach(el => el.setAttribute('transform', `rotate(${hAngle}, 200, 200)`));
       hands.classicMinute.forEach(el => el.setAttribute('transform', `rotate(${mAngle}, 200, 200)`));
       hands.classicSecond.forEach(el => el.setAttribute('transform', `rotate(${sAngle}, 200, 200)`));
@@ -2489,28 +3268,23 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       const classicSectorD = getSectorPath(mAngle, 190);
       document.querySelectorAll('.theme-classic .clock-highlight-sector').forEach(el => el.setAttribute('d', classicSectorD));
 
-      // 2. Wall Clock theme rotations
       hands.wallHour.forEach(el => el.setAttribute('transform', `rotate(${hAngle}, 200, 200)`));
       hands.wallMinute.forEach(el => el.setAttribute('transform', `rotate(${mAngle}, 200, 200)`));
       hands.wallSecond.forEach(el => el.setAttribute('transform', `rotate(${sAngle}, 200, 200)`));
 
-      // 3. Flip Cards theme update (fires once per second)
       const flipSecToDisplay = representation === 'elapsed' ? metrics.elapsed : metrics.remaining;
       if (flipSecToDisplay !== lastRenderedFlipSec) {
         lastRenderedFlipSec = flipSecToDisplay;
         updateFlipClockDisplay(flipSecToDisplay);
       }
 
-      // 4. Retro Film Countdown theme rotation, counter, and highlight sector
       hands.filmRotator.forEach(el => el.setAttribute('transform', `rotate(${sAngle}, 200, 200)`));
-      
       const filmSectorD = getSectorPath(sAngle, 160);
       document.querySelectorAll('.theme-film .clock-highlight-sector').forEach(el => el.setAttribute('d', filmSectorD));
 
       const filmCounterVal = Math.floor(metrics.remaining % 10);
       document.querySelectorAll('#film-counter').forEach(el => el.textContent = String(filmCounterVal));
 
-      // 5. Magnifier Glass Canvas theme update
       if (engine.settings.clockTheme === 'magnifier') {
         drawAllMagnifierCanvases(hAngle, mAngle, sAngle);
       }
@@ -2519,31 +3293,28 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     requestAnimationFrame(clockTickLoop);
   }
 
-  // Warning notifications toasts helper
   function triggerWarningNotification(minutes: number) {
     sound.playWarningBeeps();
 
-    // Create toast banner
-    const toast = document.createElement('div');
-    toast.className = 'warning-toast';
-    toast.innerHTML = `
-      <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-      <span>WARNING: Only <strong>${minutes} Minute${minutes > 1 ? 's' : ''}</strong> remaining!</span>
-    `;
-
-    warningToastHost.appendChild(toast);
-
-    // Remove toast after 6 seconds
-    setTimeout(() => {
-      toast.style.opacity = '0';
-      toast.style.transform = 'translateY(-10px)';
-      toast.style.transition = 'all 0.3s ease';
-      setTimeout(() => toast.remove(), 300);
-    }, 6000);
+    if (warningToastHost) {
+      const toast = document.createElement('div');
+      toast.className = 'warning-toast';
+      toast.innerHTML = `
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        <span>WARNING: Only <strong>${minutes} Minute${minutes > 1 ? 's' : ''}</strong> remaining!</span>
+      `;
+      warningToastHost.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(-10px)';
+        toast.style.transition = 'all 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 6000);
+    }
   }
 
-  // Render warnings settings list
   function renderWarningList() {
+    if (!warningsListContainer) return;
     warningsListContainer.innerHTML = '';
     const sorted = [...engine.settings.warnings].sort((a, b) => b - a);
 
@@ -2564,9 +3335,8 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       warningsListContainer.appendChild(tag);
     });
 
-    // Wire up deletes
     warningsListContainer.querySelectorAll('.warning-tag-delete').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', () => {
         const val = parseInt(btn.getAttribute('data-val')!);
         engine.settings.warnings = engine.settings.warnings.filter(w => w !== val);
         engine.saveSettings();
@@ -2575,8 +3345,8 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     });
   }
 
-  // Render Custom Presets list in Form Setup
   function renderCustomPresets() {
+    if (!customPresetsContainer) return;
     customPresetsContainer.innerHTML = '';
     if (engine.presets.length === 0) {
       customPresetsContainer.innerHTML = '<span class="empty-text">No custom presets saved.</span>';
@@ -2597,31 +3367,30 @@ import HistoryPanel from '../components/HistoryPanel.astro';
       customPresetsContainer.appendChild(item);
     });
 
-    // Click events
     customPresetsContainer.querySelectorAll('.custom-preset-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        // Set values
         const sec = parseInt(btn.getAttribute('data-sec')!);
         const showQ = btn.getAttribute('data-showq') === 'true';
         const qCount = parseInt(btn.getAttribute('data-q')!);
 
-        // De-select standard active presets
-        standardPresetsContainer.querySelectorAll('.preset-badge').forEach(b => b.classList.remove('active'));
+        standardPresetsContainer?.querySelectorAll('.preset-badge').forEach(b => b.classList.remove('active'));
 
         const hours = Math.floor(sec / 3600);
         const mins = Math.floor((sec % 3600) / 60);
         const secs = sec % 60;
 
-        selectHours.value = String(hours);
-        selectMinutes.value = String(mins);
-        selectSeconds.value = String(secs);
+        if (selectHours) selectHours.value = String(hours);
+        if (selectMinutes) selectMinutes.value = String(mins);
+        if (selectSeconds) selectSeconds.value = String(secs);
 
-        enableQuestionsToggle.checked = showQ;
-        if (showQ) {
-          questionsCollapsible.classList.remove('hidden');
-          inputTotalQuestions.value = String(qCount);
-        } else {
-          questionsCollapsible.classList.add('hidden');
+        if (enableQuestionsToggle) {
+          enableQuestionsToggle.checked = showQ;
+          if (showQ) {
+            questionsCollapsible?.classList.remove('hidden');
+            if (inputTotalQuestions) inputTotalQuestions.value = String(qCount);
+          } else {
+            questionsCollapsible?.classList.add('hidden');
+          }
         }
       });
     });
@@ -2635,13 +3404,12 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     });
   }
 
-  // Render History lists
   function renderHistoryList() {
-    const list = historyListContainer;
-    list.innerHTML = '';
+    if (!historyListContainer) return;
+    historyListContainer.innerHTML = '';
 
     if (engine.history.length === 0) {
-      list.innerHTML = `
+      historyListContainer.innerHTML = `
         <div class="history-empty-state">
           <p>No exams completed yet. Start your first session to build your log!</p>
         </div>
@@ -2674,13 +3442,12 @@ import HistoryPanel from '../components/HistoryPanel.astro';
           <div class="history-item-progress-fill" style="width: ${rec.completionPercent}%;"></div>
         </div>
       `;
-      list.appendChild(item);
+      historyListContainer.appendChild(item);
     });
   }
 
   // Keyboard Event Listeners
   function handleKeyPress(e: KeyboardEvent) {
-    // Avoid triggering shortcuts when writing in input forms
     if (document.activeElement?.tagName === 'INPUT' || document.activeElement?.tagName === 'SELECT') {
       return;
     }
@@ -2701,6 +3468,29 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     } else if (key === 'e') {
       e.preventDefault();
       triggerEndExam();
+    } else if (e.key === 'ArrowRight' || e.key === ']' || e.key === '+') {
+      if (engine.activeTimer && engine.activeTimer.showQuestions) {
+        e.preventDefault();
+        const currentQ = engine.activeTimer.currentQuestion || 1;
+        engine.updateCurrentQuestion(currentQ + 1);
+        sound.playBeep(587.33, 0.08, 'sine');
+      }
+    } else if (e.key === 'ArrowLeft' || e.key === '[' || e.key === '-') {
+      if (engine.activeTimer && engine.activeTimer.showQuestions) {
+        e.preventDefault();
+        const currentQ = engine.activeTimer.currentQuestion || 1;
+        engine.updateCurrentQuestion(currentQ - 1);
+        sound.playBeep(440, 0.08, 'sine');
+      }
+    } else if (e.key === 'Escape') {
+      hideConfirmDialog();
+      settingsBackdrop?.classList.add('hidden');
+      historyModalBackdrop?.classList.add('hidden');
+      studyPresetsPanel?.classList.add('hidden');
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+      }
+      fsOverlay?.classList.add('hidden');
     }
   }
 
@@ -2708,32 +3498,41 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     if (!engine.activeTimer) return;
     if (engine.activeTimer.isPaused) {
       engine.resume();
-      sound.playBeep(587.33, 0.15); // play resume chime
+      sound.playBeep(587.33, 0.15);
+      showToast("Timer resumed", 'info', 2000);
     } else {
       engine.pause();
-      sound.playBeep(392.00, 0.15); // play pause chime
+      sound.playBeep(392.00, 0.15);
+      showToast("Timer paused", 'info', 2000);
     }
   }
 
   function triggerEndExam() {
     if (!engine.activeTimer) return;
-    const confirmEnd = window.navigator.webdriver ? true : confirm("Are you sure you want to end and submit this exam? Your session will be saved as Completed.");
-    if (confirmEnd) {
-      engine.reset('Completed');
-      switchToSetup();
-      sound.playBeep(783.99, 0.15); // high chime
-      sound.playBeep(1046.50, 0.25, 'sine', 0.2); // completion fanfare
-    }
+    showConfirmDialog(
+      "End & Submit Exam?",
+      "Are you sure you want to finish this session? Your progress will be saved as Completed in the history log.",
+      "Yes, End Exam",
+      () => {
+        hideConfirmDialog();
+        const summary = engine.reset('Completed');
+        if (summary) showSessionDebrief(summary);
+      }
+    );
   }
 
   function triggerResetWithConfirmation() {
     if (!engine.activeTimer) return;
-    const confirmReset = window.navigator.webdriver ? true : confirm("Are you sure you want to stop and reset the current exam timer? This will write current metrics to history.");
-    if (confirmReset) {
-      engine.reset('Stopped');
-      switchToSetup();
-      sound.playBeep(293.66, 0.35); // play reset tone
-    }
+    showConfirmDialog(
+      "Stop & Reset Timer?",
+      "Stopping the timer will write your elapsed time to the log and return to the setup screen.",
+      "Yes, Reset Timer",
+      () => {
+        hideConfirmDialog();
+        const summary = engine.reset('Stopped');
+        if (summary) showSessionDebrief(summary);
+      }
+    );
   }
 
   function toggleFullscreenMode() {
@@ -2741,21 +3540,20 @@ import HistoryPanel from '../components/HistoryPanel.astro';
 
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen().then(() => {
-        fsOverlay.classList.remove('hidden');
-        iconFsEnter.classList.add('hidden');
-        iconFsExit.classList.remove('hidden');
-        fsExamName.innerText = engine.activeTimer?.name || "Exam Mock Session";
-      }).catch(err => {
-        // Fallback for unsupported devices (e.g. iOS Safari)
-        fsOverlay.classList.remove('hidden');
+        fsOverlay?.classList.remove('hidden');
+        iconFsEnter?.classList.add('hidden');
+        iconFsExit?.classList.remove('hidden');
+        if (fsExamName) fsExamName.innerText = engine.activeTimer?.name || "Exam Mock Session";
+      }).catch(() => {
+        fsOverlay?.classList.remove('hidden');
       });
     } else {
       document.exitFullscreen().then(() => {
-        fsOverlay.classList.add('hidden');
-        iconFsExit.classList.add('hidden');
-        iconFsEnter.classList.remove('hidden');
+        fsOverlay?.classList.add('hidden');
+        iconFsExit?.classList.add('hidden');
+        iconFsEnter?.classList.remove('hidden');
       }).catch(() => {
-        fsOverlay.classList.add('hidden');
+        fsOverlay?.classList.add('hidden');
       });
     }
   }
@@ -2765,23 +3563,24 @@ import HistoryPanel from '../components/HistoryPanel.astro';
     engine.settings.soundOn = !isSoundMuted;
     engine.saveSettings();
     sound.setMute(isSoundMuted);
-    toggleSoundOn.checked = !isSoundMuted;
+    if (toggleSoundOn) toggleSoundOn.checked = !isSoundMuted;
 
     if (isSoundMuted) {
-      iconVolOn.classList.add('hidden');
-      iconVolMute.classList.remove('hidden');
-      ctrlSoundText.innerText = "Sound Muted";
+      iconVolOn?.classList.add('hidden');
+      iconVolMute?.classList.remove('hidden');
+      if (ctrlSoundText) ctrlSoundText.innerText = "Sound Muted";
+      showToast("Sound muted", 'info', 2000);
     } else {
-      iconVolMute.classList.add('hidden');
-      iconVolOn.classList.remove('hidden');
-      ctrlSoundText.innerText = "Sound On";
-      sound.playBeep(523.25, 0.15); // play test beep
+      iconVolMute?.classList.add('hidden');
+      iconVolOn?.classList.remove('hidden');
+      if (ctrlSoundText) ctrlSoundText.innerText = "Sound On";
+      sound.playBeep(523.25, 0.15);
+      showToast("Sound enabled", 'info', 2000);
     }
   }
 
   // Setup Event Listeners
   function registerEvents() {
-    // Window Event Shortcuts
     window.addEventListener('keydown', handleKeyPress);
 
     // Setup Tabs
@@ -2793,23 +3592,48 @@ import HistoryPanel from '../components/HistoryPanel.astro';
         const tabId = btn.getAttribute('data-tab')!;
         if (tabId === 'tab-duration') {
           activeTab = 'duration';
-          document.getElementById('tab-duration')!.classList.remove('hidden');
-          document.getElementById('tab-window')!.classList.add('hidden');
+          document.getElementById('tab-duration')?.classList.remove('hidden');
+          document.getElementById('tab-window')?.classList.add('hidden');
         } else {
           activeTab = 'window';
-          document.getElementById('tab-duration')!.classList.add('hidden');
-          document.getElementById('tab-window')!.classList.remove('hidden');
+          document.getElementById('tab-duration')?.classList.add('hidden');
+          document.getElementById('tab-window')?.classList.remove('hidden');
           calculateWindowDuration();
         }
       });
     });
 
-    // Time window inputs change recalculation
-    inputStartTime.addEventListener('change', calculateWindowDuration);
-    inputEndTime.addEventListener('change', calculateWindowDuration);
+    inputStartTime?.addEventListener('change', calculateWindowDuration);
+    inputEndTime?.addEventListener('change', calculateWindowDuration);
 
-    // Quick presets choice click
-    standardPresetsContainer.querySelectorAll('.preset-badge').forEach(badge => {
+    // Fast Preset Chips (Landing Page)
+    document.querySelectorAll('.fast-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.fast-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+
+        const h = chip.getAttribute('data-hours') || '0';
+        const m = chip.getAttribute('data-mins') || '0';
+        const s = chip.getAttribute('data-secs') || '0';
+
+        if (selectHours) selectHours.value = h;
+        if (selectMinutes) selectMinutes.value = m;
+        if (selectSeconds) selectSeconds.value = s;
+
+        // Also sync setup preset badges if matching
+        const targetSec = parseInt(h) * 3600 + parseInt(m) * 60 + parseInt(s);
+        standardPresetsContainer?.querySelectorAll('.preset-badge').forEach(b => {
+          if (parseInt(b.getAttribute('data-seconds') || '0') === targetSec) {
+            b.classList.add('active');
+          } else {
+            b.classList.remove('active');
+          }
+        });
+      });
+    });
+
+    // Setup Presets Choice
+    standardPresetsContainer?.querySelectorAll('.preset-badge').forEach(badge => {
       badge.addEventListener('click', () => {
         standardPresetsContainer.querySelectorAll('.preset-badge').forEach(b => b.classList.remove('active'));
         badge.classList.add('active');
@@ -2818,267 +3642,267 @@ import HistoryPanel from '../components/HistoryPanel.astro';
         const hours = Math.floor(sec / 3600);
         const mins = Math.floor((sec % 3600) / 60);
 
-        selectHours.value = String(hours);
-        selectMinutes.value = String(mins);
-        selectSeconds.value = '0';
+        if (selectHours) selectHours.value = String(hours);
+        if (selectMinutes) selectMinutes.value = String(mins);
+        if (selectSeconds) selectSeconds.value = '0';
       });
     });
 
     // Total questions toggle collapse
-    enableQuestionsToggle.addEventListener('change', () => {
+    enableQuestionsToggle?.addEventListener('change', () => {
       if (enableQuestionsToggle.checked) {
-        questionsCollapsible.classList.remove('hidden');
+        questionsCollapsible?.classList.remove('hidden');
       } else {
-        questionsCollapsible.classList.add('hidden');
+        questionsCollapsible?.classList.add('hidden');
       }
     });
 
     // Save Custom Preset
-    btnSaveCustomPreset.addEventListener('click', () => {
-      const name = prompt("Enter a name for this custom preset:", "Mock Test Custom");
+    btnSaveCustomPreset?.addEventListener('click', () => {
+      const name = prompt("Enter a name for this custom preset:", "Custom Mock Test");
       if (!name) return;
 
       let sec = 0;
       if (activeTab === 'duration') {
-        const h = parseInt(selectHours.value) || 0;
-        const m = parseInt(selectMinutes.value) || 0;
-        const s = parseInt(selectSeconds.value) || 0;
+        const h = parseInt(selectHours?.value || '0') || 0;
+        const m = parseInt(selectMinutes?.value || '0') || 0;
+        const s = parseInt(selectSeconds?.value || '0') || 0;
         sec = h * 3600 + m * 60 + s;
       } else {
         sec = setupDurationSec;
       }
 
       if (sec <= 0) {
-        alert("Cannot save preset with zero duration.");
+        showToast("Cannot save preset with zero duration.", 'danger');
         return;
       }
 
-      const showQ = enableQuestionsToggle.checked;
-      const totalQ = showQ ? parseInt(inputTotalQuestions.value) || 0 : 0;
+      const showQ = enableQuestionsToggle?.checked || false;
+      const totalQ = showQ ? parseInt(inputTotalQuestions?.value || '0') || 0 : 0;
 
       engine.addPreset(name, sec, showQ, totalQ);
       renderCustomPresets();
+      showToast(`Preset "${name}" saved!`, 'success');
     });
 
     // Launch Exam
-    btnLaunchExam.addEventListener('click', launchSession);
+    btnLaunchExam?.addEventListener('click', launchSession);
 
     // Pacing Controls Increment/Decrement
-    btnTrackerQDec.addEventListener('click', () => {
+    btnTrackerQDec?.addEventListener('click', () => {
       if (engine.activeTimer && engine.activeTimer.showQuestions) {
         const currentQ = engine.activeTimer.currentQuestion || 1;
         engine.updateCurrentQuestion(currentQ - 1);
-        sound.playBeep(440, 0.08, 'sine'); // light negative click sound
+        sound.playBeep(440, 0.08, 'sine');
       }
     });
 
-    btnTrackerQInc.addEventListener('click', () => {
+    btnTrackerQInc?.addEventListener('click', () => {
       if (engine.activeTimer && engine.activeTimer.showQuestions) {
         const currentQ = engine.activeTimer.currentQuestion || 1;
         engine.updateCurrentQuestion(currentQ + 1);
-        sound.playBeep(587.33, 0.08, 'sine'); // light positive click sound
+        sound.playBeep(587.33, 0.08, 'sine');
       }
     });
 
     // Controls bindings
-    ctrlPlayPause.addEventListener('click', togglePlayPause);
-    ctrlEndExam.addEventListener('click', triggerEndExam);
-    ctrlReset.addEventListener('click', triggerResetWithConfirmation);
-    ctrlFullscreen.addEventListener('click', toggleFullscreenMode);
-    ctrlSound.addEventListener('click', toggleSoundMute);
+    ctrlPlayPause?.addEventListener('click', togglePlayPause);
+    ctrlEndExam?.addEventListener('click', triggerEndExam);
+    ctrlReset?.addEventListener('click', triggerResetWithConfirmation);
+    ctrlFullscreen?.addEventListener('click', toggleFullscreenMode);
+    ctrlSound?.addEventListener('click', toggleSoundMute);
 
     // Fullscreen specific controls
-    fsPlayPauseBtn.addEventListener('click', togglePlayPause);
-    fsExitBtn.addEventListener('click', () => {
+    fsPlayPauseBtn?.addEventListener('click', togglePlayPause);
+    fsExitBtn?.addEventListener('click', () => {
       if (document.fullscreenElement) {
-        document.exitFullscreen();
+        document.exitFullscreen().catch(() => {});
       }
-      fsOverlay.classList.add('hidden');
+      fsOverlay?.classList.add('hidden');
+    });
+
+    // In-App Confirm Dialog Actions
+    confirmCancelBtn?.addEventListener('click', hideConfirmDialog);
+    confirmAcceptBtn?.addEventListener('click', () => {
+      if (confirmCallback) confirmCallback();
+    });
+    confirmDialog?.addEventListener('click', (e) => {
+      if (e.target === confirmDialog) hideConfirmDialog();
+    });
+
+    // Session Debrief Actions
+    debriefRestartBtn?.addEventListener('click', hideSessionDebrief);
+    debriefHistoryBtn?.addEventListener('click', () => {
+      hideSessionDebrief();
+      historyModalBackdrop?.classList.remove('hidden');
+      renderHistoryList();
     });
 
     // Settings drawer open/close
-    headerSettingsBtn.addEventListener('click', () => {
-      settingsBackdrop.classList.remove('hidden');
+    headerSettingsBtn?.addEventListener('click', () => {
+      settingsBackdrop?.classList.remove('hidden');
     });
 
-    settingsCloseBtn.addEventListener('click', () => {
-      settingsBackdrop.classList.add('hidden');
+    settingsCloseBtn?.addEventListener('click', () => {
+      settingsBackdrop?.classList.add('hidden');
     });
 
-    settingsBackdrop.addEventListener('click', (e) => {
+    settingsBackdrop?.addEventListener('click', (e) => {
       if (e.target === settingsBackdrop) {
         settingsBackdrop.classList.add('hidden');
       }
     });
 
     // Theme Switch Toggle
-    themeToggle.addEventListener('change', () => {
+    themeToggle?.addEventListener('change', () => {
       updateTheme(themeToggle.checked);
     });
 
     // Clock config updates
-    selectClockRep.addEventListener('change', () => {
+    selectClockRep?.addEventListener('change', () => {
       engine.settings.clockRepresentation = selectClockRep.value as any;
       engine.saveSettings();
     });
 
-    selectClockTheme.addEventListener('change', () => {
+    selectClockTheme?.addEventListener('change', () => {
       engine.settings.clockTheme = selectClockTheme.value as any;
       engine.saveSettings();
       updateClockThemeConfig();
     });
 
-    toggleShowSeconds.addEventListener('change', () => {
+    toggleShowSeconds?.addEventListener('change', () => {
       engine.settings.showSeconds = toggleShowSeconds.checked;
       engine.saveSettings();
       updateClockFaceConfig();
     });
 
-    toggleShow24h.addEventListener('change', () => {
+    toggleShow24h?.addEventListener('change', () => {
       engine.settings.show24h = toggleShow24h.checked;
       engine.saveSettings();
       updateClockFaceConfig();
     });
 
     // Sound volumes settings updates
-    toggleSoundOn.addEventListener('change', () => {
+    toggleSoundOn?.addEventListener('change', () => {
       isSoundMuted = !toggleSoundOn.checked;
       engine.settings.soundOn = !isSoundMuted;
       engine.saveSettings();
       sound.setMute(isSoundMuted);
     });
 
-    volumeSlider.addEventListener('input', () => {
+    volumeSlider?.addEventListener('input', () => {
       const vol = parseInt(volumeSlider.value);
-      volumeIndicator.innerText = `${vol}%`;
+      if (volumeIndicator) volumeIndicator.innerText = `${vol}%`;
       engine.settings.volume = vol;
       engine.saveSettings();
       sound.setVolume(vol / 100);
     });
 
-    volumeSlider.addEventListener('change', () => {
-      sound.playBeep(523.25, 0.1); // play a quick test volume sound
+    volumeSlider?.addEventListener('change', () => {
+      sound.playBeep(523.25, 0.1);
     });
 
-    // Alarm sound selection & preview
-    selectAlarmSound.addEventListener('change', () => {
+    selectAlarmSound?.addEventListener('change', () => {
       engine.settings.alarmSound = selectAlarmSound.value as any;
       engine.saveSettings();
     });
 
-    btnPreviewAlarmSound.addEventListener('click', () => {
-      const selected = (selectAlarmSound.value as any) || 'classic';
+    btnPreviewAlarmSound?.addEventListener('click', () => {
+      const selected = (selectAlarmSound?.value as any) || 'classic';
       sound.playAlarmByKey(selected);
     });
 
-    // Set Timer Entry Card bindings
-    btnOpenSetTimer?.addEventListener('click', openSetupForm);
-    btnBackToLanding?.addEventListener('click', closeSetupForm);
-
-    document.querySelectorAll('.entry-preset-chip').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const h = btn.getAttribute('data-hours') || '0';
-        const m = btn.getAttribute('data-mins') || '0';
-        const s = btn.getAttribute('data-secs') || '0';
-        selectHours.value = h;
-        selectMinutes.value = m;
-        selectSeconds.value = s;
-        openSetupForm();
-      });
-    });
-
     // Warnings list add
-    btnAddWarning.addEventListener('click', () => {
-      const val = parseInt(inputWarningMinutes.value);
+    btnAddWarning?.addEventListener('click', () => {
+      const val = parseInt(inputWarningMinutes?.value || '0');
       if (isNaN(val) || val <= 0 || val > 600) {
-        alert("Please enter a valid alert target between 1 and 600 minutes.");
+        showToast("Please enter an alert target between 1 and 600 minutes.", 'danger');
         return;
       }
       if (engine.settings.warnings.includes(val)) {
-        alert("Alert already exists for this milestone.");
+        showToast("Alert already exists for this milestone.", 'info');
         return;
       }
 
       engine.settings.warnings.push(val);
       engine.saveSettings();
-      inputWarningMinutes.value = '';
+      if (inputWarningMinutes) inputWarningMinutes.value = '';
       renderWarningList();
+      showToast(`Milestone alert added at ${val} minutes.`, 'success');
     });
 
     // Reset settings
-    settingsResetBtn.addEventListener('click', () => {
-      if (confirm("Reset settings to factory defaults?")) {
-        localStorage.removeItem('exam-clock-settings');
-        location.reload();
-      }
+    settingsResetBtn?.addEventListener('click', () => {
+      showConfirmDialog(
+        "Reset Settings?",
+        "Are you sure you want to reset all preferences to default factory values?",
+        "Reset Defaults",
+        () => {
+          localStorage.removeItem('exam-clock-settings');
+          location.reload();
+        }
+      );
     });
 
     // History drawer logs open
-    headerHistoryBtn.addEventListener('click', () => {
-      historyModalBackdrop.classList.remove('hidden');
+    headerHistoryBtn?.addEventListener('click', () => {
+      historyModalBackdrop?.classList.remove('hidden');
       renderHistoryList();
     });
 
-    historyModalClose.addEventListener('click', () => {
-      historyModalBackdrop.classList.add('hidden');
+    historyModalClose?.addEventListener('click', () => {
+      historyModalBackdrop?.classList.add('hidden');
     });
 
-    historyModalBackdrop.addEventListener('click', (e) => {
+    historyModalBackdrop?.addEventListener('click', (e) => {
       if (e.target === historyModalBackdrop) {
         historyModalBackdrop.classList.add('hidden');
       }
     });
 
-    historyClearBtn.addEventListener('click', () => {
-      if (confirm("Are you sure you want to clear your local history log permanently?")) {
-        engine.clearHistory();
-        renderHistoryList();
-      }
-    });
-
-    // Time's Up actions
-    timesUpNewBtn.addEventListener('click', () => {
-      sound.stopAlarmLoop();
-      timesUpOverlay.classList.add('hidden');
-      timesUpFullscreenFlash.classList.add('hidden');
-      switchToSetup();
-    });
-
-    timesUpResetBtn.addEventListener('click', () => {
-      sound.stopAlarmLoop();
-      timesUpOverlay.classList.add('hidden');
-      timesUpFullscreenFlash.classList.add('hidden');
-      switchToSetup();
+    historyClearBtn?.addEventListener('click', () => {
+      showConfirmDialog(
+        "Clear Session History?",
+        "Are you sure you want to delete all past exam logs permanently?",
+        "Clear All Logs",
+        () => {
+          hideConfirmDialog();
+          engine.clearHistory();
+          renderHistoryList();
+          showToast("Session history cleared.", 'info');
+        }
+      );
     });
 
     // Study Preset promos trigger
-    headerStudyBtn.addEventListener('click', () => {
-      studyPresetsPanel.classList.toggle('hidden');
+    headerStudyBtn?.addEventListener('click', () => {
+      studyPresetsPanel?.classList.toggle('hidden');
     });
 
-    exitStudyBtn.addEventListener('click', () => {
-      studyPresetsPanel.classList.add('hidden');
+    exitStudyBtn?.addEventListener('click', () => {
+      studyPresetsPanel?.classList.add('hidden');
     });
 
     document.querySelectorAll('.study-choice-card').forEach(btn => {
       btn.addEventListener('click', () => {
         const type = btn.getAttribute('data-study')!;
-        studyPresetsPanel.classList.add('hidden');
+        studyPresetsPanel?.classList.add('hidden');
 
         if (type === 'pomodoro-25') {
-          engine.startStudy('pomodoro', 1500); // 25m
+          engine.startStudy('pomodoro', 1500);
         } else if (type === 'pomodoro-50') {
-          engine.startStudy('pomodoro', 3000); // 50m
+          engine.startStudy('pomodoro', 3000);
         } else {
-          engine.startStudy('stopwatch', 0); // count up stopwatch starts at 0
+          engine.startStudy('stopwatch', 0);
         }
 
         sound.playBeep(587.33, 0.4);
         switchToDashboard();
+        showToast("Study mode started.", 'success');
       });
     });
 
-    btnToggleControls.addEventListener('click', () => {
+    btnToggleControls?.addEventListener('click', () => {
       screenDashboard.classList.toggle('distraction-free');
       appViewport.classList.toggle('distraction-free-viewport');
       if (engine.settings.clockTheme === 'magnifier') {
@@ -3091,7 +3915,6 @@ import HistoryPanel from '../components/HistoryPanel.astro';
   window.addEventListener('DOMContentLoaded', () => {
     initUI();
     registerEvents();
-    // Launch main frame ticks
     requestAnimationFrame(clockTickLoop);
   });
 

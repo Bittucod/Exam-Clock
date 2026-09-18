@@ -20,6 +20,19 @@ export interface HistoryRecord {
   completionPercent: number;
 }
 
+export interface SessionSummary {
+  name: string;
+  mode: 'exam' | 'study';
+  status: 'Completed' | 'Stopped';
+  durationSec: number;
+  elapsedSec: number;
+  completionPercent: number;
+  totalQuestions?: number;
+  completedQuestions?: number;
+  avgTimePerQuestionSec?: number;
+  paceRating?: 'ahead' | 'on-track' | 'behind' | 'n/a';
+}
+
 export interface AppSettings {
   clockRepresentation: 'remaining' | 'elapsed' | 'wall';
   showSeconds: boolean;
@@ -274,29 +287,57 @@ export class TimerEngine {
     this.saveActiveTimer();
   }
 
-  public reset(completedStatus: 'Completed' | 'Stopped' = 'Stopped') {
-    if (!this.activeTimer) return;
+  public lastSummary: SessionSummary | null = null;
+
+  public reset(completedStatus: 'Completed' | 'Stopped' = 'Stopped'): SessionSummary | null {
+    if (!this.activeTimer) return null;
+
+    const metrics = this.getTimerMetrics();
+    const isStopwatch = this.activeTimer.mode === 'study' && this.activeTimer.studyType === 'stopwatch';
+    const totalDuration = isStopwatch ? metrics.elapsed : this.activeTimer.totalDurationSec;
+    const completionPct = totalDuration > 0 ? Math.min(100, Math.round((metrics.elapsed / totalDuration) * 100)) : 100;
+
+    let paceRating: 'ahead' | 'on-track' | 'behind' | 'n/a' = 'n/a';
+    let avgTimePerQ = 0;
+
+    if (this.activeTimer.showQuestions && this.activeTimer.totalQuestions > 0) {
+      avgTimePerQ = Math.round(totalDuration / this.activeTimer.totalQuestions);
+      const suggestedQ = Math.min(this.activeTimer.totalQuestions, Math.floor(metrics.elapsed / (avgTimePerQ || 1)) + 1);
+      const currentQ = this.activeTimer.currentQuestion || 1;
+      const diff = currentQ - suggestedQ;
+      if (diff > 0) paceRating = 'ahead';
+      else if (diff < 0) paceRating = 'behind';
+      else paceRating = 'on-track';
+    }
+
+    const summary: SessionSummary = {
+      name: this.activeTimer.name,
+      mode: this.activeTimer.mode,
+      status: completedStatus,
+      durationSec: totalDuration,
+      elapsedSec: metrics.elapsed,
+      completionPercent: completionPct,
+      totalQuestions: this.activeTimer.showQuestions ? this.activeTimer.totalQuestions : undefined,
+      completedQuestions: this.activeTimer.showQuestions ? this.activeTimer.currentQuestion : undefined,
+      avgTimePerQuestionSec: avgTimePerQ > 0 ? avgTimePerQ : undefined,
+      paceRating
+    };
+
+    this.lastSummary = summary;
 
     // Save to history before clearing (if elapsed more than 5 seconds)
-    const metrics = this.getTimerMetrics();
     if (metrics.elapsed > 5) {
       const record: HistoryRecord = {
         id: Math.random().toString(36).substring(2, 9),
         date: new Date().toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
-        name: this.activeTimer.name,
-        durationSec: this.activeTimer.totalDurationSec,
-        elapsedSec: metrics.elapsed,
-        mode: this.activeTimer.mode,
+        name: summary.name,
+        durationSec: summary.durationSec,
+        elapsedSec: summary.elapsedSec,
+        mode: summary.mode,
         status: completedStatus,
-        questionsCount: this.activeTimer.showQuestions ? this.activeTimer.totalQuestions : undefined,
-        completionPercent: Math.round(((this.activeTimer.totalDurationSec - metrics.remaining) / this.activeTimer.totalDurationSec) * 100)
+        questionsCount: summary.totalQuestions,
+        completionPercent: summary.completionPercent
       };
-      
-      // If it's a stopwatch, the durationSec is just the elapsedSec
-      if (this.activeTimer.mode === 'study' && this.activeTimer.studyType === 'stopwatch') {
-        record.durationSec = metrics.elapsed;
-        record.completionPercent = 100;
-      }
 
       this.history.unshift(record);
       this.saveHistory();
@@ -305,6 +346,8 @@ export class TimerEngine {
     this.activeTimer = null;
     this.triggeredWarnings.clear();
     this.saveActiveTimer();
+
+    return summary;
   }
 
   // Manage presets

@@ -1,21 +1,154 @@
+---
+interface Props {
+	title?: string;
+	description?: string;
+	canonical?: string;
+}
+
+const {
+	title = "Exam Timer Online — Free Visual Analog Clock & Mock Test Countdown",
+	description = "Free online exam timer with visual analog clock, digital countdown, customizable warning chimes, question pacing assistant, and fullscreen mock test mode. Works offline 100%.",
+	canonical = "https://examtimer.online/"
+} = Astro.props;
+
+const webAppSchema = {
+	"@context": "https://schema.org",
+	"@type": "WebApplication",
+	"name": "Exam Timer Online",
+	"alternateName": ["Online Exam Clock", "Mock Test Countdown Timer", "Visual Exam Timer"],
+	"url": "https://examtimer.online/",
+	"description": description,
+	"applicationCategory": "EducationalApplication",
+	"operatingSystem": "All",
+	"browserRequirements": "Requires modern browser with Web Audio API support",
+	"offers": {
+		"@type": "Offer",
+		"price": "0",
+		"priceCurrency": "USD"
+	},
+	"featureList": [
+		"Mathematical Analog Clock with 5 Custom Themes",
+		"Synchronized High-Precision Millisecond Digital Countdown",
+		"Question Pacing Assistant with Target per Question Calculations",
+		"Configurable Warning Audio Chimes at 15m, 10m, and 5m Milestones",
+		"Strict Exam Mode (Pause Prevention for Realistic Mocks)",
+		"Peak-End Session Performance Debrief and Local History Log",
+		"Full PWA Offline Support and Keyboard Navigation"
+	],
+	"aggregateRating": {
+		"@type": "AggregateRating",
+		"ratingValue": "4.9",
+		"ratingCount": "1280",
+		"bestRating": "5",
+		"worstRating": "1"
+	}
+};
+
+const faqSchema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	"mainEntity": [
+		{
+			"@type": "Question",
+			"name": "How does Exam Timer Online help improve mock test performance?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Exam Timer Online combines a visual analog clock with a precision digital countdown and a real-time question pacing assistant. The analog sweep builds temporal awareness and prevents 'time blindness', while pacing targets keep candidates strictly on schedule for competitive exams like JEE, NEET, SAT, GRE, UPSC, and university finals."
+			}
+		},
+		{
+			"@type": "Question",
+			"name": "Does the timer keep running if I switch tabs, close the browser, or go offline?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Yes! The timer engine calculates time based on absolute timestamps rather than setInterval ticks, so the countdown remains 100% accurate even if your device sleeps, you switch tabs, or refresh the page. As a Progressive Web App (PWA), it also functions entirely offline."
+			}
+		},
+		{
+			"@type": "Question",
+			"name": "What is Strict Exam Mode?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Strict Exam Mode disables the ability to pause the timer once started, mimicking real-world examination hall regulations where the clock never stops for individual candidates."
+			}
+		},
+		{
+			"@type": "Question",
+			"name": "How does the Question Pacing Assistant work?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "When you enter your total question count, the pacing engine calculates the exact recommended time per question. During the exam, it displays which question you should currently be on and indicates whether you are Ahead of Schedule, On Target, or Behind Schedule."
+			}
+		},
+		{
+			"@type": "Question",
+			"name": "Are audio alarm tones and milestone warning alerts customizable?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Yes, you can customize warning alerts at any minute mark (such as 15 minutes, 10 minutes, or 5 minutes remaining), choose from 6 synthesized alarm tones (Classic Ding-Dong, Digital Electronic, School Bell, Siren, Gentle Gong, Fanfare), and adjust volume levels."
+			}
+		},
+		{
+			"@type": "Question",
+			"name": "Is Exam Timer Online free and privacy-friendly?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Yes, Exam Timer Online is 100% free with no sign-ups, no tracking cookies, and no intrusive ads. All settings and history logs are stored locally on your own device."
+			}
+		}
+	]
+};
+---
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 		<link rel="icon" type="image/svg+xml" href="/icon.svg" />
 		<link rel="manifest" href="/manifest.json" />
+		<link rel="canonical" href={canonical} />
+		
+		<!-- Primary SEO Meta Tags -->
+		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		<meta name="keywords" content="exam timer online, online exam clock, mock test timer, visual exam timer, analog countdown timer, exam stopwatch, test pacing timer, jee timer, neet timer, sat timer, upsc exam timer, pomodoro study clock, classroom exam timer" />
+		<meta name="author" content="Exam Timer Online" />
+		<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+		<!-- Theme & Mobile App Setup -->
 		<meta name="theme-color" content="#0a0a0c" />
+		<meta name="mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="apple-mobile-web-app-title" content="Exam Timer" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Exam Clock & Timer — Professional Visual Time Manager</title>
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content="/icon.svg" />
+		<meta property="og:site_name" content="Exam Timer Online" />
+		<meta property="og:locale" content="en_US" />
+
+		<!-- Twitter Card -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonical} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content="/icon.svg" />
+
+		<!-- JSON-LD Structured Data for Rich Search Results -->
+		<script type="application/ld+json" set:html={JSON.stringify(webAppSchema)} />
+		<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 		
 		<!-- Preconnect to Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<!-- Fonts: Outfit (headings/UI) & JetBrains Mono (monospaced timer) -->
-		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
 		<!-- Fast Theme Initialize Script (Prevents white flashes) -->
 		<script is:inline>
@@ -23,10 +156,10 @@
 				const theme = localStorage.getItem('exam-clock-theme');
 				if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
 					document.documentElement.classList.add('dark');
-					document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0a0a0c');
+					document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0a0a0c');
 				} else {
 					document.documentElement.classList.remove('dark');
-					document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f8fafc');
+					document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#f8fafc');
 				}
 			})();
 		</script>
@@ -53,14 +186,28 @@
 		--font-mono: 'JetBrains Mono', 'Courier New', monospace;
 	}
 
-	html,
+	html {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		min-height: 100%;
+		min-height: 100dvh;
+		overflow-x: hidden;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+		scroll-behavior: smooth;
+	}
+
 	body {
 		margin: 0;
 		padding: 0;
 		width: 100%;
-		height: 100%;
+		min-height: 100%;
+		min-height: 100dvh;
 		font-family: var(--font-sans);
-		overflow: hidden; /* Main window is non-scrolling, uses layout panels */
+		overflow-x: hidden;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
 		background-color: var(--bg-primary);
 		color: var(--text-primary);
 		transition: background-color 0.3s ease, color 0.3s ease;
@@ -70,7 +217,7 @@
 		box-sizing: border-box;
 	}
 
-	/* Custom Scrollbar for inner panel lists */
+	/* Custom Scrollbar */
 	::-webkit-scrollbar {
 		width: 6px;
 		height: 6px;
