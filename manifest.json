@@ -1,13 +1,18 @@
 {
-  "name": "Exam Clock & Timer",
-  "short_name": "Exam Clock",
-  "description": "A professional analog exam clock and digital countdown timer.",
+  "name": "Exam Timer Online — Free Mock Test Clock",
+  "short_name": "Exam Timer Online",
+  "description": "Free online exam timer (examtimer.online) with visual analog clock, digital countdown, customizable warning chimes, and pacing tracker.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0a0c",
   "theme_color": "#111115",
   "orientation": "any",
   "icons": [
+    {
+      "src": "/favicon.jpg",
+      "sizes": "32x32",
+      "type": "image/jpeg"
+    },
     {
       "src": "/icon.svg",
       "sizes": "any",

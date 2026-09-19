@@ -6,7 +6,7 @@ Exam Timer Online is built for students, test-takers, and educators preparing fo
 
 ## Core Pages & Application
 
-- [Exam Clock Dashboard](https://examtimer.online/): Interactive visual exam clock with synchronized analog and digital timers, custom duration and time window setups, 5 visual themes, fullscreen mode, and question progress tracking.
+- [Exam Timer Online Dashboard](https://examtimer.online/): Interactive visual exam clock with synchronized analog and digital timers, custom duration and time window setups, 5 visual themes, fullscreen mode, and question progress tracking.
 - [Features](https://examtimer.online/features): In-depth catalog of features including 5 visual clock themes, distraction-free fullscreen, configurable chime milestones, strict mode, and offline PWA support.
 - [How It Works](https://examtimer.online/how-it-works): Comprehensive breakdown of the question pacing engine, time allocation algorithms, Web Audio sound synthesis, and offline-first architecture.
 - [Exam Guides & Strategies](https://examtimer.online/guide): Pacing strategies, section time allocation recommendations, and time management guides for competitive exams (JEE, NEET, SAT, UPSC).
